@@ -4,15 +4,16 @@
 ### Use
   - **JDK** 11.0.1
   - **JavaFX** 11.0.1
+  - **[Log4j](https://logging.apache.org/log4j)** 2.13.1
   - **[JFoenix](https://github.com/jfoenixadmin/JFoenix)** 9.0.9
   - **[Lombok](https://github.com/rzwitserloot/lombok)** 1.18.2
   - **[FontAwesomeFx](https://bitbucket.org/Jerady/fontawesomefx)** 11.0
 
-  ~ Thanks for above projects ~
+  ~ Thanks for above mentioned projects ~
   
 ### Dev Log
 - 前回
-> - 無記錄
+> - 未記載
     
 - 109-3-27
 > 1. 爲車站平面圖增加了 「滾輪縮放」 和 「脫拽平移」功能

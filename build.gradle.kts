@@ -1,6 +1,7 @@
 plugins {
     java
     application
+    id("io.freefair.lombok") version "5.0.0-rc6"
 }
 
 group = "dev.glycine"
@@ -13,11 +14,9 @@ repositories {
 
 dependencies {
     testCompile("junit", "junit", "4.12")
+    implementation("org.apache.logging.log4j","log4j-api","2.13.1")
+    implementation("org.apache.logging.log4j","log4j-core","2.13.1")
     implementation("com.jfoenix","jfoenix","9.0.9")
-    compileOnly("org.projectlombok","lombok","1.18.12")
-    annotationProcessor("org.projectlombok","lombok","1.18.12")
-    testCompileOnly("org.projectlombok","lombok","1.18.12")
-    testAnnotationProcessor("org.projectlombok","lombok","1.18.12")
     implementation("de.jensd","fontawesomefx-commons","11.0")
 }
 
