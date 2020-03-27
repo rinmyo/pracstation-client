@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.Line?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<StackPane xmlns="http://javafx.com/javafx">
+   <children>
+      <Line endX="1227.0858154296875" endY="-323.0" layoutX="-43.0" layoutY="323.0" startX="42.99998474121094" startY="350.0858154296875" stroke="#797979" strokeWidth="2.0" />
+      <Line endX="1037.378662109375" endY="624.5858154296875" layoutX="145.0" layoutY="47.0" startX="-144.99998474121094" startY="-47.0" stroke="#b9b9b9" strokeWidth="2.0" />
+      <Line endX="264.17156982421875" endY="85.08578491210938" layoutX="-250.0" layoutY="54.0" startX="1406.5858154296875" startY="205.08578491210938" stroke="#b9b9b9" strokeWidth="2.0" />
+      <Line endX="1227.0858154296875" endY="-323.0" layoutX="-42.0" layoutY="585.0" startX="429.17156982421875" startY="81.0858154296875" stroke="#797979" strokeWidth="2.0" />
+      <Circle fill="#1f93ff00" layoutX="637.0" layoutY="329.0" radius="191.0" stroke="white" strokeType="INSIDE" strokeWidth="3.0" />
+   </children>
+</StackPane>

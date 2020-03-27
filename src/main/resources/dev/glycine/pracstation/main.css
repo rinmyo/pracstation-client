@@ -1,0 +1,109 @@
+* {
+    -fx-blue: rgb(10, 132, 255);
+    -fx-green: rgb(48, 209, 88);
+    -fx-indigo: rgb(94, 92, 230);
+    -fx-orange: rgb(255, 159, 10);
+    -fx-pink: rgb(255, 55, 95);
+    -fx-purple: rgb(191, 90, 242);
+    -fx-red: rgb(255, 69, 58);
+    -fx-teal: rgb(100, 210, 255);
+    -fx-yellow: rgb(255, 214, 10);
+
+    -fx-gray: rgb(142, 142, 147);
+    -fx-gray-2: rgb(99, 99, 102);
+    -fx-gray-3: rgb(72, 72, 74);
+    -fx-gray-4: rgb(58, 58, 60);
+    -fx-gray-5: rgb(44, 44, 46);
+    -fx-gray-6: rgb(28, 28, 30);
+
+    -fx-font-family: "PingFang TC";
+}
+
+TurnoutIndicator {
+    -fx-pref-width: 30;
+    -fx-pref-height: 30;
+}
+
+TurnoutPane {
+    -fx-padding: 12.25 15;
+}
+
+#window {
+    -fx-background-color: black;
+    -fx-pref-width: 1920;
+    -fx-pref-height: 1080;
+}
+
+#localTime, #stationName {
+    -fx-text-fill: white;
+    -fx-label-padding: 10;
+    -fx-font-size: 20;
+}
+
+#newSinro {
+    -jfx-disable-visual-focus: true;
+    -fx-background-color: -fx-orange;
+    -fx-background-radius: 25;
+    -fx-text-fill: -fx-gray-6;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+    -fx-font-size: 23;
+}
+
+.card-title {
+    -fx-text-fill: -fx-gray-6;
+    -fx-padding: 4 7.5;
+    -fx-font-size: 13;
+}
+
+.card-content {
+    -fx-padding: 17.5 20;
+}
+
+.card-background {
+    -fx-arc-height: 10;
+    -fx-arc-width: 10;
+    -fx-fill: -fx-gray-6
+}
+
+.to-indicator-title {
+    -fx-font-size: 10;
+    -fx-text-fill: -fx-gray-6;
+}
+
+.box {
+    -fx-fill-height: false;
+    -fx-fill-width: false;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.bottom-btn-group {
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.common-button {
+    -jfx-disable-visual-focus: true;
+    -fx-background-color: -fx-gray-5;
+    -fx-text-fill: white;
+    -fx-background-radius: 40;
+    -fx-pref-width: 40;
+    -fx-pref-height: -fx-pref-width;
+    -fx-font-size: 13;
+}
+
+.danger-button {
+    -jfx-disable-visual-focus: true;
+    -fx-background-color: rgba(255, 69, 58, 0.1);
+    -fx-text-fill: -fx-red;
+    -fx-background-radius: 40;
+    -fx-pref-width: 40;
+    -fx-pref-height: -fx-pref-width;
+    -fx-font-size: 13;
+}
+
+.btn-card .card-background {
+    -fx-arc-height: 25;
+    -fx-arc-width: -fx-arc-height;
+}
