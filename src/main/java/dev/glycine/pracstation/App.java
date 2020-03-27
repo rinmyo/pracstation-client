@@ -12,7 +12,7 @@ import java.io.IOException;
 @Log4j2
 public class App extends Application {
     public static void main(String[] args) {
-        log.info("info");
+        log.warn("info");
         Station station = new Station();
         launch(args);
     }
