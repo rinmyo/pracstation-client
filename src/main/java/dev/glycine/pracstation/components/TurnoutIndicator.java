@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.gui;
+package dev.glycine.pracstation.components;
 
 import com.jfoenix.controls.JFXBadge;
 import dev.glycine.pracstation.Turnout;

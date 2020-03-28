@@ -1,4 +1,4 @@
 package dev.glycine.pracstation;
 
-public class ConfigManager {
+public class Config {
 }

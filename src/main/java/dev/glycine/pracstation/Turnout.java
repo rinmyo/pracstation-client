@@ -1,6 +1,6 @@
 package dev.glycine.pracstation;
 
-import dev.glycine.pracstation.gui.TurnoutIndicator;
+import dev.glycine.pracstation.components.TurnoutIndicator;
 import lombok.Getter;
 
 import java.util.HashMap;

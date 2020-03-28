@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.gui;
+package dev.glycine.pracstation.components;
 
 import dev.glycine.pracstation.Direction;
 import dev.glycine.pracstation.Turnout;

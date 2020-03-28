@@ -30,8 +30,8 @@ TurnoutPane {
 
 #window {
     -fx-background-color: black;
-    -fx-pref-width: 1920;
-    -fx-pref-height: 1080;
+    -fx-pref-width: 1280;
+    -fx-pref-height: 720;
 }
 
 #localTime, #stationName {
@@ -48,6 +48,14 @@ TurnoutPane {
     -fx-pref-width: 50;
     -fx-pref-height: 50;
     -fx-font-size: 23;
+}
+
+#zoomIndicator {
+    -fx-background-color: -fx-purple;
+    -fx-text-fill: -fx-gray;
+    -fx-background-radius: 30;
+    -fx-pref-width: 30;
+    -fx-pref-height: -fx-pref-width;
 }
 
 .card-title {
@@ -83,27 +91,32 @@ TurnoutPane {
     -fx-spacing: 10;
 }
 
-.common-button {
+.common-button, .danger-button {
     -jfx-disable-visual-focus: true;
     -fx-background-color: -fx-gray-5;
     -fx-text-fill: white;
-    -fx-background-radius: 40;
-    -fx-pref-width: 40;
+    -fx-background-radius: 50;
+    -fx-pref-width: 50;
     -fx-pref-height: -fx-pref-width;
     -fx-font-size: 13;
 }
 
 .danger-button {
-    -jfx-disable-visual-focus: true;
     -fx-background-color: rgba(255, 69, 58, 0.1);
     -fx-text-fill: -fx-red;
-    -fx-background-radius: 40;
-    -fx-pref-width: 40;
-    -fx-pref-height: -fx-pref-width;
-    -fx-font-size: 13;
 }
 
 .btn-card .card-background {
     -fx-arc-height: 25;
     -fx-arc-width: -fx-arc-height;
+}
+
+.zoom-indicator-card {
+    -fx-pref-width: 70;
+    -fx-pref-height: -fx-pref-width;
+
+}
+
+.zoom-indicator-card .card-background {
+    -fx-fill: rgba(191, 90, 242, 0.2);
 }

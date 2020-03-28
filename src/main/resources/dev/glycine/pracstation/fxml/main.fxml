@@ -4,13 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<?import dev.glycine.pracstation.gui.Card?>
-<?import dev.glycine.pracstation.gui.TurnoutPane?>
+<?import dev.glycine.pracstation.components.Card?>
+<?import dev.glycine.pracstation.components.TurnoutPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane fx:id="window" stylesheets="@../main.css" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.MainController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
-    <fx:include source="station.fxml" fx:id="stationGraph"/>
+    <fx:include source="canvas.fxml" fx:id="canvas"/>
 
     <HBox styleClass="box">
         <Card labelText="S">
@@ -37,6 +37,10 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomRightBox">
+        <Card styleClass="btn-card, zoom-indicator-card">
+            <JFXButton styleClass="common-button" fx:id="zoomIndicator"/>
+        </Card>
+
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group">
                 <JFXButton text="道岔總定" styleClass="common-button"/>
