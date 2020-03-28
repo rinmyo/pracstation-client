@@ -71,6 +71,7 @@ public final class MainController implements Initializable {
                     || scale <= CANVAS_MIN_SCALE && e.getDeltaY() > 0
                     || scale >= CANVAS_MAX_SCALE && e.getDeltaY() < 0
             ) {
+                //todo: program will occur a bug here, cannot work as normal
                 canvas.setLayoutX(canvas.getLayoutX() - e.getX() - cursorX.getValue());
                 canvas.setLayoutY(canvas.getLayoutY() - e.getY() - cursorY.getValue());
                 scaleProperty.set(scaleProperty.add(ZOOM_TIME * e.getDeltaY()).getValue());

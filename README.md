@@ -11,6 +11,10 @@
 
   ~ Thanks for the projects mentioned above ~
   
+### TODO
+  -[ ] 縮放指示器
+  -[ ] 以鼠標的位置爲中心進行縮放
+  
 ### Dev Log
 - 前回
 ```
