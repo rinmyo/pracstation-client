@@ -10,6 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
 
+/**
+ * 道岔指示器
+ */
 public class TurnoutIndicator extends JFXBadge {
     @Getter
     private Label label = new Label();

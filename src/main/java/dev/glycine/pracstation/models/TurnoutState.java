@@ -5,6 +5,9 @@ import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 道岔狀態
+ */
 @AllArgsConstructor
 public enum TurnoutState {
     NORMAL(Color.rgb(48, 209, 88)),

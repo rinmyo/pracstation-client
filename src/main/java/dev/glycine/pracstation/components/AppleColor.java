@@ -2,6 +2,9 @@ package dev.glycine.pracstation.components;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Apple的設計配色集
+ */
 public final class AppleColor {
     static final Color BLUE = Color.rgb(10, 132, 255);
     static final Color GREEN = Color.rgb(48, 209, 88);

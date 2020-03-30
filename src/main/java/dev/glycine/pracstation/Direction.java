@@ -1,5 +1,15 @@
 package dev.glycine.pracstation;
 
+/**
+ * 行車方向
+ */
 public enum Direction {
-    X, S
+    /**
+     * 下行
+     */
+    X,
+    /**
+     * 上行
+     */
+    S
 }

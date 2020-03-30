@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 
+/**
+ * 道岔表示面板
+ */
 public class TurnoutPane extends VBox {
     @Getter
     private Direction dir;

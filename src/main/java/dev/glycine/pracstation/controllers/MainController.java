@@ -8,6 +8,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -26,35 +27,51 @@ public final class MainController implements Initializable {
 
     private static final HashMap<Integer, Turnout> turnouts = Turnout.getTurnouts();
 
-    public AnchorPane window;
-    public AnchorPane canvas;
-    public Label localTime;
-    public Label stationName;
-    public JFXButton newSinro;
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private AnchorPane canvas;
+    @FXML
+    private Label localTime;
+    @FXML
+    private Label stationName;
+    @FXML
+    private JFXButton newSinro;
+    @FXML
+    private HBox topRightBox;
+    @FXML
+    private HBox bottomLeftBox;
+    @FXML
+    private HBox bottomRightBox;
+    @FXML
+    private JFXButton zoomIndicator;
 
-    public HBox topRightBox;
-    public HBox bottomLeftBox;
-    public HBox bottomRightBox;
-    public JFXButton zoomIndicator;
-
+    /**
+     * 聲明時鐘
+     */
     private Timeline clock = new Timeline(
             new KeyFrame(Duration.ZERO, e -> localTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")))),
             new KeyFrame(Duration.seconds(1))
     );
 
+    /**
+     * 配置工具
+     */
     private void configureTools() {
-        topRightBox.translateXProperty().bind(window.widthProperty().subtract(topRightBox.widthProperty()));
-        bottomLeftBox.translateYProperty().bind(window.heightProperty().subtract(bottomLeftBox.heightProperty()));
-        bottomRightBox.translateXProperty().bind(window.widthProperty().subtract(bottomRightBox.widthProperty()));
-        bottomRightBox.translateYProperty().bind(window.heightProperty().subtract(bottomRightBox.heightProperty()));
+        topRightBox.translateXProperty().bind(root.widthProperty().subtract(topRightBox.widthProperty()));
+        bottomLeftBox.translateYProperty().bind(root.heightProperty().subtract(bottomLeftBox.heightProperty()));
+        bottomRightBox.translateXProperty().bind(root.widthProperty().subtract(bottomRightBox.widthProperty()));
+        bottomRightBox.translateYProperty().bind(root.heightProperty().subtract(bottomRightBox.heightProperty()));
     }
 
-
-    private void configureStationGraph() {
+    /**
+     * 配置畫布
+     */
+    private void configureCanvas() {
         var scaleProperty = new SimpleDoubleProperty(1.0);
 
-        canvas.translateXProperty().bind(window.widthProperty().subtract(canvas.widthProperty()).divide(2));
-        canvas.translateYProperty().bind(window.heightProperty().subtract(canvas.heightProperty()).divide(2));
+        canvas.translateXProperty().bind(root.widthProperty().subtract(canvas.widthProperty()).divide(2));
+        canvas.translateYProperty().bind(root.heightProperty().subtract(canvas.heightProperty()).divide(2));
         canvas.scaleXProperty().bind(scaleProperty);
         canvas.scaleYProperty().bind(scaleProperty);
 
@@ -68,8 +85,8 @@ public final class MainController implements Initializable {
                     || scale >= CANVAS_MAX_SCALE && e.getDeltaY() < 0
             ) {
                 //todo: program will occur a bug here, cannot work as normal
-                canvas.setLayoutX(canvas.getLayoutX() - e.getX() - cursorX.getValue());
-                canvas.setLayoutY(canvas.getLayoutY() - e.getY() - cursorY.getValue());
+                //canvas.setLayoutX(canvas.getLayoutX() - e.getX() - cursorX.getValue());
+                //canvas.setLayoutY(canvas.getLayoutY() - e.getY() - cursorY.getValue());
                 scaleProperty.set(scaleProperty.add(ZOOM_TIME * e.getDeltaY()).getValue());
                 cursorX.set(e.getX());
                 cursorY.set(e.getY());
@@ -93,15 +110,24 @@ public final class MainController implements Initializable {
         });
     }
 
+    /**
+     * 配置時鐘
+     */
     void configureClock() {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
 
+    /**
+     * 配置站名
+     */
     void configureStationNames() {
         stationName.setText("板橋車站");
     }
 
+    /**
+     * 配置縮放指示器
+     */
     void configureZoomIndicator() {
 
     }
@@ -109,7 +135,7 @@ public final class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configureTools();
-        configureStationGraph();
+        configureCanvas();
         configureClock();
         configureStationNames();
         configureZoomIndicator();

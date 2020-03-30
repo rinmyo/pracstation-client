@@ -8,7 +8,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
 
-
+/**
+ * 卡片
+ */
 public class Card extends JFXBadge {
     private static final int FADE_DURATION = 150;
 

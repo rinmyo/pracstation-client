@@ -28,7 +28,7 @@ TurnoutPane {
     -fx-padding: 12.25 15;
 }
 
-#window {
+#root {
     -fx-background-color: black;
     -fx-pref-width: 1280;
     -fx-pref-height: 720;

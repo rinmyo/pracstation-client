@@ -5,6 +5,9 @@ import lombok.Getter;
 
 import java.util.HashMap;
 
+/**
+ * 道岔類
+ */
 public class Turnout {
     /**
      * 所有道岔

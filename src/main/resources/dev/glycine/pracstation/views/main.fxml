@@ -7,7 +7,7 @@
 <?import dev.glycine.pracstation.components.Card?>
 <?import dev.glycine.pracstation.components.TurnoutPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane fx:id="window" stylesheets="@main.css" xmlns="http://javafx.com/javafx"
+<AnchorPane fx:id="root" stylesheets="@main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
     <fx:include source="canvas.fxml" fx:id="canvas"/>

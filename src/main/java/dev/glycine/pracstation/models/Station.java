@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import java.util.HashMap;
 
+/**
+ * 車站
+ */
 public class Station {
     @Getter
     private static final Station instance = new Station();
