@@ -47,7 +47,7 @@ public final class MainController implements Initializable {
     private JFXButton zoomIndicator;
 
     /**
-     * 聲明時鐘
+     * 宣告時鐘動畫
      */
     private Timeline clock = new Timeline(
             new KeyFrame(Duration.ZERO, e -> localTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")))),
@@ -70,8 +70,11 @@ public final class MainController implements Initializable {
     private void configureCanvas() {
         var scaleProperty = new SimpleDoubleProperty(1.0);
 
+        //將畫布置於窗口的中央
         canvas.translateXProperty().bind(root.widthProperty().subtract(canvas.widthProperty()).divide(2));
         canvas.translateYProperty().bind(root.heightProperty().subtract(canvas.heightProperty()).divide(2));
+
+        //綁定縱橫軸的縮放倍率
         canvas.scaleXProperty().bind(scaleProperty);
         canvas.scaleYProperty().bind(scaleProperty);
 
