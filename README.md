@@ -33,3 +33,6 @@
   5. 卡片標籤加上fade動效
   6. 當滑鼠位於道岔表示燈上時，該指示燈顯示內陰影
 ```
+
+### LICENSE 開放原始碼授權
+ [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html) or later
