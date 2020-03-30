@@ -14,7 +14,7 @@ import java.io.IOException;
 public class App extends Application {
     public static void main(String[] args) {
         log.warn("info");
-        Station station = new Station();
+        new Station();
         launch(args);
     }
 
