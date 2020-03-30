@@ -34,10 +34,11 @@ public class Turnout {
 
     public void setState(TurnoutState state) {
         this.state = state;
-        indicator.getCircle().setFill(state.getLightColor());
+        indicator.update();
 
         if (isDoubleActTurnout()) {
-            doubleActTurnout.indicator.getCircle().setFill(state.getLightColor());
+            doubleActTurnout.state = state;
+            doubleActTurnout.indicator.update();
         }
     }
 

@@ -58,10 +58,6 @@ public final class MainController implements Initializable {
         canvas.scaleXProperty().bind(scaleProperty);
         canvas.scaleYProperty().bind(scaleProperty);
 
-        canvas.setOnScrollStarted(e -> {
-            System.out.println(1);
-        });
-
         //縮放
         SimpleDoubleProperty cursorX = new SimpleDoubleProperty(0);
         SimpleDoubleProperty cursorY = new SimpleDoubleProperty(0);
