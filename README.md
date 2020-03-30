@@ -13,17 +13,18 @@
 
   ~ Thanks for the projects mentioned above ~
   
+### LICENSE 開放原始碼授權
+  [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html) or later
+  
 ### TODO
   - [ ] 縮放指示器
   - [ ] 以鼠標的位置爲中心進行縮放
   
+  
 ### Dev Log
-- 前回
-```
-  未記載
-```
- 
-    
+最新版本介面
+![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+   
 - 109-3-27
 ```
   1. 爲車站平面圖增加了 「滾輪縮放」 和 「拖曳平移」功能
@@ -34,5 +35,7 @@
   6. 當滑鼠位於道岔表示燈上時，該指示燈顯示內陰影
 ```
 
-### LICENSE 開放原始碼授權
- [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html) or later
+- 前回
+```
+  未記載
+```

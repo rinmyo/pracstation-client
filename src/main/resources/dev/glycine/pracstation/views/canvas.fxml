@@ -14,7 +14,7 @@
       <Line endX="-11.0" endY="64.5" layoutX="388.0" layoutY="424.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
       <Line endX="393.2928466796875" endY="0.20709228515625" layoutX="478.0" layoutY="489.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
       <Line endX="509.0" layoutX="575.0" layoutY="230.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="-40.0" layoutX="101.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
-      <Line endX="-100.0" endY="60.0" layoutX="100.0" layoutY="1.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+<!--      <Line endX="-40.0" layoutX="101.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />-->
+<!--      <Line endX="-100.0" endY="60.0" layoutX="100.0" layoutY="1.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />-->
    </children>
 </AnchorPane>
