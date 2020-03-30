@@ -18,6 +18,7 @@ dependencies {
     implementation("org.apache.logging.log4j","log4j-core","2.13.1")
     implementation("com.jfoenix","jfoenix","9.0.9")
     implementation("de.jensd","fontawesomefx-commons","11.0")
+    implementation("org.mongodb","mongodb-driver-sync","4.0.1")
 }
 
 configure<JavaPluginConvention> {

@@ -2,8 +2,8 @@ package dev.glycine.pracstation.controllers;
 
 import com.jfoenix.controls.JFXButton;
 
-import dev.glycine.pracstation.Turnout;
-import dev.glycine.pracstation.TurnoutState;
+import dev.glycine.pracstation.models.Turnout;
+import dev.glycine.pracstation.models.TurnoutState;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -1,4 +1,4 @@
-package dev.glycine.pracstation;
+package dev.glycine.pracstation.models;
 
 import dev.glycine.pracstation.components.TurnoutIndicator;
 import lombok.Getter;

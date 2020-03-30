@@ -1,4 +1,4 @@
-package dev.glycine.pracstation;
+package dev.glycine.pracstation.models;
 
 import lombok.Getter;
 

@@ -1,5 +1,6 @@
 package dev.glycine.pracstation;
 
+import dev.glycine.pracstation.models.Station;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

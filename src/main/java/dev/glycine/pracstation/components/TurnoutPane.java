@@ -1,7 +1,7 @@
 package dev.glycine.pracstation.components;
 
 import dev.glycine.pracstation.Direction;
-import dev.glycine.pracstation.Turnout;
+import dev.glycine.pracstation.models.Turnout;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;

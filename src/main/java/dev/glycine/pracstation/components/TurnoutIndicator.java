@@ -1,7 +1,7 @@
 package dev.glycine.pracstation.components;
 
 import com.jfoenix.controls.JFXBadge;
-import dev.glycine.pracstation.Turnout;
+import dev.glycine.pracstation.models.Turnout;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;

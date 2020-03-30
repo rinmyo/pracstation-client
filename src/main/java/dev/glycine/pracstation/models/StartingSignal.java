@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.signals;
+package dev.glycine.pracstation.models;
 
 /**
  * 出站信號機
