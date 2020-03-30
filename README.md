@@ -22,8 +22,8 @@
   
   
 ### Dev Log
-最新版本介面
-![image](http://github.com/itmyhome2013/readme_add_pic/raw/master/images/nongshalie.jpg)
+  最新版本介面  
+  ![image](https://bitbucket.org/Satanya/pracstation/raw/bd5442c5fdfb6aa5917dd6f83ef93bf0fd6eb264/images/img.png)
    
 - 109-3-27
 ```
