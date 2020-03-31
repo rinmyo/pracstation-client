@@ -55,7 +55,7 @@ public final class MainController implements Initializable {
     /**
      * 配置工具
      */
-    private void configureTools() {
+    private void configureToolBox() {
         topRightBox.translateXProperty().bind(root.widthProperty().subtract(topRightBox.widthProperty()));
         bottomLeftBox.translateYProperty().bind(root.heightProperty().subtract(bottomLeftBox.heightProperty()));
         bottomRightBox.translateXProperty().bind(root.widthProperty().subtract(bottomRightBox.widthProperty()));
@@ -77,21 +77,14 @@ public final class MainController implements Initializable {
         canvas.scaleYProperty().bind(scaleProperty);
 
         //縮放
-        SimpleDoubleProperty cursorX = new SimpleDoubleProperty(0);
-        SimpleDoubleProperty cursorY = new SimpleDoubleProperty(0);
         canvas.setOnScroll(e -> {
             var scale = scaleProperty.getValue();
             if (scale > CANVAS_MIN_SCALE && scale < CANVAS_MAX_SCALE
                     || scale <= CANVAS_MIN_SCALE && e.getDeltaY() > 0
                     || scale >= CANVAS_MAX_SCALE && e.getDeltaY() < 0
             ) {
-                //todo: program will occur a bug here, cannot work as normal
-                //canvas.setLayoutX(canvas.getLayoutX() - e.getX() - cursorX.getValue());
-                //canvas.setLayoutY(canvas.getLayoutY() - e.getY() - cursorY.getValue());
+                //todo: zooming relative to the mouse position
                 scaleProperty.set(scaleProperty.add(ZOOM_TIME * e.getDeltaY()).getValue());
-                cursorX.set(e.getX());
-                cursorY.set(e.getY());
-                System.out.println(e.getDeltaX());
             }
         });
 
@@ -136,7 +129,7 @@ public final class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configureTools();
+        configureToolBox();
         configureCanvas();
         configureClock();
         configureStationNames();
