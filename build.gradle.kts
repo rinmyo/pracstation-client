@@ -2,6 +2,7 @@ plugins {
     java
     application
     id("io.freefair.lombok") version "5.0.0-rc6"
+    id("com.github.johnrengelman.shadow").version("5.2.0")
 }
 
 group = "dev.glycine"
