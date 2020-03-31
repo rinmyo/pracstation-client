@@ -15,10 +15,14 @@ public class Turnout {
     @Getter
     private static final HashMap<Integer, Turnout> turnouts = new HashMap<>();
 
-    public static Turnout getTurnoutById(int id) {
-        return turnouts.get(id);
+    /**
+     * 通過tid獲得道岔物件
+     * @param tid 道岔編號
+     * @return 道岔物件
+     */
+    public static Turnout getTurnoutById(int tid) {
+        return turnouts.get(tid);
     }
-
 
     /**
      * 道岔編號
@@ -26,6 +30,9 @@ public class Turnout {
     @Getter
     private int tid;
 
+    /**
+     * 對應的道岔指示器
+     */
     @Getter
     private TurnoutIndicator indicator;
 
@@ -35,6 +42,10 @@ public class Turnout {
     @Getter
     private TurnoutState state;
 
+    /**
+     * 設定道岔狀態
+     * @param state 狀態
+     */
     public void setState(TurnoutState state) {
         this.state = state;
         indicator.update();
@@ -45,6 +56,9 @@ public class Turnout {
         }
     }
 
+    /**
+     * 反轉道岔
+     */
     public void toggleState() {
         if (this.state == TurnoutState.NORMAL) {
             setState(TurnoutState.REVERSE);
@@ -59,6 +73,9 @@ public class Turnout {
     @Getter
     private Turnout doubleActTurnout;
 
+    /**
+     * 設置雙動道岔
+     */
     public void setDoubleActTurnout() {
         this.doubleActTurnout = getTurnoutById(tid + 2);
         getTurnoutById(tid + 2).doubleActTurnout = this;

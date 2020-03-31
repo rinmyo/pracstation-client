@@ -20,6 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * 程式的主控制器
+ */
 public final class MainController implements Initializable {
     private static final double CANVAS_MIN_SCALE = 1.0;
     private static final double CANVAS_MAX_SCALE = 2.0;
