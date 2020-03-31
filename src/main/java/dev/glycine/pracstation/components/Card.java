@@ -18,38 +18,35 @@ public class Card extends JFXBadge {
     private String labelText;
 
     public void setLabelText(String value) {
-        titleLabel.setText(value);
+        title.setText(value);
     }
 
-    Rectangle bgRect = new Rectangle();
-    JFXBadge recBox = new JFXBadge(bgRect);
-    Label titleLabel = new Label();
+    private final Label title = new Label();
+    protected final Rectangle background = new Rectangle();
 
     public Card() {
-        super();
-        bgRect.getStyleClass().add("card-background");
-        bgRect.heightProperty().bind(recBox.heightProperty());
-        bgRect.widthProperty().bind(recBox.widthProperty());
+        getChildren().addAll(background, title);
 
-        titleLabel.getStyleClass().add("card-title");
-        setAlignment(titleLabel, Pos.TOP_LEFT);
+        background.getStyleClass().add("card-background");
+        background.heightProperty().bind(heightProperty());
+        background.widthProperty().bind(widthProperty());
 
-        FadeTransition fadein = new FadeTransition(Duration.millis(FADE_DURATION), titleLabel);
+        title.getStyleClass().add("card-title");
+        setAlignment(title, Pos.TOP_LEFT);
+
+        var fadein = new FadeTransition(Duration.millis(FADE_DURATION), title);
         fadein.setFromValue(0);
         fadein.setToValue(1);
 
-        FadeTransition fadeout = new FadeTransition(Duration.millis(FADE_DURATION), titleLabel);
+        var fadeout = new FadeTransition(Duration.millis(FADE_DURATION), title);
         fadeout.setFromValue(1);
         fadeout.setToValue(0);
 
         setOnMouseEntered(e -> {
-            titleLabel.setTextFill(AppleColor.GRAY);
+            title.setTextFill(AppleColor.GRAY);
             fadein.play();
         });
 
         setOnMouseExited(e -> fadeout.play());
-
-        getChildren().addAll(recBox, titleLabel);
     }
-
 }

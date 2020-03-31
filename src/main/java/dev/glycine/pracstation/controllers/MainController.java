@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
@@ -96,6 +97,7 @@ public final class MainController implements Initializable {
             var x = e.getX();
             var y = e.getY();
             canvas.setOnMouseDragged(d -> {
+                canvas.setCursor(Cursor.MOVE);
                 var newX = canvas.getLayoutX() + d.getX() - x;
                 var newY = canvas.getLayoutY() + d.getY() - y;
                 if (canvas.getScaleX() > CANVAS_MIN_SCALE) {
@@ -106,6 +108,7 @@ public final class MainController implements Initializable {
                 }
             });
         });
+        canvas.setOnMouseReleased(e -> canvas.setCursor(Cursor.DEFAULT));
     }
 
     /**
