@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="login" opacity="0.8" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.LoginController">
+<AnchorPane fx:id="login" prefHeight="600.0" prefWidth="400.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.LoginController">
    <children>
-      <TextField layoutX="120.0" layoutY="287.0" />
-      <TextField layoutX="120.0" layoutY="210.0" />
-      <JFXButton layoutX="169.0" layoutY="418.0" text="Login" onMouseClicked="#login"/>
+      <JFXButton layoutX="173.0" layoutY="470.0" onMouseClicked="#login" text="&gt;" />
+      <PasswordField layoutX="111.0" layoutY="373.0" prefHeight="26.0" prefWidth="178.0" promptText="Password" />
+      <TextField layoutX="111.0" layoutY="300.0" prefHeight="26.0" prefWidth="178.0" promptText="Username" />
    </children>
 </AnchorPane>
