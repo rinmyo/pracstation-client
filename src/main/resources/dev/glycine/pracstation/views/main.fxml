@@ -37,10 +37,6 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomRightBox">
-        <!-- todo: here is a zoom indicator that indicates the canvas zoom times, clicking to reset -->
-        <Card styleClass="btn-card, zoom-indicator-card">
-            <JFXButton styleClass="common-button" fx:id="zoomIndicator"/>
-        </Card>
 
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group">

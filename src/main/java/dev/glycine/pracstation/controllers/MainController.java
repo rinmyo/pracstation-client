@@ -43,8 +43,6 @@ public final class MainController implements Initializable {
     private HBox bottomLeftBox;
     @FXML
     private HBox bottomRightBox;
-    @FXML
-    private JFXButton zoomIndicator;
 
     /**
      * 宣告時鐘動畫
@@ -93,6 +91,7 @@ public final class MainController implements Initializable {
                 scaleProperty.set(scaleProperty.add(ZOOM_TIME * e.getDeltaY()).getValue());
                 cursorX.set(e.getX());
                 cursorY.set(e.getY());
+                System.out.println(e.getDeltaX());
             }
         });
 
