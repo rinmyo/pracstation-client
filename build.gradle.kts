@@ -2,7 +2,8 @@ plugins {
     java
     application
     id("io.freefair.lombok") version "5.0.0-rc6"
-    id("com.github.johnrengelman.shadow").version("5.2.0")
+    id("org.openjfx.javafxplugin") version "0.0.8"
+    id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
 group = "dev.glycine"
@@ -14,7 +15,6 @@ repositories {
 }
 
 dependencies {
-    testCompile("junit", "junit", "4.12")
     implementation("org.apache.logging.log4j", "log4j-api", "2.13.1")
     implementation("org.apache.logging.log4j", "log4j-core", "2.13.1")
     implementation("com.jfoenix", "jfoenix", "9.0.9")
@@ -23,8 +23,13 @@ dependencies {
     implementation("com.google.code.gson", "gson", "2.8.6")
 }
 
+javafx {
+    version = "14"
+    modules = listOf("javafx.controls", "javafx.fxml")
+}
+
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_14
 }
 
 configure<ApplicationPluginConvention> {
