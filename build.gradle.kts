@@ -28,10 +28,10 @@ javafx {
     modules = listOf("javafx.controls", "javafx.fxml")
 }
 
-configure<JavaPluginConvention> {
+java {
     sourceCompatibility = JavaVersion.VERSION_14
 }
 
-configure<ApplicationPluginConvention> {
+application {
     mainClassName = "dev.glycine.pracstation.App"
 }
