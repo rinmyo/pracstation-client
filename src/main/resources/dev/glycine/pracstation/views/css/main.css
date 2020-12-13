@@ -134,14 +134,6 @@ Polygon, SVGPath {
     -fx-fill: rgba(191, 90, 242, 0.2);
 }
 
-.bg-font{
-    -fx-font-size: 7;
-}
-
-.sm-font{
-    -fx-font-size: 6;
-}
-
 .-railway-section, .-isulated-rail-joint {
     -fx-stroke: -fx-teal;
 }
@@ -150,7 +142,18 @@ Polygon, SVGPath {
     -fx-stroke: white;
 }
 
-.-railway-section-label, .-signal Label {
+.-railway-section-label, .signal-label {
     -fx-text-fill: white;
     -fx-font-size: 7;
+}
+
+.turnout-label {
+    -fx-text-fill: -fx-teal;
+    -fx-font-size: 6;
+}
+
+.turnout-circle {
+    -fx-fill: -fx-teal;
+    -fx-stroke-width: 0;
+    -fx-opacity: 0.5;
 }

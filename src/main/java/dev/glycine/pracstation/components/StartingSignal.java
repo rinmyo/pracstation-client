@@ -28,11 +28,6 @@ public class StartingSignal extends SignalBase {
         getChildren().addAll(line1, light1, light2);
     }
 
-    public StartingSignal(Direction dir){
-        this();
-        setDir(dir);
-    }
-
     public void setDir(Direction dir) {
         light1.setCenterX(dir == Direction.X ? DEFAULT_CIRCLE_RADIUS : -DEFAULT_CIRCLE_RADIUS);
         light2.setCenterX(3 * (dir == Direction.X ? DEFAULT_CIRCLE_RADIUS : -DEFAULT_CIRCLE_RADIUS));

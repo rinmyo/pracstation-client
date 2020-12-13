@@ -10,7 +10,7 @@
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
-    <fx:include source="canvas.fxml" fx:id="canvas"/>
+    <fx:include source="station.fxml" fx:id="canvas"/>
 
     <HBox styleClass="box">
         <Card labelText="X">

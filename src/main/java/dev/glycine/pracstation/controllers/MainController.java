@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -30,7 +31,7 @@ public final class MainController {
     @FXML
     private AnchorPane root;
     @FXML
-    private StackPane canvas;
+    private AnchorPane canvas;
     @FXML
     private Label localTime;
     @FXML

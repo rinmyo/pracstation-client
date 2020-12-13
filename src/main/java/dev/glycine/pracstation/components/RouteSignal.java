@@ -22,11 +22,6 @@ public class RouteSignal extends SignalBase {
         getChildren().addAll(line1, light1);
     }
 
-    public RouteSignal(Direction dir){
-        this();
-        setDir(dir);
-    }
-
     public void setDir(Direction dir) {
         light1.setCenterX(dir == Direction.X ? DEFAULT_CIRCLE_RADIUS : -DEFAULT_CIRCLE_RADIUS);
         this.dir = dir;
