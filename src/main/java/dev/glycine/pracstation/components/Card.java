@@ -25,6 +25,7 @@ public class Card extends JFXBadge {
     protected final Rectangle background = new Rectangle();
 
     public Card() {
+        super();
         getChildren().addAll(background, title);
 
         background.getStyleClass().add("card-background");

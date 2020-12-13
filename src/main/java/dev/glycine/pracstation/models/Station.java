@@ -14,6 +14,6 @@ public class Station {
     private static final HashMap<Integer, Turnout> turnouts = Turnout.getTurnouts();
 
     public Station() {
-        Turnout.setTurnouts(35);
+        Turnout.setTurnouts(37, 18);
     }
 }

@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Line endX="841.0" layoutX="270.0" layoutY="359.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="841.0" layoutX="270.0" layoutY="424.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="58.5" endY="-54.5" layoutX="416.0" layoutY="284.0" startX="-130.0" startY="74.5" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="392.2928466796875" endY="0.29290771484375" layoutX="482.0" layoutY="294.0" startX="-101.29290771484375" startY="0.29290771484375" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="-11.0" endY="64.5" layoutX="975.0" layoutY="295.0" startX="-187.0" startY="-64.5" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="-36.0" endY="11.0" layoutX="1002.0" layoutY="414.0" startX="-130.0" startY="74.5" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="-11.0" endY="64.5" layoutX="388.0" layoutY="424.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="393.2928466796875" endY="0.20709228515625" layoutX="478.0" layoutY="489.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-      <Line endX="509.0" layoutX="575.0" layoutY="230.0" startX="-100.0" stroke="#a8a8a8" strokeWidth="2.0" />
-<!--      <Line endX="-40.0" layoutX="101.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />-->
-<!--      <Line endX="-100.0" endY="60.0" layoutX="100.0" layoutY="1.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />-->
-   </children>
-</AnchorPane>
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:include source="station.fxml" />
+    <AnchorPane fx:id="ctrlLayer">
+        <Rectangle fx:id="t5R" height="2.0" layoutX="132.0" layoutY="90.7" rotate="20.0" width="8.0" />
+      <Rectangle fx:id="t5R1" height="2.0" layoutX="159.0" layoutY="103.2" rotate="20.0" width="8.0" />
+    </AnchorPane>
+</StackPane>

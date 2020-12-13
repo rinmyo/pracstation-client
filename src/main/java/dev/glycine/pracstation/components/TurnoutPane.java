@@ -13,15 +13,15 @@ public class TurnoutPane extends VBox {
     @Getter
     private Direction dir;
 
-    private HBox firstLayer = new HBox();
-    private HBox secondLayer = new HBox();
+    private final HBox firstLayer = new HBox();
+    private final HBox secondLayer = new HBox();
 
     public void setDir(Direction dir) {
         Turnout.getTurnouts().forEach((k, v) -> {
             switch (dir) {
                 case S:
                     if (k % 2 == 0)
-                        if (k < 0.5 * Turnout.getTurnouts().size()) {
+                        if (k < 0.5 * Turnout.getMAX_EVEN()) {
                             firstLayer.getChildren().add(v.getIndicator());
                         } else {
                             secondLayer.getChildren().add(v.getIndicator());
@@ -30,7 +30,7 @@ public class TurnoutPane extends VBox {
 
                 case X:
                     if (k % 2 != 0)
-                        if (k < 0.5 * Turnout.getTurnouts().size()) {
+                        if (k < 0.5 * Turnout.getMAX_ODD()) {
                             firstLayer.getChildren().add(v.getIndicator());
                         } else {
                             secondLayer.getChildren().add(v.getIndicator());

@@ -17,7 +17,6 @@ public class App extends Application {
     private static Stage loginStage;
 
     public static void main(String[] args) {
-        log.warn("info");
         new Station();
         launch(args);
     }

@@ -1,19 +1,54 @@
 package dev.glycine.pracstation.models;
 
 import dev.glycine.pracstation.components.TurnoutIndicator;
+import javafx.scene.shape.Rectangle;
 import lombok.Getter;
-
-import java.util.HashMap;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * 道岔類
  */
+@Log4j2
 public class Turnout {
+    private static final TurnoutState DEFAULT_STATE = TurnoutState.UNKNOWN;
+
+    private Turnout(int tid, Rectangle normalRec, Rectangle reverseRec) {
+        this.tid = tid;
+        this.normalRec = normalRec;
+        this.reverseRec = reverseRec;
+
+        this.doubleActTurnout = null;
+        this.indicator = new TurnoutIndicator("" + tid, e -> toggleState());
+
+        stateProperty.addListener((observable, oldvalue, newvalue) -> {
+            indicator.changeColor(newvalue);
+            switch (newvalue){
+                case NORMAL -> {
+//                reverseRec.setVisible(false);
+//                normalRec.setVisible(true);
+                }
+                case REVERSE -> {
+//                reverseRec.setVisible(true);
+//                normalRec.setVisible(false);
+                }
+            }
+
+            if (isDoubleActTurnout()) {
+                doubleActTurnout.setState(newvalue);
+            }
+        });
+
+        setState(DEFAULT_STATE);
+    }
+
     /**
      * 所有道岔
      */
     @Getter
-    private static final HashMap<Integer, Turnout> turnouts = new HashMap<>();
+    private static final TurnoutMap turnouts = new TurnoutMap();
+
+    @Getter
+    private static int MAX_ODD, MAX_EVEN;
 
     /**
      * 通過tid獲得道岔物件
@@ -28,39 +63,36 @@ public class Turnout {
      * 道岔編號
      */
     @Getter
-    private int tid;
+    private final int tid;
 
     /**
      * 對應的道岔指示器
      */
     @Getter
-    private TurnoutIndicator indicator;
+    private final TurnoutIndicator indicator;
+
+    @Getter
+    private final Rectangle normalRec, reverseRec;
 
     /**
      * 道岔狀態
      */
     @Getter
-    private TurnoutState state;
+    private final TurnoutStateProperty stateProperty = new TurnoutStateProperty();
 
     /**
      * 設定道岔狀態
      * @param state 狀態
      */
     public void setState(TurnoutState state) {
-        this.state = state;
-        indicator.update();
-
-        if (isDoubleActTurnout()) {
-            doubleActTurnout.state = state;
-            doubleActTurnout.indicator.update();
-        }
+        this.stateProperty.set(state);
     }
 
     /**
      * 反轉道岔
      */
     public void toggleState() {
-        if (this.state == TurnoutState.NORMAL) {
+        if (stateProperty.get() == TurnoutState.NORMAL) {
             setState(TurnoutState.REVERSE);
         } else {
             setState(TurnoutState.NORMAL);
@@ -81,16 +113,15 @@ public class Turnout {
         getTurnoutById(tid + 2).doubleActTurnout = this;
     }
 
-    private Turnout(int tid) {
-        this.tid = tid;
-        this.doubleActTurnout = null;
-        this.indicator = new TurnoutIndicator("" + tid, this);
-        setState(TurnoutState.NORMAL);
-    }
+    public static void setTurnouts(int odd, int even) {
+        MAX_EVEN = even;
+        MAX_ODD = odd;
 
-    public static void setTurnouts(int amount) {
-        for (int i = 1; i <= amount; i++) {
-            turnouts.put(i, new Turnout(i));
+        for (int i = 1; i <= odd; i+=2) {
+            turnouts.put(i, new Turnout(i, null, null));
+        }
+        for (int i = 2; i <= even; i+=2) {
+            turnouts.put(i, new Turnout(i, null, null));
         }
     }
 

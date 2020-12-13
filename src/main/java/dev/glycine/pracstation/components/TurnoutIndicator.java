@@ -1,44 +1,44 @@
 package dev.glycine.pracstation.components;
 
 import com.jfoenix.controls.JFXBadge;
+import dev.glycine.pracstation.models.SignalState;
 import dev.glycine.pracstation.models.Turnout;
+import dev.glycine.pracstation.models.TurnoutState;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.TimerTask;
 
 /**
  * 道岔指示器
  */
 public class TurnoutIndicator extends JFXBadge {
     @Getter
-    private Label label = new Label();
-    @Getter
-    private Turnout turnout;
+    private final Label label = new Label();
 
     @Getter
-    private Circle circle = new Circle(10);
+    private final Circle circle = new Circle(10);
 
-    /**
-     * 改變指示器顏色
-     */
-    public void update() {
-        getCircle().setFill(turnout.getState().getLightColor());
+    @Getter
+    ProgressIndicator PI = new ProgressIndicator();
+
+    public void changeColor(TurnoutState state){
+        circle.setFill(state.getColor());
     }
 
-    public TurnoutIndicator(String text, Turnout turnout) {
-        super();
+    public TurnoutIndicator(String text, EventHandler<MouseEvent> clickHandler) {
         label.setText(text);
-        this.turnout = turnout;
 
         label.getStyleClass().add("to-indicator-title");
         circle.getStyleClass().add("to-indicator-circle");
-
-        //道岔表示器點擊處理者
-        EventHandler<MouseEvent> clickHandler = e -> turnout.toggleState();
 
         label.setOnMouseClicked(clickHandler);
         label.setOnMouseEntered(e -> circle.setEffect(new InnerShadow(BlurType.GAUSSIAN, AppleColor.GRAY_6, 5, 0, 0, 0)));
@@ -48,6 +48,6 @@ public class TurnoutIndicator extends JFXBadge {
         circle.setOnMouseEntered(e -> circle.setEffect(new InnerShadow(BlurType.GAUSSIAN, AppleColor.GRAY_6, 5, 0, 0, 0)));
         circle.setOnMouseExited(e -> circle.setEffect(null));
 
-        getChildren().addAll(circle, label);
+        getChildren().addAll(circle, label, PI);
     }
 }

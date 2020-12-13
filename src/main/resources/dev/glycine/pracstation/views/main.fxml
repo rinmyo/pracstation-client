@@ -13,11 +13,11 @@
     <fx:include source="canvas.fxml" fx:id="canvas"/>
 
     <HBox styleClass="box">
-        <Card labelText="S">
-            <TurnoutPane dir="S"/>
+        <Card labelText="X">
+            <TurnoutPane dir="X"/>
         </Card>
 
-        <Card labelText="台北時間">
+        <Card labelText="中原時間">
             <Label fx:id="localTime" styleClass="card-content"/>
         </Card>
 
@@ -27,8 +27,8 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="topRightBox">
-        <Card labelText="X">
-            <TurnoutPane dir="X"/>
+        <Card labelText="S">
+            <TurnoutPane dir="S"/>
         </Card>
     </HBox>
 

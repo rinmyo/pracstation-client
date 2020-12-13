@@ -1,5 +1,6 @@
 package dev.glycine.pracstation.models;
 
+import dev.glycine.pracstation.components.AppleColor;
 import javafx.scene.paint.Color;
 
 import lombok.AllArgsConstructor;
@@ -13,23 +14,23 @@ public enum TurnoutState {
     /**
      * 定位
      */
-    NORMAL(Color.rgb(48, 209, 88)),
+    NORMAL(AppleColor.GREEN),
     /**
      * 反位
      */
-    REVERSE(Color.rgb(255, 214, 10)),
+    REVERSE(AppleColor.YELLOW),
     /**
      * 損壞
      */
-    BROKEN(Color.rgb(255, 69, 58)),
+    BROKEN(AppleColor.RED),
     /**
-     * 禁用
+     * 未知
      */
-    DISABLED(Color.rgb(58, 58, 60));
+    UNKNOWN(AppleColor.GRAY_4);
 
     /**
      * 燈光顏色
      */
     @Getter
-    private Color lightColor;
+    private final Color color;
 }

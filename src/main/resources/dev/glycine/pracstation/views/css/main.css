@@ -24,14 +24,27 @@ TurnoutIndicator {
     -fx-pref-height: 30;
 }
 
+ProgressIndicator {
+    -fx-progress-color: -fx-blue;
+}
+
 TurnoutPane {
     -fx-padding: 12.25 15;
 }
 
+Text {
+    -fx-fill: -fx-teal;
+}
+
+Polygon, SVGPath {
+    -fx-fill: -fx-blue;
+    -fx-stroke: -fx-blue;
+}
+
 #root {
+    -fx-pref-width: 1920;
+    -fx-pref-height: 1080;
     -fx-background-color: black;
-    -fx-pref-width: 1280;
-    -fx-pref-height: 720;
 }
 
 #localTime, #stationName {
@@ -119,4 +132,25 @@ TurnoutPane {
 
 .zoom-indicator-card .card-background {
     -fx-fill: rgba(191, 90, 242, 0.2);
+}
+
+.bg-font{
+    -fx-font-size: 7;
+}
+
+.sm-font{
+    -fx-font-size: 6;
+}
+
+.-railway-section, .-isulated-rail-joint {
+    -fx-stroke: -fx-teal;
+}
+
+.-signal Circle, .-signal Line {
+    -fx-stroke: white;
+}
+
+.-railway-section-label, .-signal Label {
+    -fx-text-fill: white;
+    -fx-font-size: 7;
 }
