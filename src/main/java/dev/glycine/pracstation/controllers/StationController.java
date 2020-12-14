@@ -1,8 +1,8 @@
 package dev.glycine.pracstation.controllers;
 
 import dev.glycine.pracstation.components.*;
+import dev.glycine.pracstation.models.SignalState;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 
 public class StationController {
@@ -85,7 +85,14 @@ public class StationController {
     }
 
     public void handleSignalClicked(MouseEvent mouseEvent) {
-        var source = (Node) mouseEvent.getSource();
-        System.out.println(source.getId());
+        var signalBase = (SignalBase) mouseEvent.getSource();
+        switch(signalBase.getSignalType()){
+            case STARTING_SIGNAL -> {
+                var signal = (StartingSignal)signalBase;
+                signal.getLight1().setSignalState(SignalState.CAUTION);
+            }
+            case SHUNTING_SIGNAL, ROUTE_SIGNAL -> {
+            }
+        }
     }
 }

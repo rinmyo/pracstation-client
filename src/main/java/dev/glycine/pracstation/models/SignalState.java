@@ -7,18 +7,19 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum SignalState {
+    UNKNOWN(AppleColor.GRAY),
 
-    RED(AppleColor.RED),
+    OFF(AppleColor.BLACK),
 
-    YELLOW(AppleColor.YELLOW),
+    STOP(AppleColor.RED),
 
-    GREEN(AppleColor.GREEN),
+    CAUTION(AppleColor.YELLOW),
 
-    BLUE(AppleColor.BLUE),
+    PROCEED(AppleColor.GREEN),
 
-    WHITE(AppleColor.WHITE),
+    ROUTE_STOP(AppleColor.BLUE),
 
-    BLACK(AppleColor.BLACK);
+    ROUTE_PROCEED(AppleColor.WHITE);
 
     /**
      * 燈光顏色
