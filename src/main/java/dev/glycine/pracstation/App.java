@@ -1,15 +1,17 @@
 package dev.glycine.pracstation;
 
-import dev.glycine.pracstation.models.Station;
+import com.jfoenix.assets.JFoenixResources;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
+@Log4j2
 public class App extends Application {
     public static final String PACKAGE_PATH = "/dev/glycine/pracstation/";
 
@@ -18,12 +20,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        new Station();
         loginStage = primaryStage;
-        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/login.fxml"));
+//        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/login.fxml"));
+        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
+        Scene scene = new Scene(login);
+        scene.getStylesheets().addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm()
+        );
         primaryStage.setTitle("pracstation");
-        primaryStage.setScene(new Scene(login));
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        log.info("Application has been launched.");
     }
 }

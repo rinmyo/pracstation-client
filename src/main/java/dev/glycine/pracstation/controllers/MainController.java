@@ -1,16 +1,14 @@
 package dev.glycine.pracstation.controllers;
 
-import com.jfoenix.controls.JFXButton;
-
-import dev.glycine.pracstation.models.Turnout;
+import dev.glycine.pracstation.components.Turnout;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
@@ -27,7 +25,6 @@ public final class MainController {
     private static final double CANVAS_MIN_SCALE = 0.5;
     private static final double CANVAS_MAX_SCALE = 5.0;
 
-    private static final HashMap<Integer, Turnout> turnouts = Turnout.getTurnouts();
     @FXML
     private AnchorPane root;
     @FXML
@@ -37,7 +34,7 @@ public final class MainController {
     @FXML
     private Label stationName;
     @FXML
-    private JFXButton newSinro;
+    private Button newSinro;
     @FXML
     private HBox topRightBox;
     @FXML
@@ -63,10 +60,7 @@ public final class MainController {
         bottomRightBox.translateYProperty().bind(root.heightProperty().subtract(bottomRightBox.heightProperty()));
     }
 
-    /**
-     * 配置畫布
-     */
-    private void configureCanvas() {
+    private void setDefaultCanvas() {
         //將畫布置於窗口的中央
         canvas.translateXProperty().bind(root.widthProperty().subtract(canvas.widthProperty()).divide(2));
         canvas.translateYProperty().bind(root.heightProperty().subtract(canvas.heightProperty()).divide(2));
@@ -74,17 +68,25 @@ public final class MainController {
         //綁定縱橫軸的縮放倍率
         canvas.setScaleX(1.5);
         canvas.setScaleY(1.5);
+    }
 
+    /**
+     * 配置畫布
+     */
+    private void configureCanvas() {
+        setDefaultCanvas();
         //縮放
         canvas.setOnScroll(scrollEvent -> {
-            Scale newScale = new Scale();
-            var factor = scrollEvent.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
-            newScale.setX(factor);
-            newScale.setY(factor);
-            newScale.setPivotX(scrollEvent.getX());
-            newScale.setPivotY(scrollEvent.getY());
-            canvas.getTransforms().add(newScale);
-            scrollEvent.consume();
+            if (scrollEvent.isControlDown()) {
+                Scale newScale = new Scale();
+                var factor = scrollEvent.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
+                newScale.setX(factor);
+                newScale.setY(factor);
+                newScale.setPivotX(scrollEvent.getX());
+                newScale.setPivotY(scrollEvent.getY());
+                canvas.getTransforms().add(newScale);
+                scrollEvent.consume();
+            }
         });
 
         //平移
@@ -92,24 +94,30 @@ public final class MainController {
         var mouseYProperty = new SimpleDoubleProperty(0.0);
 
         canvas.setOnMousePressed(mouseEvent -> {
-            mouseXProperty.set(mouseEvent.getX());
-            mouseYProperty.set(mouseEvent.getY());
-            mouseEvent.consume();
+            if (mouseEvent.isControlDown()) {
+                mouseXProperty.set(mouseEvent.getX());
+                mouseYProperty.set(mouseEvent.getY());
+                mouseEvent.consume();
+            }
         });
 
         canvas.setOnMouseDragged(mouseEvent -> {
-            canvas.setCursor(Cursor.MOVE);
-            Translate trans = new Translate(
-                    mouseEvent.getX() - mouseXProperty.get(),
-                    mouseEvent.getY() - mouseYProperty.get()
-            );
-            canvas.getTransforms().add(trans);
-            mouseEvent.consume();
+            if (mouseEvent.isControlDown()) {
+                canvas.setCursor(Cursor.MOVE);
+                Translate trans = new Translate(
+                        mouseEvent.getX() - mouseXProperty.get(),
+                        mouseEvent.getY() - mouseYProperty.get()
+                );
+                canvas.getTransforms().add(trans);
+                mouseEvent.consume();
+            }
         });
 
         canvas.setOnMouseReleased(mouseEvent -> {
-            canvas.setCursor(Cursor.DEFAULT);
-            mouseEvent.consume();
+            if (mouseEvent.isControlDown()) {
+                canvas.setCursor(Cursor.DEFAULT);
+                mouseEvent.consume();
+            }
         });
     }
 

@@ -9,383 +9,462 @@
 <?import dev.glycine.pracstation.components.SignalGroup?>
 <?import dev.glycine.pracstation.components.RouteSignal?>
 <?import dev.glycine.pracstation.components.ShuntingSignal?>
-<?import dev.glycine.pracstation.components.TurnoutButton?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.StationController">
-   <Group>
-      <children>
-         <Line fx:id="section3G" endX="609.0" endY="181.0" startX="400.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="565.0" layoutY="171.0" styleClass="-railway-section-label" text="3G"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="224.0" startX="400.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="565.0" layoutY="214.0" styleClass="-railway-section-label" text="IG"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="267.0" startX="400.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="565.0" layoutY="257.0" styleClass="-railway-section-label" text="IIG"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="310.0" startX="425.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="564.5" layoutY="300.0" styleClass="-railway-section-label" text="4G"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="439.0" startX="530.0" startY="439.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="564.5" layoutY="429.0" styleClass="-railway-section-label" text="10G"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="396.0" startX="512.0" startY="396.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="564.5" layoutY="386.0" styleClass="-railway-section-label" text="8G"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="609.0" endY="353.0" startX="469.0" startY="353.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Label layoutX="564.5" layoutY="343.0" styleClass="-railway-section-label" text="6G"/>
-      </children>
-   </Group>
+<?import dev.glycine.pracstation.components.Turnout?>
+<?import dev.glycine.pracstation.components.SectionComponent?>
+<?import dev.glycine.pracstation.components.IsulatedJoint?>
+<AnchorPane fx:id="station" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.StationController">
+    <!--railway-section-->
+    <SectionComponent sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
+    <SectionComponent sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
+    <SectionComponent sid="IIAG" endX="145.0" endY="267.0" startX="87.0" startY="267.0"/>
+    <SectionComponent sid="S3JG" endX="1012.0" endY="267.0" startX="920.0" startY="267.0"/>
 
-   <!--railway-section-->
+    <!--左斜-->
+    <SectionComponent sid="1DG" endX="160.0" endY="267.0" startX="145.0" startY="267.0"/>
+    <SectionComponent sid="1DG" tid="1" tstate="NORMAL" endX="200.0" endY="267.0" startX="160.0" startY="267.0"/>
+    <SectionComponent sid="1DG" tid="1" tstate="REVERSE" endX="181.5" endY="245.5" startX="160.0" startY="267.0"/>
 
-   <Line endX="230.0" endY="224.0" startX="86.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="86.0" endY="224.0" startX="12.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="86.0" endY="267.0" startX="12.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="145.0" endY="267.0" startX="86.0" startY="267.0" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="200.0" endY="267.0" startX="145.0" startY="267.0" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="300.0" endY="267.0" startX="200.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="400.0" endY="267.0" startX="300.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="800.0" endY="267.0" startX="609.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="920.0" endY="267.0" startX="800.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="1012.0" endY="267.0" startX="920.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="203.0" endY="224.75" startX="160.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="177.0" endY="181.0" startX="220.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="207.0" endY="181.0" startX="155.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="400.0" endY="224.0" startX="230.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="243.0" endY="224.0" startX="286.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="303.0" endY="181.0" startX="260.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="695.0" endY="224.0" startX="609.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="640.0" endY="181.0" startX="683.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="640.0" endY="181.0" startX="609.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="825.0" endY="224.0" startX="695.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="870.0" endY="224.0" startX="825.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="1012.0" endY="224.0" startX="920.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="920.0" endY="224.0" startX="870.0" startY="224.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="740.0" endY="224.0" startX="783.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="862.0" endY="224.0" startX="815.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="400.0" endY="181.0" startX="350.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="350.0" endY="181.0" startX="315.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="391.5" endY="159.5" startX="370.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="363.0" endY="138.0" startX="413.0" startY="138.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="456.0" endY="95.0" startX="391.5" startY="159.5" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="510.0" endY="95.0" startX="456.0" startY="95.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="500.0" endY="62.0" startX="467.0" startY="95.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="510.0" endY="52.0" startX="500.0" startY="62.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="525.0" endY="95.0" startX="510.0" startY="95.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="357.0" endY="310.0" startX="314.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="371.0" endY="310.0" startX="300.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="315.0" endY="181.0" startX="290.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="290.0" endY="181.0" startX="260.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="260.0" endY="181.0" startX="207.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="410.0" endY="48.0" startX="277.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="320.0" endY="48.0" startX="320.0" startY="138.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="363.0" endY="48.0" startX="363.0" startY="95.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="425.0" endY="310.0" startX="371.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="695.0" endY="310.0" startX="609.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="451.5" endY="374.5" startX="387.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="695.0" endY="340.0" startX="768.0" startY="267.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="639.0" endY="396.0" startX="695.0" startY="340.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="530.0" endY="439.0" startX="516.0" startY="439.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="639.0" endY="396.0" startX="609.0" startY="396.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="516.0" endY="439.0" startX="451.5" startY="374.5" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="512.0" endY="396.0" startX="473.0" startY="396.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="672.0" endY="439.0" startX="672.0" startY="363.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="672.0" endY="439.0" startX="609.0" startY="439.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="628.0" endY="353.0" startX="609.0" startY="353.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="628.0" endY="353.0" startX="672.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="469.0" endY="353.0" startX="430.0" startY="353.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Line endX="725.0" endY="310.0" startX="695.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-   <Group>
-      <children>
-         <Group styleClass="-railway-section">
-            <children>
-               <Line endX="300.0" endY="310.0" startX="240.0" startY="310.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-               <Group layoutX="236.0" layoutY="307.0" styleClass="-railway-section">
-                  <children>
-                     <Line endX="3.0" styleClass="-railway-section" />
-                     <Line endX="3.0" layoutY="6.0" styleClass="-railway-section" />
-                     <Line endY="6.0" layoutX="3.0" styleClass="-railway-section" />
-                     <Line endX="3.0" layoutX="4.0" layoutY="3.0" styleClass="-railway-section" />
-                  </children>
-               </Group>
-            </children>
-         </Group>
-         <Label layoutX="251.0" layoutY="300.0" styleClass="-railway-section-label" text="D23G"/>
-      </children>
-   </Group>
-   <Group>
-      <children>
-         <Line endX="155.0" endY="181.0" startX="120.0" startY="181.0" strokeLineCap="ROUND" strokeWidth="1.5" styleClass="-railway-section" />
-         <Group layoutY="1.0" styleClass="-railway-section">
-            <children>
-               <Line endX="120.0" endY="180.0" startX="115.0" startY="185.0" strokeWidth="1.3" styleClass="-railway-section" />
-               <Line endX="115.0" endY="185.0" startX="105.0" startY="175.0" strokeWidth="1.3" styleClass="-railway-section" />
-               <Line endX="105.0" endY="175.0" startX="100.0" startY="180.0" strokeWidth="1.3" styleClass="-railway-section" />
-               <Line endX="101.0" endY="181.0" layoutX="-1.0" layoutY="-1.0" startX="97.0" startY="181.0" styleClass="-railway-section" />
-               <Line endX="3.0" layoutX="92.0" layoutY="177.0" styleClass="-railway-section" />
-               <Line endX="3.0" layoutX="92.0" layoutY="183.0" styleClass="-railway-section" />
-               <Line endY="6.0" layoutX="96.0" layoutY="177.0" styleClass="-railway-section" />
-            </children>
-         </Group>
-         <Label layoutX="125.0" layoutY="171.0" styleClass="-railway-section-label" text="D3G"/>
-      </children>
-   </Group>
+    <SectionComponent sid="3-7DG" endX="230.0" endY="224.0" startX="87.0" startY="224.0"/>
+    <SectionComponent sid="3-7DG" tid="7" tstate="NORMAL" endX="220.0" endY="224.0" startX="203.0" startY="224.0"/>
+    <SectionComponent sid="3-7DG" tid="7" tstate="REVERSE" endX="198.5" endY="202.5" startX="220.0" startY="224.0"/>
+    <SectionComponent sid="3-7DG" tid="3" tstate="NORMAL" endX="87.0" endY="224.0" startX="203.0" startY="224.0"/>
+    <SectionComponent sid="3-7DG" tid="3" tstate="REVERSE" endX="181.5" endY="245.5" startX="203.0" startY="224.0"/>
 
-   <!-- isulated-rail-joint -->
-   <Line endY="4.0" layoutX="87.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="145.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="200.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="300.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="400.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="350.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="800.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="920.0" layoutY="265.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="230.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="400.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="207.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="400.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="695.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="825.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="920.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="870.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="391.5" layoutY="157.5" rotate="-45.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="510.0" layoutY="93.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="500.0" layoutY="60.0" rotate="-45.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="315.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="308.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="695.0" layoutY="308.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="290.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="260.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="400.0" layoutY="56.0" rotate="-45.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="155.0" layoutY="179.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="320.0" layoutY="55.0" rotate="90.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="87.0" layoutY="222.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="363.0" layoutY="55.0" rotate="90.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="460.0" layoutY="93.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="300.0" layoutY="308.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="371.0" layoutY="308.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="351.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="425.0" layoutY="308.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="469.0" layoutY="351.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="451.5" layoutY="372.5" rotate="45.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="512.0" layoutY="394.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="394.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="530.0" layoutY="437.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="609.0" layoutY="437.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
-   <Line endY="4.0" layoutX="695.0" layoutY="338.0" rotate="-45.0" strokeWidth="0.75" styleClass="-isulated-rail-joint" />
+    <SectionComponent sid="5DG" endX="178.0" endY="181.0" startX="155.0" startY="181.0"/>
+    <SectionComponent sid="5DG" tid="5" tstate="NORMAL" endX="207.0" endY="181.0" startX="178.0" startY="181.0"/>
+    <SectionComponent sid="5DG" tid="5" tstate="REVERSE" endX="198.5" endY="202.5" startX="177.0" startY="181.0"/>
 
-   <!-- signal -->
-   <SignalGroup layoutX="609.0" layoutY="296.0" labelText="X4" labelXOffset="-11">
-      <StartingSignal dir="X" fx:id="signalX4" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="9-13DG" endX="244.0" endY="224.0" startX="230.0" startY="224.0"/>
+    <SectionComponent sid="9-13DG" tid="9" tstate="NORMAL" endX="260.0" endY="224.0" startX="244.0" startY="224.0"/>
+    <SectionComponent sid="9-13DG" tid="9" tstate="REVERSE" endX="264.0" endY="245.0" startX="243.0" startY="224.0"/>
+    <SectionComponent sid="9-13DG" tid="13" tstate="NORMAL" endX="400.0" endY="224.0" startX="260.0" startY="224.0"/>
+    <SectionComponent sid="9-13DG" tid="13" tstate="REVERSE" endX="281.5" endY="202.5" startX="260.0" startY="224.0"/>
 
-   <SignalGroup layoutX="609.0" layoutY="339.0" labelText="X6" labelXOffset="-11">
-      <StartingSignal dir="X" fx:id="signalX6" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="11DG" endX="300.0" endY="267.0" startX="286.0" startY="267.0"/>
+    <SectionComponent sid="11DG" tid="11" tstate="NORMAL" endX="286.0" endY="267.0" startX="200.0" startY="267.0"/>
+    <SectionComponent sid="11DG" tid="11" tstate="REVERSE" endX="264.0" endY="245.0" startX="286.0" startY="267.0"/>
 
-   <SignalGroup layoutX="87.0" layoutY="271.0" labelText="XF" labelXOffset="-10.0">
-      <ShuntingSignal dir="X" fx:id="signalXF" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="15DG" endX="315.0" endY="181.0" startX="303.0" startY="181.0"/>
+    <SectionComponent sid="15DG" tid="15" tstate="NORMAL" endX="303.0" endY="181.0" startX="290.0" startY="181.0"/>
+    <SectionComponent sid="15DG" tid="15" tstate="REVERSE" endX="281.5" endY="202.5" startX="303.0" startY="181.0"/>
 
-   <SignalGroup layoutX="145.0" layoutY="253.0" labelText="D1" labelXOffset="-10.0">
-      <RouteSignal dir="X" fx:id="signalD1" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="17DG" endX="277.0" endY="181.0" startX="260.0" startY="181.0"/>
+    <SectionComponent sid="17DG" tid="17" tstate="NORMAL" endX="290.0" endY="181.0" startX="277.0" startY="181.0"/>
 
-   <SignalGroup layoutX="87.0" layoutY="210.0" labelText="X" labelXOffset="-7.0">
-      <ShuntingSignal dir="X" fx:id="signalX" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="19DG" endX="314.0" endY="267.0" startX="300.0" startY="267.0"/>
+    <SectionComponent sid="19DG" tid="19" tstate="NORMAL" endX="400.0" endY="267.0" startX="314.0" startY="267.0"/>
+    <SectionComponent sid="19DG" tid="19" tstate="REVERSE" endX="335.5" endY="288.5" startX="314.0" startY="267.0"/>
 
-   <SignalGroup layoutX="200.0" layoutY="271.0" labelText="D5" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD5" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="21DG" endX="371.0" endY="310.0" startX="357.0" startY="310.0"/>
+    <SectionComponent sid="21DG" tid="21" tstate="NORMAL" endX="357.0" endY="310.0" startX="300.0" startY="310.0"/>
+    <SectionComponent sid="21DG" tid="21" tstate="REVERSE" endX="335.5" endY="288.5" startX="357.0" startY="310.0"/>
 
-   <SignalGroup layoutX="920.0" layoutY="271.0" labelText="S" labelXOffset="4.375">
-      <ShuntingSignal dir="S" fx:id="signalS" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
-
-   <SignalGroup layoutX="800.0" layoutY="271.0" labelText="D6" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD6" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
-
-   <SignalGroup layoutX="400.0" layoutY="271.0" labelText="SII" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalSII" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="27-33DG" endX="387.0" endY="310.0" startX="371.0" startY="310.0"/>
+    <SectionComponent sid="27-33DG" tid="27" tstate="NORMAL" endX="425.0" endY="310.0" startX="387.0" startY="310.0"/>
+    <SectionComponent sid="27-33DG" tid="27" tstate="REVERSE" endX="430.0" endY="353.0" startX="387.0" startY="310.0"/>
+    <SectionComponent sid="27-33DG" tid="33" tstate="NORMAL" endX="451.5" endY="374.5" startX="430.0" startY="353.0"/>
+    <SectionComponent sid="27-33DG" tid="33" tstate="REVERSE" endX="469.0" endY="353.0" startX="430.0" startY="353.0"/>
 
 
-   <SignalGroup layoutX="400.0" layoutY="228.0" labelText="SI" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalSI" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="29DG" endX="370.0" endY="181.0" startX="350.0" startY="181.0"/>
+    <SectionComponent sid="29DG" tid="29" tstate="NORMAL" endX="400.0" endY="181.0" startX="370.0" startY="181.0"/>
+    <SectionComponent sid="29DG" tid="29" tstate="REVERSE" endX="391.5" endY="159.5" startX="370.0" startY="181.0"/>
+
+    <SectionComponent sid="37DG" endX="473.0" endY="396.0" startX="451.5" startY="374.5"/>
+    <SectionComponent sid="37DG" tid="37" tstate="NORMAL" endX="516.0" endY="439.0" startX="473.0" startY="396.0"/>
+    <SectionComponent sid="37DG" tid="37" tstate="NORMAL" endX="530.0" endY="439.0" startX="516.0" startY="439.0"/>
+    <SectionComponent sid="37DG" tid="37" tstate="REVERSE" endX="512.0" endY="396.0" startX="473.0" startY="396.0"/>
+
+    <SectionComponent sid="2DG" endX="870.0" endY="224.0" startX="862.0" startY="224.0"/>
+    <SectionComponent sid="2DG" tid="2" tstate="NORMAL" endX="862.0" endY="224.0" startX="825.0" startY="224.0"/>
+    <SectionComponent sid="2DG" tid="2" tstate="REVERSE" endX="838.5" endY="245.5" startX="862.0" startY="224.0"/>
+
+    <SectionComponent sid="4DG" endX="815.0" endY="267.0" startX="800.0" startY="267.0"/>
+    <SectionComponent sid="4DG" tid="4" tstate="NORMAL" endX="920.0" endY="267.0" startX="815.0" startY="267.0"/>
+    <SectionComponent sid="4DG" tid="4" tstate="REVERSE" endX="838.5" endY="245.5" startX="815.0" startY="267.0"/>
+
+    <SectionComponent sid="6-10DG" endX="783.0" endY="267.0" startX="800.0" startY="267.0"/>
+    <SectionComponent sid="6-10DG" tid="6" tstate="NORMAL" endX="768.0" endY="267.0" startX="783.0" startY="267.0"/>
+    <SectionComponent sid="6-10DG" tid="6" tstate="REVERSE" endX="761.5" endY="245.5" startX="783.0" startY="267.0"/>
+    <SectionComponent sid="6-10DG" tid="10" tstate="NORMAL" endX="609.0" endY="267.0" startX="768.0" startY="267.0"/>
+
+    <SectionComponent sid="8DG" endX="740.0" endY="224.0" startX="695.0" startY="224.0"/>
+    <SectionComponent sid="8DG" tid="8" tstate="NORMAL" endX="825.0" endY="224.0" startX="740.0" startY="224.0"/>
+    <SectionComponent sid="8DG" tid="8" tstate="REVERSE" endX="761.5" endY="245.5" startX="740.0" startY="224.0"/>
+
+    <SectionComponent sid="12DG" endX="695.0" endY="340.0" startX="768.0" startY="267.0"/>
+    <SectionComponent sid="12DG" endX="725.0" endY="310.0" startX="695.0" startY="310.0"/>
+
+    <SectionComponent sid="14DG" endX="683.0" endY="224.0" startX="609.0" startY="224.0"/>
+    <SectionComponent sid="14DG" tid="14" tstate="NORMAL" endX="695.0" endY="224.0" startX="683.0" startY="224.0"/>
+    <SectionComponent sid="14DG" tid="14" tstate="REVERSE" endX="640.0" endY="181.0" startX="683.0" startY="224.0"/>
+    <SectionComponent sid="14DG" tid="14" tstate="REVERSE" endX="640.0" endY="181.0" startX="609.0" startY="181.0"/>
+
+    <SectionComponent sid="16DG" endX="672.0" endY="363.0" startX="695.0" startY="340.0"/>
+    <SectionComponent sid="16DG" tid="16" tstate="NORMAL" endX="639.0" endY="396.0" startX="672.0" startY="363.0"/>
+    <SectionComponent sid="16DG" tid="16" tstate="NORMAL" endX="639.0" endY="396.0" startX="609.0" startY="396.0"/>
+    <SectionComponent sid="16DG" tid="16" tstate="REVERSE" endX="672.0" endY="439.0" startX="672.0" startY="363.0"/>
+    <SectionComponent sid="16DG" tid="16" tstate="REVERSE" endX="672.0" endY="439.0" startX="609.0" startY="439.0"/>
+
+    <SectionComponent sid="18DG" endX="695.0" endY="310.0" startX="672.0" startY="310.0"/>
+    <SectionComponent sid="18DG" tid="18" tstate="NORMAL" endX="672.0" endY="310.0" startX="609.0" startY="310.0"/>
+    <SectionComponent sid="18DG" tid="18" tstate="REVERSE" endX="628.0" endY="353.0" startX="609.0" startY="353.0"/>
+    <SectionComponent sid="18DG" tid="18" tstate="REVERSE" endX="628.0" endY="353.0" startX="672.0" startY="310.0"/>
+
+    <SectionComponent sid="IBG" endX="920.0" endY="224.0" startX="870.0" startY="224.0"/>
+    <SectionComponent sid="X1LQ" endX="1012.0" endY="224.0" startX="920.0" startY="224.0"/>
 
 
-   <SignalGroup layoutX="207.0" layoutY="185.0" labelText="D7" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD7" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!--右斜-->
 
-   <SignalGroup layoutX="230.0" layoutY="210.0" labelText="D9" labelXOffset="-11.0">
-      <RouteSignal dir="X" fx:id="signalD9" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="15/29WG" endX="350.0" endY="181.0" startX="315.0" startY="181.0"/>
 
-   <SignalGroup layoutX="400.0" layoutY="185.0" labelText="S3" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalS3" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!--左上斜，用不到-->
+    <SectionComponent endX="363.0" endY="138.0" startX="413.0" startY="138.0"/>
+    <SectionComponent endX="456.0" endY="95.0" startX="391.5" startY="159.5"/>
+    <SectionComponent endX="510.0" endY="95.0" startX="456.0" startY="95.0"/>
+    <SectionComponent endX="500.0" endY="62.0" startX="467.0" startY="95.0"/>
+    <SectionComponent endX="510.0" endY="52.0" startX="500.0" startY="62.0"/>
+    <SectionComponent endX="525.0" endY="95.0" startX="510.0" startY="95.0"/>
 
-   <SignalGroup layoutX="609.0" layoutY="210.0" labelText="XI" labelXOffset="-9.0">
-      <StartingSignal dir="X" fx:id="signalXI" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!--左斜-->
 
-   <SignalGroup layoutX="609.0" layoutY="167.0" labelText="X3" labelXOffset="-11.0">
-      <StartingSignal dir="X" fx:id="signalX3" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SectionComponent sid="5/17WG" endX="260.0" endY="181.0" startX="207.0" startY="181.0"/>
 
-   <SignalGroup layoutX="609.0" layoutY="253.0" labelText="XII" labelXOffset="-10.0">
-      <StartingSignal dir="X" fx:id="signalXII" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!--左上斜-->
+    <SectionComponent endX="410.0" endY="48.0" startX="277.0" startY="181.0"/>
+    <SectionComponent endX="320.0" endY="48.0" startX="320.0" startY="138.0"/>
+    <SectionComponent endX="363.0" endY="48.0" startX="363.0" startY="95.0"/>
 
-   <SignalGroup layoutX="695.0" layoutY="228.0" labelText="D8" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD8" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!--with label-->
+    <Group>
+        <children>
+            <SectionComponent sid="3G" endX="609.0" endY="181.0" startX="400.0" startY="181.0"/>
+            <Label layoutX="565.0" layoutY="171.0" styleClass="-railway-section-label" text="3G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="IG" endX="609.0" endY="224.0" startX="400.0" startY="224.0"/>
+            <Label layoutX="565.0" layoutY="214.0" styleClass="-railway-section-label" text="IG"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="IIG" endX="609.0" endY="267.0" startX="400.0" startY="267.0"/>
+            <Label layoutX="565.0" layoutY="257.0" styleClass="-railway-section-label" text="IIG"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="4G" endX="609.0" endY="310.0" startX="425.0" startY="310.0"/>
+            <Label layoutX="564.5" layoutY="300.0" styleClass="-railway-section-label" text="4G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="10G" endX="609.0" endY="439.0" startX="530.0" startY="439.0"/>
+            <Label layoutX="564.5" layoutY="429.0" styleClass="-railway-section-label" text="10G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="8G" endX="609.0" endY="396.0" startX="512.0" startY="396.0"/>
+            <Label layoutX="564.5" layoutY="386.0" styleClass="-railway-section-label" text="8G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="6G" endX="609.0" endY="353.0" startX="469.0" startY="353.0"/>
+            <Label layoutX="564.5" layoutY="343.0" styleClass="-railway-section-label" text="6G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <Group styleClass="-railway-section">
+                <children>
+                    <SectionComponent sid="D23G" endX="300.0" endY="310.0" startX="240.0" startY="310.0"/>
+                    <Group layoutX="236.0" layoutY="307.0" styleClass="-railway-section">
+                        <children>
+                            <Line endX="3.0" styleClass="-railway-section"/>
+                            <Line endX="3.0" layoutY="6.0" styleClass="-railway-section"/>
+                            <Line endY="6.0" layoutX="3.0" styleClass="-railway-section"/>
+                            <Line endX="3.0" layoutX="4.0" layoutY="3.0" styleClass="-railway-section"/>
+                        </children>
+                    </Group>
+                </children>
+            </Group>
+            <Label layoutX="251.0" layoutY="300.0" styleClass="-railway-section-label" text="D23G"/>
+        </children>
+    </Group>
+    <Group>
+        <children>
+            <SectionComponent sid="D3G" endX="155.0" endY="181.0" startX="120.0" startY="181.0"/>
+            <Group layoutY="1.0" styleClass="-railway-section">
+                <children>
+                    <Line endX="120.0" endY="180.0" startX="115.0" startY="185.0" strokeWidth="1.3"
+                          styleClass="-railway-section"/>
+                    <Line endX="115.0" endY="185.0" startX="105.0" startY="175.0" strokeWidth="1.3"
+                          styleClass="-railway-section"/>
+                    <Line endX="105.0" endY="175.0" startX="100.0" startY="180.0" strokeWidth="1.3"
+                          styleClass="-railway-section"/>
+                    <Line endX="101.0" endY="181.0" layoutX="-1.0" layoutY="-1.0" startX="97.0" startY="181.0"
+                          styleClass="-railway-section"/>
+                    <Line endX="3.0" layoutX="92.0" layoutY="177.0" styleClass="-railway-section"/>
+                    <Line endX="3.0" layoutX="92.0" layoutY="183.0" styleClass="-railway-section"/>
+                    <Line endY="6.0" layoutX="96.0" layoutY="177.0" styleClass="-railway-section"/>
+                </children>
+            </Group>
+            <Label layoutX="125.0" layoutY="171.0" styleClass="-railway-section-label" text="D3G"/>
+        </children>
+    </Group>
 
-   <SignalGroup layoutX="825.0" layoutY="210.0" labelText="D4" labelXOffset="-11.0">
-      <RouteSignal dir="X" fx:id="signalD4" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!-- isulated-rail-joint -->
+    <IsulatedJoint layoutX="87.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="145.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="200.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="300.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="400.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="350.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="800.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="920.0" layoutY="267.0"/>
+    <IsulatedJoint layoutX="230.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="400.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="207.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="400.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="695.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="825.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="920.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="870.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="510.0" layoutY="95.0"/>
+    <IsulatedJoint layoutX="315.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="310.0"/>
+    <IsulatedJoint layoutX="695.0" layoutY="310.0"/>
+    <IsulatedJoint layoutX="290.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="260.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="155.0" layoutY="181.0"/>
+    <IsulatedJoint layoutX="87.0" layoutY="224.0"/>
+    <IsulatedJoint layoutX="460.0" layoutY="95.0"/>
+    <IsulatedJoint layoutX="300.0" layoutY="310.0"/>
+    <IsulatedJoint layoutX="371.0" layoutY="310.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="353.0"/>
+    <IsulatedJoint layoutX="425.0" layoutY="310.0"/>
+    <IsulatedJoint layoutX="469.0" layoutY="353.0"/>
+    <IsulatedJoint layoutX="512.0" layoutY="396.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="396.0"/>
+    <IsulatedJoint layoutX="530.0" layoutY="439.0"/>
+    <IsulatedJoint layoutX="609.0" layoutY="439.0"/>
+    <IsulatedJoint layoutX="363.0" layoutY="57.0" rotate="90.0"/>
+    <IsulatedJoint layoutX="320.0" layoutY="57.0" rotate="90.0"/>
+    <IsulatedJoint layoutX="400.0" layoutY="58.0" rotate="-45.0"/>
+    <IsulatedJoint layoutX="500.0" layoutY="62.0" rotate="-45.0"/>
+    <IsulatedJoint layoutX="391.5" layoutY="159.5" rotate="-45.0"/>
+    <IsulatedJoint layoutX="451.5" layoutY="374.5" rotate="45.0"/>
+    <IsulatedJoint layoutX="695.0" layoutY="340.0" rotate="-45.0"/>
+    <IsulatedJoint layoutX="198.5" layoutY="202.5" rotate="45.0"/>
+    <IsulatedJoint layoutX="264.0" layoutY="245.0" rotate="45.0"/>
+    <IsulatedJoint layoutX="335.5" layoutY="288.5" rotate="45.0"/>
+    <IsulatedJoint layoutX="761.5" layoutY="245.5" rotate="45.0"/>
+    <IsulatedJoint layoutX="181.5" layoutY="245.5" rotate="-45.0"/>
+    <IsulatedJoint layoutX="281.5" layoutY="202.5" rotate="-45.0"/>
+    <IsulatedJoint layoutX="838.5" layoutY="245.5" rotate="-45.0"/>
+    <IsulatedJoint layoutX="343.5" layoutY="114.5" rotate="-45.0"/>
 
-   <SignalGroup layoutX="920.0" layoutY="210.0" labelText="SF" labelXOffset="2.375">
-      <ShuntingSignal dir="S" fx:id="signalSF" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <!-- signal -->
+    <SignalGroup layoutX="609.0" layoutY="296.0" labelText="X4" labelXOffset="-11">
+        <StartingSignal dir="X" sid="X4" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="870.0" layoutY="228.0" labelText="D2" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD2" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="609.0" layoutY="339.0" labelText="X6" labelXOffset="-11">
+        <StartingSignal dir="X" sid="X6" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="350.0" layoutY="167.0" labelText="D25" labelXOffset="-15.0">
-      <RouteSignal dir="X" fx:id="signalD25" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="87.0" layoutY="271.0" labelText="XF" labelXOffset="-10.0">
+        <ShuntingSignal dir="X" sid="XF" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="260.0" layoutY="167.0" labelText="D11" labelXOffset="-13.0">
-      <RouteSignal dir="X" fx:id="signalD11" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="145.0" layoutY="253.0" labelText="D1" labelXOffset="-10.0">
+        <RouteSignal dir="X" sid="D1" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="334.0" layoutY="57.0" rotateZ="-90.0" labelText="D13" labelXOffset="-11" labelYOffset="-13">
-      <RouteSignal dir="S" fx:id="signalD13" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="87.0" layoutY="210.0" labelText="X" labelXOffset="-7.0">
+        <ShuntingSignal dir="X" sid="X" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="377.0" layoutY="57.0" rotateZ="-90.0" labelText="D15" labelXOffset="-11" labelYOffset="-13">
-      <RouteSignal dir="S" fx:id="signalD15" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="200.0" layoutY="271.0" labelText="D5" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D5" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="408.0" layoutY="63.0" rotateZ="-45.0" labelText="D17" labelXOffset="0" labelYOffset="-10">
-      <RouteSignal dir="S" fx:id="signalD17" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="920.0" layoutY="271.0" labelText="S" labelXOffset="4.375">
+        <ShuntingSignal dir="S" sid="S" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="155.0" layoutY="167.0" labelText="D3" labelXOffset="-11.0">
-      <RouteSignal dir="X" fx:id="signalD3" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="800.0" layoutY="271.0" labelText="D6" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D6" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="371.0" layoutY="296.0" labelText="D27" labelXOffset="-14.0">
-      <RouteSignal dir="X" fx:id="signalD27" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="400.0" layoutY="271.0" labelText="SII" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="SII" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="425.0" layoutY="314.0" labelText="S4" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalS4" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
 
-   <SignalGroup layoutX="469.0" layoutY="357.0" labelText="S6" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalS6" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="400.0" layoutY="228.0" labelText="SI" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="SI" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="512.0" layoutY="400.0" labelText="S8" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalS8" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
 
-   <SignalGroup layoutX="609.0" layoutY="382.0" labelText="X8" labelXOffset="-11.0">
-      <StartingSignal dir="X" fx:id="signalX8" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="207.0" layoutY="185.0" labelText="D7" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D7" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="530.0" layoutY="443.0" labelText="S10" labelXOffset="2.375">
-      <StartingSignal dir="S" fx:id="signalS10" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="230.0" layoutY="210.0" labelText="D9" labelXOffset="-11.0">
+        <RouteSignal dir="X" sid="D9" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="609.0" layoutY="425.0" labelText="X10" labelXOffset="-14.0">
-      <StartingSignal dir="X" fx:id="signalX10" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="400.0" layoutY="185.0" labelText="S3" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="S3" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="300.0" layoutY="296.0" labelText="D23" labelXOffset="-15.0">
-      <RouteSignal dir="X" fx:id="signalD23" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="609.0" layoutY="210.0" labelText="XI" labelXOffset="-9.0">
+        <StartingSignal dir="X" sid="XI" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="315.0" layoutY="185.0" labelText="D19" labelXOffset="2">
-      <RouteSignal dir="S" fx:id="signalD19" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="609.0" layoutY="167.0" labelText="X3" labelXOffset="-11.0">
+        <StartingSignal dir="X" sid="X3" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="300.0" layoutY="253.0" labelText="D21" labelXOffset="-13">
-      <RouteSignal dir="X" fx:id="signalD21" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="609.0" layoutY="253.0" labelText="XII" labelXOffset="-10.0">
+        <StartingSignal dir="X" sid="XII" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="703.0" layoutY="345.0" rotateZ="-45.0" labelText="D10" labelXOffset="0" labelYOffset="-10">
-      <RouteSignal dir="S" fx:id="signalD10" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="695.0" layoutY="228.0" labelText="D8" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D8" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="508.0" layoutY="67.0" rotateZ="-45.0" labelText="D31" labelXOffset="0" labelYOffset="-10">
-      <RouteSignal dir="S" fx:id="signalD31" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="825.0" layoutY="210.0" labelText="D4" labelXOffset="-11.0">
+        <RouteSignal dir="X" sid="D4" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="460.0" layoutY="81.0" labelText="D29" labelXOffset="-15.0">
-      <RouteSignal dir="X" fx:id="signalD29" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="920.0" layoutY="210.0" labelText="SF" labelXOffset="2.375">
+        <ShuntingSignal dir="S" sid="SF" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <SignalGroup layoutX="510.0" layoutY="99.0" labelText="D33" labelXOffset="2.375">
-      <RouteSignal dir="S" fx:id="signalD33" onMouseClicked="#handleSignalClicked"/>
-   </SignalGroup>
+    <SignalGroup layoutX="870.0" layoutY="228.0" labelText="D2" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D2" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
-   <!-- turnout -->
-   <TurnoutButton layoutX="160.0" layoutY="267.0" labelText="1" fx:id="turnout1"/>
-   <TurnoutButton layoutX="203.0" layoutY="224.0" labelText="3" fx:id="turnout3"/>
-   <TurnoutButton layoutX="178.0" layoutY="181.0" labelText="5" fx:id="turnout5"/>
-   <TurnoutButton layoutX="219.0" layoutY="224.0" labelText="7" fx:id="turnout7"/>
-   <TurnoutButton layoutX="244.0" layoutY="224.0" labelText="9" fx:id="turnout9"/>
-   <TurnoutButton layoutX="286.0" layoutY="267.0" labelText="11" fx:id="turnout11"/>
-   <TurnoutButton layoutX="260.0" layoutY="224.0" labelText="13" fx:id="turnout13"/>
-   <TurnoutButton layoutX="303.0" layoutY="181.0" labelText="15" fx:id="turnout15"/>
-   <TurnoutButton layoutX="277.0" layoutY="181.0" labelText="17" fx:id="turnout17"/>
-   <TurnoutButton layoutX="314.0" layoutY="267.0" labelText="19" fx:id="turnout19"/>
-   <TurnoutButton layoutX="357.0" layoutY="310.0" labelText="21" fx:id="turnout21"/>
-   <TurnoutButton layoutX="320.0" layoutY="138.0" labelText="23" fx:id="turnout23"/>
-   <TurnoutButton layoutX="363.0" layoutY="95.0" labelText="25" fx:id="turnout25"/>
-   <TurnoutButton layoutX="387.0" layoutY="310.0" labelText="27" fx:id="turnout27"/>
-   <TurnoutButton layoutX="370.0" layoutY="181.0" labelText="29" fx:id="turnout29"/>
-   <TurnoutButton layoutX="413.0" layoutY="138.0" labelText="31" fx:id="turnout31"/>
-   <TurnoutButton layoutX="430.0" layoutY="353.0" labelText="33" fx:id="turnout33"/>
-   <TurnoutButton layoutX="467.0" layoutY="95.0" labelText="35" fx:id="turnout35"/>
-   <TurnoutButton layoutX="473.0" layoutY="396.0" labelText="37" fx:id="turnout37"/>
-   <TurnoutButton layoutX="862.0" layoutY="224.0" labelText="2" fx:id="turnout2"/>
-   <TurnoutButton layoutX="815.0" layoutY="267.0" labelText="4" fx:id="turnout4"/>
-   <TurnoutButton layoutX="783.0" layoutY="267.0" labelText="6" fx:id="turnout6"/>
-   <TurnoutButton layoutX="740.0" layoutY="224.0" labelText="8" fx:id="turnout8"/>
-   <TurnoutButton layoutX="768.0" layoutY="267.0" labelText="10" fx:id="turnout10"/>
-   <TurnoutButton layoutX="725.0" layoutY="310.0" labelText="12" fx:id="turnout12"/>
-   <TurnoutButton layoutX="683.0" layoutY="224.0" labelText="14" fx:id="turnout14"/>
-   <TurnoutButton layoutX="672.0" layoutY="363.0" labelText="16" fx:id="turnout16"/>
-   <TurnoutButton layoutX="672.0" layoutY="310.0" labelText="18" fx:id="turnout18"/>
+    <SignalGroup layoutX="350.0" layoutY="167.0" labelText="D25" labelXOffset="-15.0">
+        <RouteSignal dir="X" sid="D25" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
 
+    <SignalGroup layoutX="260.0" layoutY="167.0" labelText="D11" labelXOffset="-13.0">
+        <RouteSignal dir="X" sid="D11" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="334.0" layoutY="57.0" rotateZ="-90.0" labelText="D13" labelXOffset="-11" labelYOffset="-13">
+        <RouteSignal dir="S" sid="D13" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="377.0" layoutY="57.0" rotateZ="-90.0" labelText="D15" labelXOffset="-11" labelYOffset="-13">
+        <RouteSignal dir="S" sid="D15" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="408.0" layoutY="63.0" rotateZ="-45.0" labelText="D17" labelXOffset="0" labelYOffset="-10">
+        <RouteSignal dir="S" sid="D17" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="155.0" layoutY="167.0" labelText="D3" labelXOffset="-11.0">
+        <RouteSignal dir="X" sid="D3" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="371.0" layoutY="296.0" labelText="D27" labelXOffset="-14.0">
+        <RouteSignal dir="X" sid="D27" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="425.0" layoutY="314.0" labelText="S4" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="S4" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="469.0" layoutY="357.0" labelText="S6" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="S6" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="512.0" layoutY="400.0" labelText="S8" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="S8" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="609.0" layoutY="382.0" labelText="X8" labelXOffset="-11.0">
+        <StartingSignal dir="X" sid="X8" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="530.0" layoutY="443.0" labelText="S10" labelXOffset="2.375">
+        <StartingSignal dir="S" sid="S10" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="609.0" layoutY="425.0" labelText="X10" labelXOffset="-14.0">
+        <StartingSignal dir="X" sid="X10" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="300.0" layoutY="296.0" labelText="D23" labelXOffset="-15.0">
+        <RouteSignal dir="X" sid="D23" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="315.0" layoutY="185.0" labelText="D19" labelXOffset="2">
+        <RouteSignal dir="S" sid="D19" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="300.0" layoutY="253.0" labelText="D21" labelXOffset="-13">
+        <RouteSignal dir="X" sid="D21" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="703.0" layoutY="345.0" rotateZ="-45.0" labelText="D10" labelXOffset="0" labelYOffset="-10">
+        <RouteSignal dir="S" sid="D10" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="508.0" layoutY="67.0" rotateZ="-45.0" labelText="D31" labelXOffset="0" labelYOffset="-10">
+        <RouteSignal dir="S" sid="D31" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="460.0" layoutY="81.0" labelText="D29" labelXOffset="-15.0">
+        <RouteSignal dir="X" sid="D29" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <SignalGroup layoutX="510.0" layoutY="99.0" labelText="D33" labelXOffset="2.375">
+        <RouteSignal dir="S" sid="D33" onMouseClicked="#handleSignalClicked"/>
+    </SignalGroup>
+
+    <!-- turnout -->
+    <Turnout layoutX="160.0" layoutY="267.0" labelText="1" sid="1"/>
+    <Turnout layoutX="203.0" layoutY="224.0" labelText="3" sid="3"/>
+    <Turnout layoutX="178.0" layoutY="181.0" labelText="5" sid="5"/>
+    <Turnout layoutX="219.0" layoutY="224.0" labelText="7" sid="7"/>
+    <Turnout layoutX="244.0" layoutY="224.0" labelText="9" sid="9"/>
+    <Turnout layoutX="286.0" layoutY="267.0" labelText="11" sid="11"/>
+    <Turnout layoutX="260.0" layoutY="224.0" labelText="13" sid="13"/>
+    <Turnout layoutX="303.0" layoutY="181.0" labelText="15" sid="15"/>
+    <Turnout layoutX="277.0" layoutY="181.0" labelText="17" sid="17"/>
+    <Turnout layoutX="314.0" layoutY="267.0" labelText="19" sid="19"/>
+    <Turnout layoutX="357.0" layoutY="310.0" labelText="21" sid="21"/>
+    <Turnout layoutX="320.0" layoutY="138.0" labelText="23" sid="23"/>
+    <Turnout layoutX="363.0" layoutY="95.0" labelText="25" sid="25"/>
+    <Turnout layoutX="387.0" layoutY="310.0" labelText="27" sid="27"/>
+    <Turnout layoutX="370.0" layoutY="181.0" labelText="29" sid="29"/>
+    <Turnout layoutX="413.0" layoutY="138.0" labelText="31" sid="31"/>
+    <Turnout layoutX="430.0" layoutY="353.0" labelText="33" sid="33"/>
+    <Turnout layoutX="467.0" layoutY="95.0" labelText="35" sid="35"/>
+    <Turnout layoutX="473.0" layoutY="396.0" labelText="37" sid="37"/>
+    <Turnout layoutX="862.0" layoutY="224.0" labelText="2" sid="2"/>
+    <Turnout layoutX="815.0" layoutY="267.0" labelText="4" sid="4"/>
+    <Turnout layoutX="783.0" layoutY="267.0" labelText="6" sid="6"/>
+    <Turnout layoutX="740.0" layoutY="224.0" labelText="8" sid="8"/>
+    <Turnout layoutX="768.0" layoutY="267.0" labelText="10" sid="10"/>
+    <Turnout layoutX="725.0" layoutY="310.0" labelText="12" sid="12"/>
+    <Turnout layoutX="683.0" layoutY="224.0" labelText="14" sid="14"/>
+    <Turnout layoutX="672.0" layoutY="363.0" labelText="16" sid="16"/>
+    <Turnout layoutX="672.0" layoutY="310.0" labelText="18" sid="18"/>
 </AnchorPane>

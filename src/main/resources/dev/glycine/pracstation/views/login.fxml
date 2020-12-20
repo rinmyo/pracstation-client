@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="login" prefHeight="600.0" prefWidth="400.0" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.LoginController">
+<GridPane fx:id="login" alignment="CENTER" prefHeight="400" prefWidth="600" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.LoginController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <JFXButton layoutX="173.0" layoutY="479.0" onMouseClicked="#login" text="login" />
-      <PasswordField layoutX="100.0" layoutY="375.0" prefHeight="26.0" prefWidth="200.0" promptText="Password" />
-      <TextField layoutX="100.0" layoutY="300.0" prefHeight="26.0" prefWidth="200.0" promptText="Username" />
-      <Polygon layoutX="213.0" layoutY="211.0" points="-86.0, -90.0, -17.0, 16.5, 42.0, -60.0" strokeLineJoin="ROUND" strokeWidth="20.0">
+      <Polygon points="-86.0, -90.0, -17.0, 16.5, 42.0, -60.0" strokeLineJoin="ROUND" strokeWidth="20.0">
          <fill>
             <LinearGradient>
                <stops>
@@ -34,7 +36,7 @@
             </LinearGradient>
          </stroke>
       </Polygon>
-      <Polygon layoutX="200.0" layoutY="177.0" points="-50.0, 40.0, 42.0, 16.0, 0.0, -60.0" strokeLineJoin="ROUND" strokeWidth="20.0">
+      <Polygon points="-50.0, 40.0, 42.0, 16.0, 0.0, -60.0" strokeLineJoin="ROUND" strokeWidth="20.0">
          <fill>
             <LinearGradient>
                <stops>
@@ -55,10 +57,26 @@
             <DropShadow />
          </effect>
       </Polygon>
-      <Text layoutX="188.0" layoutY="182.0" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" text="P" textAlignment="CENTER">
+      <Text stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="3.0" text="P" textAlignment="CENTER">
          <font>
             <Font size="40.0" />
          </font>
       </Text>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <VBox alignment="CENTER" spacing="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <JFXTextField fx:id="username" promptText="username" style="-jfx-label-float:true;" />
+                  <JFXPasswordField fx:id="password" promptText="password" style="-jfx-label-float:true;" />
+               </children>
+            </VBox>
+            <JFXButton fx:id="loginBtn" alignment="CENTER" onMouseClicked="#login" text="login" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="20.0" />
+            <Label fx:id="warnText" layoutX="20.0" layoutY="288.0" />
+         </children>
+      </AnchorPane>
+      <Region prefHeight="200.0" prefWidth="200.0" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</GridPane>

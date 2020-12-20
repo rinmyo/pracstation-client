@@ -10,7 +10,7 @@ public enum SectionState {
 
     OCCUPIED(AppleColor.RED),
 
-    BLUE(AppleColor.TEAL);
+    FREE(AppleColor.TEAL);
 
     /**
      * 燈光顏色

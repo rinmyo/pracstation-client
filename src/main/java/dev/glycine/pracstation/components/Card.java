@@ -1,9 +1,9 @@
 package dev.glycine.pracstation.components;
 
-import com.jfoenix.controls.JFXBadge;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Getter;
 /**
  * 卡片
  */
-public class Card extends JFXBadge {
+public class Card extends StackPane {
     private static final int FADE_DURATION = 150;
 
     @Getter

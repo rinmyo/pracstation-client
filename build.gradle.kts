@@ -5,7 +5,7 @@ plugins {
     application
     id("io.freefair.lombok") version "5.3.0"
     id("org.openjfx.javafxplugin") version "0.0.9"
-    id("com.github.johnrengelman.shadow") version "5.2.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
     id("com.google.protobuf") version "0.8.14"
 }
 
@@ -15,16 +15,21 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     maven("https://dl.bintray.com/jerady/maven")
+    maven("https://dl.bintray.com/avast/maven")
 }
 
 dependencies {
+    implementation("com.jfoenix","jfoenix","9.0.10")
     implementation("org.apache.logging.log4j", "log4j-api", "2.14.0")
     implementation("org.apache.logging.log4j", "log4j-core", "2.14.0")
-    implementation("com.jfoenix", "jfoenix", "9.0.10")
     implementation("com.google.code.gson", "gson", "2.8.6")
     implementation("com.google.protobuf", "protobuf-java", "3.14.0")
     implementation("io.grpc", "grpc-all", "1.34.0")
     implementation("javax.annotation","javax.annotation-api","1.3.2")
+    implementation("org.slf4j","slf4j-simple","1.7.30")
+    implementation("org.kordamp.ikonli","ikonli-fontawesome5-pack","12.0.0")
+    implementation("org.kordamp.ikonli","ikonli-javafx","12.0.0")
+
 }
 
 buildscript {

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
 <?import dev.glycine.pracstation.components.Card?>
-<?import dev.glycine.pracstation.components.TurnoutPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
@@ -14,7 +13,7 @@
 
     <HBox styleClass="box">
         <Card labelText="X">
-            <TurnoutPane dir="X"/>
+
         </Card>
 
         <Card labelText="中原時間">
@@ -28,30 +27,30 @@
 
     <HBox styleClass="box" fx:id="topRightBox">
         <Card labelText="S">
-            <TurnoutPane dir="S"/>
+
         </Card>
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomLeftBox">
-        <JFXButton text="+" fx:id="newSinro"/>
+        <Button text="+" fx:id="newSinro"/>
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomRightBox">
 
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group">
-                <JFXButton text="道岔總定" styleClass="common-button"/>
-                <JFXButton text="道岔總反" styleClass="common-button"/>
-                <JFXButton text="道岔單縮" styleClass="common-button"/>
-                <JFXButton text="道岔解鎖" styleClass="common-button"/>
+                <Button text="道岔總定" styleClass="common-button"/>
+                <Button text="道岔總反" styleClass="common-button"/>
+                <Button text="道岔單縮" styleClass="common-button"/>
+                <Button text="道岔解鎖" styleClass="common-button"/>
             </HBox>
         </Card>
 
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group">
-                <JFXButton text="總取消" styleClass="danger-button"/>
-                <JFXButton text="總人解" styleClass="danger-button"/>
-                <JFXButton text="區故解" styleClass="danger-button"/>
+                <Button text="總取消" styleClass="danger-button"/>
+                <Button text="總人解" styleClass="danger-button"/>
+                <Button text="區故解" styleClass="danger-button"/>
             </HBox>
         </Card>
     </HBox>

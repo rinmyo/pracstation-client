@@ -2,7 +2,9 @@ package dev.glycine.pracstation.components;
 
 import dev.glycine.pracstation.models.Direction;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class RouteSignal extends SignalBase {
     @Getter
     Light light1 = new Light();
