@@ -1,9 +1,7 @@
 package dev.glycine.pracstation.models;
 
-import dev.glycine.pracstation.exceptions.UnknownSignalStateException;
 import dev.glycine.pracstation.exceptions.UnknownTurnoutStateException;
 import dev.glycine.pracstation.pb.Turnout;
-import dev.glycine.pracstation.components.AppleColor;
 import javafx.scene.paint.Color;
 
 import lombok.AllArgsConstructor;

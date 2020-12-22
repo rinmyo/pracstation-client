@@ -8,9 +8,8 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
-import dev.glycine.pracstation.components.AppleColor;
+import dev.glycine.pracstation.models.AppleColor;
 import javafx.scene.control.Label;
-import javafx.scene.text.TextFlow;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import dev.glycine.pracstation.App;
 
@@ -66,15 +65,6 @@ public class LoginController {
                 password.validate();
             }
         });
-    }
-
-    private void showMainWindow() throws IOException {
-        Stage mainStage = new Stage();
-        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
-        mainStage.setTitle("練習站");
-        mainStage.setScene(new Scene(login));
-        mainStage.show();
-        App.getLoginStage().close();
     }
 
     Status.Code statusCode;
@@ -136,7 +126,14 @@ public class LoginController {
         }, 1L, 1L, TimeUnit.MINUTES);
 
         try {
-            showMainWindow();
+            Stage mainStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
+            Parent login = loader.load();
+            mainStage.setTitle("練習站");
+            mainStage.setScene(new Scene(login));
+            mainStage.show();
+            App.getLoginStage().close();
+            loader.setController(StationController.getInstance());
         } catch (IOException e) {
             log.error(e);
         }

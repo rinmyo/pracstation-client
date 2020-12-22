@@ -1,21 +1,25 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
-import dev.glycine.pracstation.models.Direction;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class ShuntingSignal extends SignalBase {
     @Getter
-    Light light1 = new Light();
+    Light light1 = new Light(this, "LA");
     @Getter
-    Light light2 = new Light();
-    Shelter line1 = new Shelter(0, 0, 0, 10);
+    Light light2 = new Light(this, "DA");
+
     Shelter line2 = new Shelter(0, 5, 8.5, 5);
 
     public ShuntingSignal() {
         signalType = SignalType.SHUNTING_SIGNAL;
         light1.setCenterY(DEFAULT_CIRCLE_RADIUS);
         light2.setCenterY(DEFAULT_CIRCLE_RADIUS);
-        getChildren().addAll(line1, line2, light1, light2);
+        getChildren().addAll(label, line1, line2, light1, light2);
     }
 
     public void setDir(Direction dir) {

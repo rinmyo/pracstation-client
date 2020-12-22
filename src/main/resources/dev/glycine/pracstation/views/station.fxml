@@ -5,221 +5,184 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<?import dev.glycine.pracstation.components.StartingSignal?>
-<?import dev.glycine.pracstation.components.SignalGroup?>
-<?import dev.glycine.pracstation.components.RouteSignal?>
-<?import dev.glycine.pracstation.components.ShuntingSignal?>
-<?import dev.glycine.pracstation.components.Turnout?>
-<?import dev.glycine.pracstation.components.SectionComponent?>
-<?import dev.glycine.pracstation.components.IsulatedJoint?>
-<AnchorPane fx:id="station" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.StationController">
+<?import dev.glycine.pracstation.models.StartingSignal?>
+<?import dev.glycine.pracstation.models.RouteSignal?>
+<?import dev.glycine.pracstation.models.ShuntingSignal?>
+<?import dev.glycine.pracstation.models.Turnout?>
+<?import dev.glycine.pracstation.models.Section?>
+<?import dev.glycine.pracstation.models.IsulatedJoint?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1">
     <!--railway-section-->
-    <SectionComponent sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
-    <SectionComponent sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
-    <SectionComponent sid="IIAG" endX="145.0" endY="267.0" startX="87.0" startY="267.0"/>
-    <SectionComponent sid="S3JG" endX="1012.0" endY="267.0" startX="920.0" startY="267.0"/>
+    <Section sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
+    <Section sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
+    <Section sid="IIAG" endX="145.0" endY="267.0" startX="87.0" startY="267.0"/>
+    <Section sid="S3JG" endX="1012.0" endY="267.0" startX="920.0" startY="267.0"/>
 
     <!--左斜-->
-    <SectionComponent sid="1DG" endX="160.0" endY="267.0" startX="145.0" startY="267.0"/>
-    <SectionComponent sid="1DG" tid="1" tstate="NORMAL" endX="200.0" endY="267.0" startX="160.0" startY="267.0"/>
-    <SectionComponent sid="1DG" tid="1" tstate="REVERSE" endX="181.5" endY="245.5" startX="160.0" startY="267.0"/>
+    <Section sid="1DG" endX="160.0" endY="267.0" startX="145.0" startY="267.0"/>
+    <Section sid="1DG" dep="1-NORMAL" endX="200.0" endY="267.0" startX="160.0" startY="267.0"/>
+    <Section sid="1DG" dep="1-REVERSE" endX="181.5" endY="245.5" startX="160.0" startY="267.0"/>
 
-    <SectionComponent sid="3-7DG" endX="230.0" endY="224.0" startX="87.0" startY="224.0"/>
-    <SectionComponent sid="3-7DG" tid="7" tstate="NORMAL" endX="220.0" endY="224.0" startX="203.0" startY="224.0"/>
-    <SectionComponent sid="3-7DG" tid="7" tstate="REVERSE" endX="198.5" endY="202.5" startX="220.0" startY="224.0"/>
-    <SectionComponent sid="3-7DG" tid="3" tstate="NORMAL" endX="87.0" endY="224.0" startX="203.0" startY="224.0"/>
-    <SectionComponent sid="3-7DG" tid="3" tstate="REVERSE" endX="181.5" endY="245.5" startX="203.0" startY="224.0"/>
+    <Section sid="3-7DG" endX="230.0" endY="224.0" startX="220.0" startY="224.0"/>
+    <Section sid="3-7DG" dep="7-NORMAL" endX="220.0" endY="224.0" startX="203.0" startY="224.0"/>
+    <Section sid="3-7DG" dep="7-REVERSE" endX="198.5" endY="202.5" startX="220.0" startY="224.0"/>
+    <Section sid="3-7DG" dep="3-NORMAL" endX="87.0" endY="224.0" startX="203.0" startY="224.0"/>
+    <Section sid="3-7DG" dep="3-REVERSE" endX="181.5" endY="245.5" startX="203.0" startY="224.0"/>
 
-    <SectionComponent sid="5DG" endX="178.0" endY="181.0" startX="155.0" startY="181.0"/>
-    <SectionComponent sid="5DG" tid="5" tstate="NORMAL" endX="207.0" endY="181.0" startX="178.0" startY="181.0"/>
-    <SectionComponent sid="5DG" tid="5" tstate="REVERSE" endX="198.5" endY="202.5" startX="177.0" startY="181.0"/>
+    <Section sid="5DG" endX="178.0" endY="181.0" startX="155.0" startY="181.0"/>
+    <Section sid="5DG" dep="5-NORMAL" endX="207.0" endY="181.0" startX="178.0" startY="181.0"/>
+    <Section sid="5DG" dep="5-REVERSE" endX="198.5" endY="202.5" startX="177.0" startY="181.0"/>
 
-    <SectionComponent sid="9-13DG" endX="244.0" endY="224.0" startX="230.0" startY="224.0"/>
-    <SectionComponent sid="9-13DG" tid="9" tstate="NORMAL" endX="260.0" endY="224.0" startX="244.0" startY="224.0"/>
-    <SectionComponent sid="9-13DG" tid="9" tstate="REVERSE" endX="264.0" endY="245.0" startX="243.0" startY="224.0"/>
-    <SectionComponent sid="9-13DG" tid="13" tstate="NORMAL" endX="400.0" endY="224.0" startX="260.0" startY="224.0"/>
-    <SectionComponent sid="9-13DG" tid="13" tstate="REVERSE" endX="281.5" endY="202.5" startX="260.0" startY="224.0"/>
+    <Section sid="9-13DG" endX="244.0" endY="224.0" startX="230.0" startY="224.0"/>
+    <Section sid="9-13DG" dep="9-NORMAL" endX="260.0" endY="224.0" startX="244.0" startY="224.0"/>
+    <Section sid="9-13DG" dep="9-REVERSE" endX="264.0" endY="245.0" startX="243.0" startY="224.0"/>
+    <Section sid="9-13DG" dep="9-NORMAL, 13-NORMAL" endX="400.0" endY="224.0" startX="260.0" startY="224.0"/>
+    <Section sid="9-13DG" dep="9-NORMAL, 13-REVERSE" endX="281.5" endY="202.5" startX="260.0" startY="224.0"/>
 
-    <SectionComponent sid="11DG" endX="300.0" endY="267.0" startX="286.0" startY="267.0"/>
-    <SectionComponent sid="11DG" tid="11" tstate="NORMAL" endX="286.0" endY="267.0" startX="200.0" startY="267.0"/>
-    <SectionComponent sid="11DG" tid="11" tstate="REVERSE" endX="264.0" endY="245.0" startX="286.0" startY="267.0"/>
+    <Section sid="11DG" endX="300.0" endY="267.0" startX="286.0" startY="267.0"/>
+    <Section sid="11DG" dep="11-NORMAL" endX="286.0" endY="267.0" startX="200.0" startY="267.0"/>
+    <Section sid="11DG" dep="11-REVERSE" endX="264.0" endY="245.0" startX="286.0" startY="267.0"/>
 
-    <SectionComponent sid="15DG" endX="315.0" endY="181.0" startX="303.0" startY="181.0"/>
-    <SectionComponent sid="15DG" tid="15" tstate="NORMAL" endX="303.0" endY="181.0" startX="290.0" startY="181.0"/>
-    <SectionComponent sid="15DG" tid="15" tstate="REVERSE" endX="281.5" endY="202.5" startX="303.0" startY="181.0"/>
+    <Section sid="15DG" endX="315.0" endY="181.0" startX="303.0" startY="181.0"/>
+    <Section sid="15DG" dep="15-NORMAL" endX="303.0" endY="181.0" startX="290.0" startY="181.0"/>
+    <Section sid="15DG" dep="15-REVERSE" endX="281.5" endY="202.5" startX="303.0" startY="181.0"/>
 
-    <SectionComponent sid="17DG" endX="277.0" endY="181.0" startX="260.0" startY="181.0"/>
-    <SectionComponent sid="17DG" tid="17" tstate="NORMAL" endX="290.0" endY="181.0" startX="277.0" startY="181.0"/>
+    <Section sid="17-23DG" endX="277.0" endY="181.0" startX="260.0" startY="181.0"/>
+    <Section sid="17-23DG" dep="17-NORMAL" endX="290.0" endY="181.0" startX="277.0" startY="181.0"/>
 
-    <SectionComponent sid="19DG" endX="314.0" endY="267.0" startX="300.0" startY="267.0"/>
-    <SectionComponent sid="19DG" tid="19" tstate="NORMAL" endX="400.0" endY="267.0" startX="314.0" startY="267.0"/>
-    <SectionComponent sid="19DG" tid="19" tstate="REVERSE" endX="335.5" endY="288.5" startX="314.0" startY="267.0"/>
+    <Section sid="19DG" endX="314.0" endY="267.0" startX="300.0" startY="267.0"/>
+    <Section sid="19DG" dep="19-NORMAL" endX="400.0" endY="267.0" startX="314.0" startY="267.0"/>
+    <Section sid="19DG" dep="19-REVERSE" endX="335.5" endY="288.5" startX="314.0" startY="267.0"/>
 
-    <SectionComponent sid="21DG" endX="371.0" endY="310.0" startX="357.0" startY="310.0"/>
-    <SectionComponent sid="21DG" tid="21" tstate="NORMAL" endX="357.0" endY="310.0" startX="300.0" startY="310.0"/>
-    <SectionComponent sid="21DG" tid="21" tstate="REVERSE" endX="335.5" endY="288.5" startX="357.0" startY="310.0"/>
+    <Section sid="21DG" endX="371.0" endY="310.0" startX="357.0" startY="310.0"/>
+    <Section sid="21DG" dep="21-NORMAL" endX="357.0" endY="310.0" startX="300.0" startY="310.0"/>
+    <Section sid="21DG" dep="21-REVERSE" endX="335.5" endY="288.5" startX="357.0" startY="310.0"/>
 
-    <SectionComponent sid="27-33DG" endX="387.0" endY="310.0" startX="371.0" startY="310.0"/>
-    <SectionComponent sid="27-33DG" tid="27" tstate="NORMAL" endX="425.0" endY="310.0" startX="387.0" startY="310.0"/>
-    <SectionComponent sid="27-33DG" tid="27" tstate="REVERSE" endX="430.0" endY="353.0" startX="387.0" startY="310.0"/>
-    <SectionComponent sid="27-33DG" tid="33" tstate="NORMAL" endX="451.5" endY="374.5" startX="430.0" startY="353.0"/>
-    <SectionComponent sid="27-33DG" tid="33" tstate="REVERSE" endX="469.0" endY="353.0" startX="430.0" startY="353.0"/>
+    <Section sid="27-33DG" endX="387.0" endY="310.0" startX="371.0" startY="310.0"/>
+    <Section sid="27-33DG" dep="27-NORMAL" endX="425.0" endY="310.0" startX="387.0" startY="310.0"/>
+    <Section sid="27-33DG" dep="27-REVERSE" endX="430.0" endY="353.0" startX="387.0" startY="310.0"/>
+    <Section sid="27-33DG" dep="33-NORMAL" endX="451.5" endY="374.5" startX="430.0" startY="353.0"/>
+    <Section sid="27-33DG" dep="33-REVERSE" endX="469.0" endY="353.0" startX="430.0" startY="353.0"/>
 
+    <Section sid="29DG" endX="370.0" endY="181.0" startX="350.0" startY="181.0"/>
+    <Section sid="29DG" dep="29-NORMAL" endX="400.0" endY="181.0" startX="370.0" startY="181.0"/>
+    <Section sid="29DG" dep="29-REVERSE" endX="391.5" endY="159.5" startX="370.0" startY="181.0"/>
 
-    <SectionComponent sid="29DG" endX="370.0" endY="181.0" startX="350.0" startY="181.0"/>
-    <SectionComponent sid="29DG" tid="29" tstate="NORMAL" endX="400.0" endY="181.0" startX="370.0" startY="181.0"/>
-    <SectionComponent sid="29DG" tid="29" tstate="REVERSE" endX="391.5" endY="159.5" startX="370.0" startY="181.0"/>
+    <Section sid="37DG" endX="473.0" endY="396.0" startX="451.5" startY="374.5"/>
+    <Section sid="37DG" dep="37-NORMAL" endX="516.0" endY="439.0" startX="473.0" startY="396.0"/>
+    <Section sid="37DG" dep="37-NORMAL" endX="530.0" endY="439.0" startX="516.0" startY="439.0"/>
+    <Section sid="37DG" dep="37-REVERSE" endX="512.0" endY="396.0" startX="473.0" startY="396.0"/>
 
-    <SectionComponent sid="37DG" endX="473.0" endY="396.0" startX="451.5" startY="374.5"/>
-    <SectionComponent sid="37DG" tid="37" tstate="NORMAL" endX="516.0" endY="439.0" startX="473.0" startY="396.0"/>
-    <SectionComponent sid="37DG" tid="37" tstate="NORMAL" endX="530.0" endY="439.0" startX="516.0" startY="439.0"/>
-    <SectionComponent sid="37DG" tid="37" tstate="REVERSE" endX="512.0" endY="396.0" startX="473.0" startY="396.0"/>
+    <Section sid="2DG" endX="870.0" endY="224.0" startX="862.0" startY="224.0"/>
+    <Section sid="2DG" dep="2-NORMAL" endX="862.0" endY="224.0" startX="825.0" startY="224.0"/>
+    <Section sid="2DG" dep="2-REVERSE" endX="838.5" endY="245.5" startX="862.0" startY="224.0"/>
 
-    <SectionComponent sid="2DG" endX="870.0" endY="224.0" startX="862.0" startY="224.0"/>
-    <SectionComponent sid="2DG" tid="2" tstate="NORMAL" endX="862.0" endY="224.0" startX="825.0" startY="224.0"/>
-    <SectionComponent sid="2DG" tid="2" tstate="REVERSE" endX="838.5" endY="245.5" startX="862.0" startY="224.0"/>
+    <Section sid="4DG" endX="815.0" endY="267.0" startX="800.0" startY="267.0"/>
+    <Section sid="4DG" dep="4-NORMAL" endX="920.0" endY="267.0" startX="815.0" startY="267.0"/>
+    <Section sid="4DG" dep="4-REVERSE" endX="838.5" endY="245.5" startX="815.0" startY="267.0"/>
 
-    <SectionComponent sid="4DG" endX="815.0" endY="267.0" startX="800.0" startY="267.0"/>
-    <SectionComponent sid="4DG" tid="4" tstate="NORMAL" endX="920.0" endY="267.0" startX="815.0" startY="267.0"/>
-    <SectionComponent sid="4DG" tid="4" tstate="REVERSE" endX="838.5" endY="245.5" startX="815.0" startY="267.0"/>
+    <Section sid="6-12DG" endX="783.0" endY="267.0" startX="800.0" startY="267.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL" endX="768.0" endY="267.0" startX="783.0" startY="267.0"/>
+    <Section sid="6-12DG" dep="6-REVERSE" endX="761.5" endY="245.5" startX="783.0" startY="267.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-NORMAL" endX="609.0" endY="267.0" startX="768.0" startY="267.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE" endX="725.0" endY="310.0" startX="768.0" startY="267.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-NORMAL" endX="695.0" endY="340.0" startX="725.0" startY="310.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-REVERSE" endX="725.0" endY="310.0" startX="695.0" startY="310.0"/>
 
-    <SectionComponent sid="6-10DG" endX="783.0" endY="267.0" startX="800.0" startY="267.0"/>
-    <SectionComponent sid="6-10DG" tid="6" tstate="NORMAL" endX="768.0" endY="267.0" startX="783.0" startY="267.0"/>
-    <SectionComponent sid="6-10DG" tid="6" tstate="REVERSE" endX="761.5" endY="245.5" startX="783.0" startY="267.0"/>
-    <SectionComponent sid="6-10DG" tid="10" tstate="NORMAL" endX="609.0" endY="267.0" startX="768.0" startY="267.0"/>
+    <Section sid="8DG" endX="740.0" endY="224.0" startX="695.0" startY="224.0"/>
+    <Section sid="8DG" dep="8-NORMAL" endX="825.0" endY="224.0" startX="740.0" startY="224.0"/>
+    <Section sid="8DG" dep="8-REVERSE" endX="761.5" endY="245.5" startX="740.0" startY="224.0"/>
 
-    <SectionComponent sid="8DG" endX="740.0" endY="224.0" startX="695.0" startY="224.0"/>
-    <SectionComponent sid="8DG" tid="8" tstate="NORMAL" endX="825.0" endY="224.0" startX="740.0" startY="224.0"/>
-    <SectionComponent sid="8DG" tid="8" tstate="REVERSE" endX="761.5" endY="245.5" startX="740.0" startY="224.0"/>
+    <Section sid="14DG" dep="14-NORMAL" endX="683.0" endY="224.0" startX="609.0" startY="224.0"/>
+    <Section sid="14DG" endX="695.0" endY="224.0" startX="683.0" startY="224.0"/>
+    <Section sid="14DG" dep="14-REVERSE" endX="640.0" endY="181.0" startX="683.0" startY="224.0"/>
+    <Section sid="14DG" dep="14-REVERSE" endX="640.0" endY="181.0" startX="609.0" startY="181.0"/>
 
-    <SectionComponent sid="12DG" endX="695.0" endY="340.0" startX="768.0" startY="267.0"/>
-    <SectionComponent sid="12DG" endX="725.0" endY="310.0" startX="695.0" startY="310.0"/>
+    <Section sid="16DG" endX="672.0" endY="363.0" startX="695.0" startY="340.0"/>
+    <Section sid="16DG" dep="16-NORMAL" endX="639.0" endY="396.0" startX="672.0" startY="363.0"/>
+    <Section sid="16DG" dep="16-NORMAL" endX="639.0" endY="396.0" startX="609.0" startY="396.0"/>
+    <Section sid="16DG" dep="16-REVERSE" endX="672.0" endY="439.0" startX="672.0" startY="363.0"/>
+    <Section sid="16DG" dep="16-REVERSE" endX="672.0" endY="439.0" startX="609.0" startY="439.0"/>
 
-    <SectionComponent sid="14DG" endX="683.0" endY="224.0" startX="609.0" startY="224.0"/>
-    <SectionComponent sid="14DG" tid="14" tstate="NORMAL" endX="695.0" endY="224.0" startX="683.0" startY="224.0"/>
-    <SectionComponent sid="14DG" tid="14" tstate="REVERSE" endX="640.0" endY="181.0" startX="683.0" startY="224.0"/>
-    <SectionComponent sid="14DG" tid="14" tstate="REVERSE" endX="640.0" endY="181.0" startX="609.0" startY="181.0"/>
+    <Section sid="18DG" endX="695.0" endY="310.0" startX="672.0" startY="310.0"/>
+    <Section sid="18DG" dep="18-NORMAL" endX="672.0" endY="310.0" startX="609.0" startY="310.0"/>
+    <Section sid="18DG" dep="18-REVERSE" endX="628.0" endY="353.0" startX="609.0" startY="353.0"/>
+    <Section sid="18DG" dep="18-REVERSE" endX="628.0" endY="353.0" startX="672.0" startY="310.0"/>
 
-    <SectionComponent sid="16DG" endX="672.0" endY="363.0" startX="695.0" startY="340.0"/>
-    <SectionComponent sid="16DG" tid="16" tstate="NORMAL" endX="639.0" endY="396.0" startX="672.0" startY="363.0"/>
-    <SectionComponent sid="16DG" tid="16" tstate="NORMAL" endX="639.0" endY="396.0" startX="609.0" startY="396.0"/>
-    <SectionComponent sid="16DG" tid="16" tstate="REVERSE" endX="672.0" endY="439.0" startX="672.0" startY="363.0"/>
-    <SectionComponent sid="16DG" tid="16" tstate="REVERSE" endX="672.0" endY="439.0" startX="609.0" startY="439.0"/>
-
-    <SectionComponent sid="18DG" endX="695.0" endY="310.0" startX="672.0" startY="310.0"/>
-    <SectionComponent sid="18DG" tid="18" tstate="NORMAL" endX="672.0" endY="310.0" startX="609.0" startY="310.0"/>
-    <SectionComponent sid="18DG" tid="18" tstate="REVERSE" endX="628.0" endY="353.0" startX="609.0" startY="353.0"/>
-    <SectionComponent sid="18DG" tid="18" tstate="REVERSE" endX="628.0" endY="353.0" startX="672.0" startY="310.0"/>
-
-    <SectionComponent sid="IBG" endX="920.0" endY="224.0" startX="870.0" startY="224.0"/>
-    <SectionComponent sid="X1LQ" endX="1012.0" endY="224.0" startX="920.0" startY="224.0"/>
-
+    <Section sid="IBG" endX="920.0" endY="224.0" startX="870.0" startY="224.0"/>
+    <Section sid="X1LQ" endX="1012.0" endY="224.0" startX="920.0" startY="224.0"/>
 
     <!--右斜-->
 
-    <SectionComponent sid="15/29WG" endX="350.0" endY="181.0" startX="315.0" startY="181.0"/>
+    <Section sid="15/29WG" endX="350.0" endY="181.0" startX="315.0" startY="181.0"/>
 
     <!--左上斜，用不到-->
-    <SectionComponent endX="363.0" endY="138.0" startX="413.0" startY="138.0"/>
-    <SectionComponent endX="456.0" endY="95.0" startX="391.5" startY="159.5"/>
-    <SectionComponent endX="510.0" endY="95.0" startX="456.0" startY="95.0"/>
-    <SectionComponent endX="500.0" endY="62.0" startX="467.0" startY="95.0"/>
-    <SectionComponent endX="510.0" endY="52.0" startX="500.0" startY="62.0"/>
-    <SectionComponent endX="525.0" endY="95.0" startX="510.0" startY="95.0"/>
+    <Section endX="363.0" endY="138.0" startX="413.0" startY="138.0"/>
+    <Section endX="456.0" endY="95.0" startX="391.5" startY="159.5"/>
+    <Section endX="510.0" endY="95.0" startX="456.0" startY="95.0"/>
+    <Section endX="500.0" endY="62.0" startX="467.0" startY="95.0"/>
+    <Section endX="510.0" endY="52.0" startX="500.0" startY="62.0"/>
+    <Section endX="525.0" endY="95.0" startX="510.0" startY="95.0"/>
 
     <!--左斜-->
 
-    <SectionComponent sid="5/17WG" endX="260.0" endY="181.0" startX="207.0" startY="181.0"/>
+    <Section sid="5/17WG" endX="260.0" endY="181.0" startX="207.0" startY="181.0"/>
 
     <!--左上斜-->
-    <SectionComponent endX="410.0" endY="48.0" startX="277.0" startY="181.0"/>
-    <SectionComponent endX="320.0" endY="48.0" startX="320.0" startY="138.0"/>
-    <SectionComponent endX="363.0" endY="48.0" startX="363.0" startY="95.0"/>
+    <Section endX="410.0" endY="48.0" startX="277.0" startY="181.0"/>
+    <Section endX="320.0" endY="48.0" startX="320.0" startY="138.0"/>
+    <Section endX="363.0" endY="48.0" startX="363.0" startY="95.0"/>
 
     <!--with label-->
-    <Group>
-        <children>
-            <SectionComponent sid="3G" endX="609.0" endY="181.0" startX="400.0" startY="181.0"/>
-            <Label layoutX="565.0" layoutY="171.0" styleClass="-railway-section-label" text="3G"/>
-        </children>
+    <Section sid="3G" endX="609.0" endY="181.0" startX="400.0" startY="181.0"/>
+    <Label layoutX="565.0" layoutY="171.0" styleClass="-railway-section-label" text="3G"/>
+
+    <Section sid="IG" endX="609.0" endY="224.0" startX="400.0" startY="224.0"/>
+    <Label layoutX="565.0" layoutY="214.0" styleClass="-railway-section-label" text="IG"/>
+
+    <Section sid="IIG" endX="609.0" endY="267.0" startX="400.0" startY="267.0"/>
+    <Label layoutX="565.0" layoutY="257.0" styleClass="-railway-section-label" text="IIG"/>
+
+    <Section sid="4G" endX="609.0" endY="310.0" startX="425.0" startY="310.0"/>
+    <Label layoutX="564.5" layoutY="300.0" styleClass="-railway-section-label" text="4G"/>
+
+    <Section sid="10G" endX="609.0" endY="439.0" startX="530.0" startY="439.0"/>
+    <Label layoutX="564.5" layoutY="429.0" styleClass="-railway-section-label" text="10G"/>
+
+    <Section sid="8G" endX="609.0" endY="396.0" startX="512.0" startY="396.0"/>
+    <Label layoutX="564.5" layoutY="386.0" styleClass="-railway-section-label" text="8G"/>
+
+    <Section sid="6G" endX="609.0" endY="353.0" startX="469.0" startY="353.0"/>
+    <Label layoutX="564.5" layoutY="343.0" styleClass="-railway-section-label" text="6G"/>
+
+
+    <Section sid="D23G" endX="300.0" endY="310.0" startX="240.0" startY="310.0"/>
+    <Group layoutX="236.0" layoutY="307.0" styleClass="-railway-section">
+        <Line endX="3.0" styleClass="-railway-section"/>
+        <Line endX="3.0" layoutY="6.0" styleClass="-railway-section"/>
+        <Line endY="6.0" layoutX="3.0" styleClass="-railway-section"/>
+        <Line endX="3.0" layoutX="4.0" layoutY="3.0" styleClass="-railway-section"/>
     </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="IG" endX="609.0" endY="224.0" startX="400.0" startY="224.0"/>
-            <Label layoutX="565.0" layoutY="214.0" styleClass="-railway-section-label" text="IG"/>
-        </children>
+
+    <Label layoutX="251.0" layoutY="300.0" styleClass="-railway-section-label" text="D23G"/>
+
+    <Section sid="D3G" endX="155.0" endY="181.0" startX="120.0" startY="181.0"/>
+    <Group layoutY="1.0" styleClass="-railway-section">
+        <Line endX="120.0" endY="180.0" startX="115.0" startY="185.0" strokeWidth="1.3"
+              styleClass="-railway-section"/>
+        <Line endX="115.0" endY="185.0" startX="105.0" startY="175.0" strokeWidth="1.3"
+              styleClass="-railway-section"/>
+        <Line endX="105.0" endY="175.0" startX="100.0" startY="180.0" strokeWidth="1.3"
+              styleClass="-railway-section"/>
+        <Line endX="101.0" endY="181.0" layoutX="-1.0" layoutY="-1.0" startX="97.0" startY="181.0"
+              styleClass="-railway-section"/>
+        <Line endX="3.0" layoutX="92.0" layoutY="177.0" styleClass="-railway-section"/>
+        <Line endX="3.0" layoutX="92.0" layoutY="183.0" styleClass="-railway-section"/>
+        <Line endY="6.0" layoutX="96.0" layoutY="177.0" styleClass="-railway-section"/>
     </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="IIG" endX="609.0" endY="267.0" startX="400.0" startY="267.0"/>
-            <Label layoutX="565.0" layoutY="257.0" styleClass="-railway-section-label" text="IIG"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="4G" endX="609.0" endY="310.0" startX="425.0" startY="310.0"/>
-            <Label layoutX="564.5" layoutY="300.0" styleClass="-railway-section-label" text="4G"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="10G" endX="609.0" endY="439.0" startX="530.0" startY="439.0"/>
-            <Label layoutX="564.5" layoutY="429.0" styleClass="-railway-section-label" text="10G"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="8G" endX="609.0" endY="396.0" startX="512.0" startY="396.0"/>
-            <Label layoutX="564.5" layoutY="386.0" styleClass="-railway-section-label" text="8G"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="6G" endX="609.0" endY="353.0" startX="469.0" startY="353.0"/>
-            <Label layoutX="564.5" layoutY="343.0" styleClass="-railway-section-label" text="6G"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <Group styleClass="-railway-section">
-                <children>
-                    <SectionComponent sid="D23G" endX="300.0" endY="310.0" startX="240.0" startY="310.0"/>
-                    <Group layoutX="236.0" layoutY="307.0" styleClass="-railway-section">
-                        <children>
-                            <Line endX="3.0" styleClass="-railway-section"/>
-                            <Line endX="3.0" layoutY="6.0" styleClass="-railway-section"/>
-                            <Line endY="6.0" layoutX="3.0" styleClass="-railway-section"/>
-                            <Line endX="3.0" layoutX="4.0" layoutY="3.0" styleClass="-railway-section"/>
-                        </children>
-                    </Group>
-                </children>
-            </Group>
-            <Label layoutX="251.0" layoutY="300.0" styleClass="-railway-section-label" text="D23G"/>
-        </children>
-    </Group>
-    <Group>
-        <children>
-            <SectionComponent sid="D3G" endX="155.0" endY="181.0" startX="120.0" startY="181.0"/>
-            <Group layoutY="1.0" styleClass="-railway-section">
-                <children>
-                    <Line endX="120.0" endY="180.0" startX="115.0" startY="185.0" strokeWidth="1.3"
-                          styleClass="-railway-section"/>
-                    <Line endX="115.0" endY="185.0" startX="105.0" startY="175.0" strokeWidth="1.3"
-                          styleClass="-railway-section"/>
-                    <Line endX="105.0" endY="175.0" startX="100.0" startY="180.0" strokeWidth="1.3"
-                          styleClass="-railway-section"/>
-                    <Line endX="101.0" endY="181.0" layoutX="-1.0" layoutY="-1.0" startX="97.0" startY="181.0"
-                          styleClass="-railway-section"/>
-                    <Line endX="3.0" layoutX="92.0" layoutY="177.0" styleClass="-railway-section"/>
-                    <Line endX="3.0" layoutX="92.0" layoutY="183.0" styleClass="-railway-section"/>
-                    <Line endY="6.0" layoutX="96.0" layoutY="177.0" styleClass="-railway-section"/>
-                </children>
-            </Group>
-            <Label layoutX="125.0" layoutY="171.0" styleClass="-railway-section-label" text="D3G"/>
-        </children>
-    </Group>
+    <Label layoutX="125.0" layoutY="171.0" styleClass="-railway-section-label" text="D3G"/>
+
 
     <!-- isulated-rail-joint -->
     <IsulatedJoint layoutX="87.0" layoutY="267.0"/>
@@ -276,195 +239,74 @@
     <IsulatedJoint layoutX="343.5" layoutY="114.5" rotate="-45.0"/>
 
     <!-- signal -->
-    <SignalGroup layoutX="609.0" layoutY="296.0" labelText="X4" labelXOffset="-11">
-        <StartingSignal dir="X" sid="X4" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="339.0" labelText="X6" labelXOffset="-11">
-        <StartingSignal dir="X" sid="X6" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="87.0" layoutY="271.0" labelText="XF" labelXOffset="-10.0">
-        <ShuntingSignal dir="X" sid="XF" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="145.0" layoutY="253.0" labelText="D1" labelXOffset="-10.0">
-        <RouteSignal dir="X" sid="D1" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="87.0" layoutY="210.0" labelText="X" labelXOffset="-7.0">
-        <ShuntingSignal dir="X" sid="X" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="200.0" layoutY="271.0" labelText="D5" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D5" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="920.0" layoutY="271.0" labelText="S" labelXOffset="4.375">
-        <ShuntingSignal dir="S" sid="S" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="800.0" layoutY="271.0" labelText="D6" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D6" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="400.0" layoutY="271.0" labelText="SII" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="SII" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-
-    <SignalGroup layoutX="400.0" layoutY="228.0" labelText="SI" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="SI" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-
-    <SignalGroup layoutX="207.0" layoutY="185.0" labelText="D7" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D7" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="230.0" layoutY="210.0" labelText="D9" labelXOffset="-11.0">
-        <RouteSignal dir="X" sid="D9" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="400.0" layoutY="185.0" labelText="S3" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="S3" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="210.0" labelText="XI" labelXOffset="-9.0">
-        <StartingSignal dir="X" sid="XI" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="167.0" labelText="X3" labelXOffset="-11.0">
-        <StartingSignal dir="X" sid="X3" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="253.0" labelText="XII" labelXOffset="-10.0">
-        <StartingSignal dir="X" sid="XII" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="695.0" layoutY="228.0" labelText="D8" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D8" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="825.0" layoutY="210.0" labelText="D4" labelXOffset="-11.0">
-        <RouteSignal dir="X" sid="D4" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="920.0" layoutY="210.0" labelText="SF" labelXOffset="2.375">
-        <ShuntingSignal dir="S" sid="SF" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="870.0" layoutY="228.0" labelText="D2" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D2" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="350.0" layoutY="167.0" labelText="D25" labelXOffset="-15.0">
-        <RouteSignal dir="X" sid="D25" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="260.0" layoutY="167.0" labelText="D11" labelXOffset="-13.0">
-        <RouteSignal dir="X" sid="D11" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="334.0" layoutY="57.0" rotateZ="-90.0" labelText="D13" labelXOffset="-11" labelYOffset="-13">
-        <RouteSignal dir="S" sid="D13" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="377.0" layoutY="57.0" rotateZ="-90.0" labelText="D15" labelXOffset="-11" labelYOffset="-13">
-        <RouteSignal dir="S" sid="D15" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="408.0" layoutY="63.0" rotateZ="-45.0" labelText="D17" labelXOffset="0" labelYOffset="-10">
-        <RouteSignal dir="S" sid="D17" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="155.0" layoutY="167.0" labelText="D3" labelXOffset="-11.0">
-        <RouteSignal dir="X" sid="D3" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="371.0" layoutY="296.0" labelText="D27" labelXOffset="-14.0">
-        <RouteSignal dir="X" sid="D27" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="425.0" layoutY="314.0" labelText="S4" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="S4" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="469.0" layoutY="357.0" labelText="S6" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="S6" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="512.0" layoutY="400.0" labelText="S8" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="S8" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="382.0" labelText="X8" labelXOffset="-11.0">
-        <StartingSignal dir="X" sid="X8" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="530.0" layoutY="443.0" labelText="S10" labelXOffset="2.375">
-        <StartingSignal dir="S" sid="S10" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="609.0" layoutY="425.0" labelText="X10" labelXOffset="-14.0">
-        <StartingSignal dir="X" sid="X10" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="300.0" layoutY="296.0" labelText="D23" labelXOffset="-15.0">
-        <RouteSignal dir="X" sid="D23" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="315.0" layoutY="185.0" labelText="D19" labelXOffset="2">
-        <RouteSignal dir="S" sid="D19" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="300.0" layoutY="253.0" labelText="D21" labelXOffset="-13">
-        <RouteSignal dir="X" sid="D21" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="703.0" layoutY="345.0" rotateZ="-45.0" labelText="D10" labelXOffset="0" labelYOffset="-10">
-        <RouteSignal dir="S" sid="D10" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="508.0" layoutY="67.0" rotateZ="-45.0" labelText="D31" labelXOffset="0" labelYOffset="-10">
-        <RouteSignal dir="S" sid="D31" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="460.0" layoutY="81.0" labelText="D29" labelXOffset="-15.0">
-        <RouteSignal dir="X" sid="D29" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
-
-    <SignalGroup layoutX="510.0" layoutY="99.0" labelText="D33" labelXOffset="2.375">
-        <RouteSignal dir="S" sid="D33" onMouseClicked="#handleSignalClicked"/>
-    </SignalGroup>
+    <StartingSignal dir="X" sid="X4" layoutX="609.0" layoutY="296.0" labelXOffset="-11"/>
+    <StartingSignal dir="X" sid="X6" layoutX="609.0" layoutY="339.0" labelXOffset="-11"/>
+    <ShuntingSignal dir="X" sid="XF" layoutX="87.0" layoutY="271.0" labelXOffset="-10.0"/>
+    <RouteSignal dir="X" sid="D1" layoutX="145.0" layoutY="253.0" labelXOffset="-10.0"/>
+    <ShuntingSignal dir="X" sid="X" layoutX="87.0" layoutY="210.0" labelXOffset="-7.0"/>
+    <RouteSignal dir="S" sid="D5" layoutX="200.0" layoutY="271.0" labelXOffset="2.375"/>
+    <ShuntingSignal dir="S" sid="S" layoutX="920.0" layoutY="271.0" labelXOffset="4.375"/>
+    <RouteSignal dir="S" sid="D6" layoutX="800.0" layoutY="271.0" labelXOffset="2.375"/>
+    <StartingSignal dir="S" sid="SII" layoutX="400.0" layoutY="271.0" labelXOffset="2.375"/>
+    <StartingSignal dir="S" sid="SI" layoutX="400.0" layoutY="228.0" labelXOffset="2.375"/>
+    <RouteSignal dir="S" sid="D7" layoutX="207.0" layoutY="185.0" labelXOffset="2.375"/>
+    <RouteSignal dir="X" sid="D9" layoutX="230.0" layoutY="210.0" labelXOffset="-11.0"/>
+    <StartingSignal dir="S" sid="S3" layoutX="400.0" layoutY="185.0" labelXOffset="2.375"/>
+    <StartingSignal dir="X" sid="XI" layoutX="609.0" layoutY="210.0" labelXOffset="-9.0"/>
+    <StartingSignal dir="X" sid="X3" layoutX="609.0" layoutY="167.0" labelXOffset="-11.0"/>
+    <StartingSignal dir="X" sid="XII" layoutX="609.0" layoutY="253.0" labelXOffset="-10.0"/>
+    <RouteSignal dir="S" sid="D8" layoutX="695.0" layoutY="228.0" labelXOffset="2.375"/>
+    <RouteSignal dir="X" sid="D4" layoutX="825.0" layoutY="210.0" labelXOffset="-11.0"/>
+    <ShuntingSignal dir="S" sid="SF" layoutX="920.0" layoutY="210.0" labelXOffset="2.375"/>
+    <RouteSignal dir="S" sid="D2" layoutX="870.0" layoutY="228.0" labelXOffset="2.375"/>
+    <RouteSignal dir="X" sid="D25" layoutX="350.0" layoutY="167.0" labelXOffset="-15.0"/>
+    <RouteSignal dir="X" sid="D11" layoutX="260.0" layoutY="167.0" labelXOffset="-13.0"/>
+    <RouteSignal dir="X" sid="D13" layoutX="334.0" layoutY="57.0" rotateZ="90.0" labelXOffset="-14"/>
+    <RouteSignal dir="X" sid="D15" layoutX="377.0" layoutY="57.0" rotateZ="90.0" labelXOffset="-14"/>
+    <RouteSignal dir="S" sid="D17" layoutX="403.0" layoutY="61.0" rotateZ="-45.0" labelXOffset="2.375"/>
+    <RouteSignal dir="X" sid="D3" layoutX="155.0" layoutY="167.0" labelXOffset="-11.0"/>
+    <RouteSignal dir="X" sid="D27" layoutX="371.0" layoutY="296.0" labelXOffset="-14.0"/>
+    <StartingSignal dir="S" sid="S4" layoutX="425.0" layoutY="314.0" labelXOffset="2.375"/>
+    <StartingSignal dir="S" sid="S6" layoutX="469.0" layoutY="357.0" labelXOffset="2.375"/>
+    <StartingSignal dir="S" sid="S8" layoutX="512.0" layoutY="400.0" labelXOffset="2.375"/>
+    <StartingSignal dir="X" sid="X8" layoutX="609.0" layoutY="382.0" labelXOffset="-11.0"/>
+    <StartingSignal dir="S" sid="S10" layoutX="530.0" layoutY="443.0" labelXOffset="2.375"/>
+    <StartingSignal dir="X" sid="X10" layoutX="609.0" layoutY="425.0" labelXOffset="-14.0"/>
+    <RouteSignal dir="X" sid="D23" layoutX="300.0" layoutY="296.0" labelXOffset="-15.0"/>
+    <RouteSignal dir="S" sid="D19" layoutX="315.0" layoutY="185.0" labelXOffset="2"/>
+    <RouteSignal dir="X" sid="D21" layoutX="300.0" layoutY="253.0" labelXOffset="-13"/>
+    <RouteSignal dir="S" sid="D10" layoutX="698.0" layoutY="343.0" rotateZ="-45.0" labelXOffset="2.375"/>
+    <RouteSignal dir="S" sid="D31" layoutX="503.0" layoutY="65.0" rotateZ="-45.0" labelXOffset="2.375"/>
+    <RouteSignal dir="X" sid="D29" layoutX="460.0" layoutY="81.0" labelXOffset="-15.0"/>
+    <RouteSignal dir="S" sid="D33" layoutX="510.0" layoutY="99.0" labelXOffset="2.375"/>
 
     <!-- turnout -->
-    <Turnout layoutX="160.0" layoutY="267.0" labelText="1" sid="1"/>
-    <Turnout layoutX="203.0" layoutY="224.0" labelText="3" sid="3"/>
-    <Turnout layoutX="178.0" layoutY="181.0" labelText="5" sid="5"/>
-    <Turnout layoutX="219.0" layoutY="224.0" labelText="7" sid="7"/>
-    <Turnout layoutX="244.0" layoutY="224.0" labelText="9" sid="9"/>
-    <Turnout layoutX="286.0" layoutY="267.0" labelText="11" sid="11"/>
-    <Turnout layoutX="260.0" layoutY="224.0" labelText="13" sid="13"/>
-    <Turnout layoutX="303.0" layoutY="181.0" labelText="15" sid="15"/>
-    <Turnout layoutX="277.0" layoutY="181.0" labelText="17" sid="17"/>
-    <Turnout layoutX="314.0" layoutY="267.0" labelText="19" sid="19"/>
-    <Turnout layoutX="357.0" layoutY="310.0" labelText="21" sid="21"/>
-    <Turnout layoutX="320.0" layoutY="138.0" labelText="23" sid="23"/>
-    <Turnout layoutX="363.0" layoutY="95.0" labelText="25" sid="25"/>
-    <Turnout layoutX="387.0" layoutY="310.0" labelText="27" sid="27"/>
-    <Turnout layoutX="370.0" layoutY="181.0" labelText="29" sid="29"/>
-    <Turnout layoutX="413.0" layoutY="138.0" labelText="31" sid="31"/>
-    <Turnout layoutX="430.0" layoutY="353.0" labelText="33" sid="33"/>
-    <Turnout layoutX="467.0" layoutY="95.0" labelText="35" sid="35"/>
-    <Turnout layoutX="473.0" layoutY="396.0" labelText="37" sid="37"/>
-    <Turnout layoutX="862.0" layoutY="224.0" labelText="2" sid="2"/>
-    <Turnout layoutX="815.0" layoutY="267.0" labelText="4" sid="4"/>
-    <Turnout layoutX="783.0" layoutY="267.0" labelText="6" sid="6"/>
-    <Turnout layoutX="740.0" layoutY="224.0" labelText="8" sid="8"/>
-    <Turnout layoutX="768.0" layoutY="267.0" labelText="10" sid="10"/>
-    <Turnout layoutX="725.0" layoutY="310.0" labelText="12" sid="12"/>
-    <Turnout layoutX="683.0" layoutY="224.0" labelText="14" sid="14"/>
-    <Turnout layoutX="672.0" layoutY="363.0" labelText="16" sid="16"/>
-    <Turnout layoutX="672.0" layoutY="310.0" labelText="18" sid="18"/>
+    <Turnout layoutX="160.0" layoutY="267.0" tid="1" sid="1DG"/>
+    <Turnout layoutX="203.0" layoutY="224.0" tid="3" sid="3-7DG"/>
+    <Turnout layoutX="178.0" layoutY="181.0" tid="5" sid="5DG"/>
+    <Turnout layoutX="219.0" layoutY="224.0" tid="7" sid="3-7DG"/>
+    <Turnout layoutX="244.0" layoutY="224.0" tid="9" sid="9-13DG"/>
+    <Turnout layoutX="286.0" layoutY="267.0" tid="11" sid="11DG"/>
+    <Turnout layoutX="260.0" layoutY="224.0" tid="13" sid="9-13DG"/>
+    <Turnout layoutX="303.0" layoutY="181.0" tid="15" sid="15DG"/>
+    <Turnout layoutX="277.0" layoutY="181.0" tid="17" sid="17-23DG"/>
+    <Turnout layoutX="314.0" layoutY="267.0" tid="19" sid="19DG"/>
+    <Turnout layoutX="357.0" layoutY="310.0" tid="21" sid="21DG"/>
+    <Turnout layoutX="320.0" layoutY="138.0" tid="23" sid="17-23DG"/>
+    <Turnout layoutX="363.0" layoutY="95.0" tid="25" sid="25DG"/>
+    <Turnout layoutX="387.0" layoutY="310.0" tid="27" sid="27-33DG"/>
+    <Turnout layoutX="370.0" layoutY="181.0" tid="29" sid="29DG"/>
+    <Turnout layoutX="413.0" layoutY="138.0" tid="31" sid="31DG"/>
+    <Turnout layoutX="430.0" layoutY="353.0" tid="33" sid="27-33DG"/>
+    <Turnout layoutX="467.0" layoutY="95.0" tid="35" sid="35DG"/>
+    <Turnout layoutX="473.0" layoutY="396.0" tid="37" sid="37DG"/>
+    <Turnout layoutX="862.0" layoutY="224.0" tid="2" sid="2DG"/>
+    <Turnout layoutX="815.0" layoutY="267.0" tid="4" sid="4DG"/>
+    <Turnout layoutX="783.0" layoutY="267.0" tid="6" sid="6-12DG"/>
+    <Turnout layoutX="740.0" layoutY="224.0" tid="8" sid="8DG"/>
+    <Turnout layoutX="768.0" layoutY="267.0" tid="10" sid="6-12DG"/>
+    <Turnout layoutX="725.0" layoutY="310.0" tid="12" sid="12DG"/>
+    <Turnout layoutX="683.0" layoutY="224.0" tid="14" sid="14DG"/>
+    <Turnout layoutX="672.0" layoutY="363.0" tid="16" sid="16DG"/>
+    <Turnout layoutX="672.0" layoutY="310.0" tid="18" sid="18DG"/>
 </AnchorPane>

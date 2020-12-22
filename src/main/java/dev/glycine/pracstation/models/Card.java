@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;

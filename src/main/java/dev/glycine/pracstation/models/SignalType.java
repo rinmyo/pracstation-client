@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
 public enum SignalType {
     STARTING_SIGNAL,

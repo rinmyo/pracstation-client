@@ -3,19 +3,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<?import dev.glycine.pracstation.components.Card?>
+<?import dev.glycine.pracstation.models.Card?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
-    <fx:include source="station.fxml" fx:id="canvas"/>
+    <fx:include source="station.fxml" fx:id="station"/>
 
-    <HBox styleClass="box">
-        <Card labelText="X">
-
-        </Card>
-
+    <HBox styleClass="box" fx:id="topLeftBox">
         <Card labelText="中原時間">
             <Label fx:id="localTime" styleClass="card-content"/>
         </Card>
@@ -26,17 +23,11 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="topRightBox">
-        <Card labelText="S">
-
+        <Card styleClass="btn-card">
+            <HBox styleClass="bottom-btn-group">
+                <JFXButton text="+" onMouseClicked="#createRoute"/>
+            </HBox>
         </Card>
-    </HBox>
-
-    <HBox styleClass="box" fx:id="bottomLeftBox">
-        <Button text="+" fx:id="newSinro"/>
-    </HBox>
-
-    <HBox styleClass="box" fx:id="bottomRightBox">
-
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group">
                 <Button text="道岔總定" styleClass="common-button"/>
@@ -53,6 +44,12 @@
                 <Button text="區故解" styleClass="danger-button"/>
             </HBox>
         </Card>
+    </HBox>
+
+    <HBox styleClass="box" fx:id="bottomLeftBox">
+    </HBox>
+
+    <HBox styleClass="box" fx:id="bottomRightBox">
     </HBox>
 
 </AnchorPane>

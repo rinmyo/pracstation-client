@@ -21,8 +21,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         loginStage = primaryStage;
-//        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/login.fxml"));
-        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
+        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/login.fxml"));
+//        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
         Scene scene = new Scene(login);
         scene.getStylesheets().addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
                 JFoenixResources.load("css/jfoenix-design.css").toExternalForm()

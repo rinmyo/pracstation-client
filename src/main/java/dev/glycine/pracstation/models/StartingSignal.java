@@ -1,20 +1,22 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
-import dev.glycine.pracstation.models.Direction;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import lombok.Getter;
+import lombok.Setter;
 
 public class StartingSignal extends SignalBase {
     @Getter
-    Light light1 = new Light();
+    Light light1 = new Light(this, "LA");
     @Getter
-    Light light2 = new Light();
-    Shelter line1 = new Shelter(0, 0, 0, 10);
+    Light light2 = new Light(this, "DA");
+
 
     public StartingSignal() {
         signalType = SignalType.STARTING_SIGNAL;
         light1.setCenterY(DEFAULT_CIRCLE_RADIUS);
         light2.setCenterY(DEFAULT_CIRCLE_RADIUS);
-        getChildren().addAll(line1, light1, light2);
+        getChildren().addAll(label, line1, light1, light2);
     }
 
     public void setDir(Direction dir) {

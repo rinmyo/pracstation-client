@@ -1,40 +1,41 @@
 package dev.glycine.pracstation.controllers;
 
-import dev.glycine.pracstation.components.Turnout;
+import dev.glycine.pracstation.models.Light;
+import io.grpc.StatusRuntimeException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
+import java.util.stream.Collectors;
 
 /**
  * 程式的主控制器
  */
+@Log4j2
 public final class MainController {
-    private static final double CANVAS_MIN_SCALE = 0.5;
-    private static final double CANVAS_MAX_SCALE = 5.0;
-
     @FXML
     private AnchorPane root;
     @FXML
-    private AnchorPane canvas;
+    private AnchorPane station;
     @FXML
     private Label localTime;
     @FXML
     private Label stationName;
     @FXML
-    private Button newSinro;
+    private HBox topLeftBox;
     @FXML
     private HBox topRightBox;
     @FXML
@@ -62,12 +63,12 @@ public final class MainController {
 
     private void setDefaultCanvas() {
         //將畫布置於窗口的中央
-        canvas.translateXProperty().bind(root.widthProperty().subtract(canvas.widthProperty()).divide(2));
-        canvas.translateYProperty().bind(root.heightProperty().subtract(canvas.heightProperty()).divide(2));
+        station.translateXProperty().bind(root.widthProperty().subtract(station.widthProperty()).divide(2));
+        station.translateYProperty().bind(root.heightProperty().subtract(station.heightProperty()).divide(2));
 
         //綁定縱橫軸的縮放倍率
-        canvas.setScaleX(1.5);
-        canvas.setScaleY(1.5);
+        station.setScaleX(1.5);
+        station.setScaleY(1.5);
     }
 
     /**
@@ -76,7 +77,7 @@ public final class MainController {
     private void configureCanvas() {
         setDefaultCanvas();
         //縮放
-        canvas.setOnScroll(scrollEvent -> {
+        station.setOnScroll(scrollEvent -> {
             if (scrollEvent.isControlDown()) {
                 Scale newScale = new Scale();
                 var factor = scrollEvent.getDeltaY() > 0 ? 1.05 : 1 / 1.05;
@@ -84,7 +85,7 @@ public final class MainController {
                 newScale.setY(factor);
                 newScale.setPivotX(scrollEvent.getX());
                 newScale.setPivotY(scrollEvent.getY());
-                canvas.getTransforms().add(newScale);
+                station.getTransforms().add(newScale);
                 scrollEvent.consume();
             }
         });
@@ -93,7 +94,7 @@ public final class MainController {
         var mouseXProperty = new SimpleDoubleProperty(0.0);
         var mouseYProperty = new SimpleDoubleProperty(0.0);
 
-        canvas.setOnMousePressed(mouseEvent -> {
+        station.setOnMousePressed(mouseEvent -> {
             if (mouseEvent.isControlDown()) {
                 mouseXProperty.set(mouseEvent.getX());
                 mouseYProperty.set(mouseEvent.getY());
@@ -101,21 +102,21 @@ public final class MainController {
             }
         });
 
-        canvas.setOnMouseDragged(mouseEvent -> {
+        station.setOnMouseDragged(mouseEvent -> {
             if (mouseEvent.isControlDown()) {
-                canvas.setCursor(Cursor.MOVE);
+                station.setCursor(Cursor.MOVE);
                 Translate trans = new Translate(
                         mouseEvent.getX() - mouseXProperty.get(),
                         mouseEvent.getY() - mouseYProperty.get()
                 );
-                canvas.getTransforms().add(trans);
+                station.getTransforms().add(trans);
                 mouseEvent.consume();
             }
         });
 
-        canvas.setOnMouseReleased(mouseEvent -> {
+        station.setOnMouseReleased(mouseEvent -> {
             if (mouseEvent.isControlDown()) {
-                canvas.setCursor(Cursor.DEFAULT);
+                station.setCursor(Cursor.DEFAULT);
                 mouseEvent.consume();
             }
         });
@@ -150,5 +151,17 @@ public final class MainController {
         configureClock();
         configureStationNames();
         configureZoomIndicator();
+    }
+
+    public void createRoute(MouseEvent mouseEvent) {
+        var client = StationController.getInstance().getStationClient();
+        var focusedLights = Light.getFocusedLight();
+        var list = focusedLights.stream().map(Light::getButtonName).collect(Collectors.toList());
+        try {
+            client.createRoute(list);
+        } catch (StatusRuntimeException e) {
+            log.warn(e.getStatus().getDescription());
+        }
+        Light.defocusAll();
     }
 }

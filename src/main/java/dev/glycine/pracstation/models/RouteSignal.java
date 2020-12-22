@@ -1,19 +1,20 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
-import dev.glycine.pracstation.models.Direction;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class RouteSignal extends SignalBase {
     @Getter
-    Light light1 = new Light();
-    Shelter line1 = new Shelter(0, 0, 0, 10);
+    Light light1 = new Light(this, "A");
 
     public RouteSignal() {
         signalType = SignalType.ROUTE_SIGNAL;
         light1.setCenterY(DEFAULT_CIRCLE_RADIUS);
-        getChildren().addAll(line1, light1);
+        getChildren().addAll(label, line1, light1);
     }
 
     public void setDir(Direction dir) {

@@ -1,4 +1,4 @@
-package dev.glycine.pracstation.components;
+package dev.glycine.pracstation.models;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;

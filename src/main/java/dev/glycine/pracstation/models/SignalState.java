@@ -1,6 +1,5 @@
 package dev.glycine.pracstation.models;
 
-import dev.glycine.pracstation.components.AppleColor;
 import dev.glycine.pracstation.exceptions.UnknownSignalStateException;
 import dev.glycine.pracstation.pb.Signal;
 import javafx.scene.paint.Color;
