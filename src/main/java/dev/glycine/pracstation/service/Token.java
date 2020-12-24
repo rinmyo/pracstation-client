@@ -20,7 +20,6 @@ public class Token extends CallCredentials {
 
     @Override
     public void applyRequestMetadata(RequestInfo requestInfo, Executor appExecutor, MetadataApplier applier) {
-
         appExecutor.execute(() -> {
             try {
                 Metadata headers = new Metadata();

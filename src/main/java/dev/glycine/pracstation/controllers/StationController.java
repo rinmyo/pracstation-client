@@ -6,6 +6,7 @@ import dev.glycine.pracstation.models.SignalState;
 import dev.glycine.pracstation.models.TurnoutState;
 import dev.glycine.pracstation.pb.Signal;
 import dev.glycine.pracstation.service.StationClient;
+import dev.glycine.pracstation.service.Token;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -16,17 +17,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class StationController {
     public AnchorPane station;
     @Getter
-    private final StationClient stationClient;
+    private StationClient stationClient;
 
     @Getter
     private static final StationController instance = new StationController();
 
-    StationController() {
+    public void init(Token token) {
         log.debug("start init");
-        stationClient = new StationClient("127.0.0.1", 8080);
-        new Thread(() -> {
-            stationClient.refreshStation(this);
-        }).start();
+        stationClient = new StationClient("127.0.0.1", 8080, token);
+        new Thread(() -> stationClient.refreshStation(this)).start();
     }
 
     public void updateSignal(Signal pbSignal) {
@@ -42,12 +41,16 @@ public class StationController {
                 ((StartingSignal) signal).getLight1().setSignalState(SignalState.fromPbSignalState(pbSignal.getState()));
                 if (pbState == Signal.SignalState.DOUBLE_YELLOW) {
                     ((StartingSignal) signal).getLight2().setSignalState(SignalState.fromPbSignalState(pbSignal.getState()));
+                } else {
+                    ((StartingSignal) signal).getLight2().setSignalState(SignalState.BLACK);
                 }
             }
             case SHUNTING_SIGNAL -> {
                 ((ShuntingSignal) signal).getLight1().setSignalState(SignalState.fromPbSignalState(pbSignal.getState()));
                 if (pbState == Signal.SignalState.DOUBLE_YELLOW) {
                     ((ShuntingSignal) signal).getLight2().setSignalState(SignalState.fromPbSignalState(pbSignal.getState()));
+                } else {
+                    ((ShuntingSignal) signal).getLight2().setSignalState(SignalState.BLACK);
                 }
             }
             case ROUTE_SIGNAL -> ((RouteSignal) signal).getLight1().setSignalState(SignalState.fromPbSignalState(pbSignal.getState()));

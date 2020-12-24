@@ -1,9 +1,6 @@
 package dev.glycine.pracstation.models;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2

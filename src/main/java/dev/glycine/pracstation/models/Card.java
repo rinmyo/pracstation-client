@@ -3,10 +3,13 @@ package dev.glycine.pracstation.models;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
+
+import static javafx.scene.layout.TilePane.setAlignment;
 
 /**
  * 卡片
@@ -25,7 +28,6 @@ public class Card extends StackPane {
     protected final Rectangle background = new Rectangle();
 
     public Card() {
-        super();
         getChildren().addAll(background, title);
 
         background.getStyleClass().add("card-background");

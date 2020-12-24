@@ -14,18 +14,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
-@AllArgsConstructor
 public final class TokenManager {
     @Getter
-    private static final AuthClient client = new AuthClient("0.0.0.0", 8080);
+    private final AuthClient client = new AuthClient("0.0.0.0", 8080);
 
     @Getter
-    private static final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    private Token token;
 
-    @Getter
-    private static Token token;
-
-    public static void setToken(String tokenStr) {
+    public void setToken(String tokenStr) {
+        log.debug("get token: "+tokenStr);
         token = new Token(tokenStr);
     }
 }

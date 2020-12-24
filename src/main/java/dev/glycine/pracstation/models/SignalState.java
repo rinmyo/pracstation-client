@@ -10,7 +10,7 @@ import lombok.Getter;
 public enum SignalState {
     UNKNOWN(AppleColor.GRAY),
 
-    BROKEN(AppleColor.GRAY_4),
+    BROKEN(AppleColor.BLACK),
 
     BLACK(AppleColor.BLACK),
 

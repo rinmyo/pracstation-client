@@ -1,5 +1,6 @@
 package dev.glycine.pracstation.models;
 
+import dev.glycine.pracstation.controllers.MainController;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -52,18 +53,17 @@ public class Light extends Circle {
         focusedLight.clear();
     }
 
-    private void handleClick(MouseEvent mouseEvent) {
-        if (focused) defocus();
-        else focus();
-    }
-
     Light(SignalBase signal, String buttonName) {
         super(DEFAULT_CIRCLE_RADIUS);
         setStroke(DEFAULT_STROKE_FILL);
         setStrokeWidth(DEFAULT_STROKE_WIDTH);
         setSignalState(DEFAULT_SIGNAL_STATE);
         signalStateProperty.addListener((observable, oldvalue, newvalue) -> setFill(newvalue.getColor()));
-        setOnMouseClicked(this::handleClick);
+        setOnMouseClicked(e -> {
+            if (focused) defocus();
+            else focus();
+            MainController.getInstance().updateNewRouteBtn(focusedLight);
+        });
         this.signal = signal;
         this.buttonName = buttonName;
     }

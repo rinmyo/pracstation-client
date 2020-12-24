@@ -19,28 +19,6 @@
     -fx-font-family: "PingFang TC";
 }
 
-TurnoutIndicator {
-    -fx-pref-width: 30;
-    -fx-pref-height: 30;
-}
-
-ProgressIndicator {
-    -fx-progress-color: -fx-blue;
-}
-
-TurnoutPane {
-    -fx-padding: 12.25 15;
-}
-
-Text {
-    -fx-fill: -fx-teal;
-}
-
-Polygon, SVGPath {
-    -fx-fill: -fx-blue;
-    -fx-stroke: -fx-blue;
-}
-
 #root {
     -fx-pref-width: 1920;
     -fx-pref-height: 1080;
@@ -63,12 +41,30 @@ Polygon, SVGPath {
     -fx-font-size: 23;
 }
 
-#zoomIndicator {
-    -fx-background-color: -fx-purple;
-    -fx-text-fill: -fx-gray;
-    -fx-background-radius: 30;
-    -fx-pref-width: 30;
-    -fx-pref-height: -fx-pref-width;
+#routePane {
+    -fx-padding: 20;
+    -fx-hgap: 5;
+    -fx-vgap: 10;
+    -fx-max-width: 120;
+}
+
+#newRouteBtn{
+    -jfx-button-type: RAISED;
+    -fx-background-color: -fx-blue;
+    -fx-text-fill: white;
+    -fx-background-radius: 25;
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+}
+
+.badge-background {
+    -fx-fill: -fx-gray;
+    -fx-alignment: center;
+}
+
+.badge-label {
+    -fx-padding:  0 5;
+    -fx-text-fill: -fx-gray-6;
 }
 
 .card-title {
@@ -85,6 +81,16 @@ Polygon, SVGPath {
     -fx-arc-height: 10;
     -fx-arc-width: 10;
     -fx-fill: -fx-gray-6
+}
+
+.route-badge-background {
+    -fx-arc-height: 5;
+    -fx-arc-width: 5;
+    -fx-fill: -fx-gray-4
+}
+
+.route-badge-cancel {
+    -fx-background-radius: 5;
 }
 
 .to-indicator-title {
@@ -156,4 +162,8 @@ Polygon, SVGPath {
     -fx-fill: -fx-teal;
     -fx-stroke-width: 0;
     -fx-opacity: 0.5;
+}
+
+.focused-btn-label {
+    -fx-text-fill: white;
 }

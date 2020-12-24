@@ -24,8 +24,10 @@ public class App extends Application {
         Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/login.fxml"));
 //        Parent login = FXMLLoader.load(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
         Scene scene = new Scene(login);
-        scene.getStylesheets().addAll(JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
-                JFoenixResources.load("css/jfoenix-design.css").toExternalForm()
+        scene.getStylesheets().addAll(
+                JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
+                JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
+                JFoenixResources.load(PACKAGE_PATH + "views/css/jfoenix-components.css").toExternalForm()
         );
         primaryStage.setTitle("pracstation");
         primaryStage.setScene(scene);

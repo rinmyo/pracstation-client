@@ -54,6 +54,10 @@ sourceSets{
     }
 }
 
+tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
+    mergeServiceFiles()
+}
+
 javafx {
     version = "15"
     modules("javafx.controls", "javafx.fxml")

@@ -1,33 +1,29 @@
 package dev.glycine.pracstation.service;
 
 import com.google.protobuf.Empty;
+import dev.glycine.pracstation.controllers.MainController;
 import dev.glycine.pracstation.controllers.StationController;
 import dev.glycine.pracstation.pb.*;
-import dev.glycine.pracstation.pb.StationServiceGrpc.StationServiceBlockingStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.log4j.Log4j2;
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
 public class StationClient {
     private final ManagedChannel channel;
-    private final StationServiceBlockingStub blockingStub;
+    private final StationServiceGrpc.StationServiceBlockingStub blockingStub;
 
-    public StationClient(String host, int port) {
+    public StationClient(String host, int port, Token token) {
         channel = ManagedChannelBuilder.forAddress(host, port)
-                .usePlaintext()
                 .keepAliveWithoutCalls(true)
+                .usePlaintext()
                 .build();
 
-        blockingStub = StationServiceGrpc.newBlockingStub(channel);
+        blockingStub = StationServiceGrpc.newBlockingStub(channel).withCallCredentials(token);
     }
 
     public void shutdown() throws InterruptedException {
@@ -46,10 +42,12 @@ public class StationClient {
         response.getTurnoutList().forEach(e -> log.debug("get turnout: " + e.getId() + ": " + e.getState()));
         response.getSectionList().forEach(e -> log.debug("get section: " + e.getId() + ": " + e.getState()));
         response.getSignalList().forEach(e -> log.debug("get signal: " + e.getId() + ": " + e.getState()));
+        response.getRouteIdList().forEach(e -> log.debug("get route: " + e));
 
         response.getTurnoutList().forEach(controller::updateTurnout);
         response.getSectionList().forEach(controller::updateSection);
         response.getSignalList().forEach(controller::updateSignal);
+        MainController.getInstance().initRoutePane(response.getRouteIdList());
     }
 
     public void refreshStation(StationController controller) {
@@ -92,9 +90,15 @@ public class StationClient {
         }
     }
 
-    public void createRoute(List<String> buttons) {
+    public String createRoute(List<String> buttons) {
         var list = ButtonList.newBuilder().addAllButtonId(buttons).build();
         var request = CreateRouteRequest.newBuilder().setButtons(list).build();
         var response = blockingStub.createRoute(request);
+        return response.getRouteId();
+    }
+
+    public void cancelRoute(String routeId) {
+        var request = CancelRouteRequest.newBuilder().setRouteId(routeId).build();
+        var response = blockingStub.cancelRoute(request);
     }
 }

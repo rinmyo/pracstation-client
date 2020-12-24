@@ -1,24 +1,39 @@
 package dev.glycine.pracstation.controllers;
 
+import com.google.protobuf.ProtocolStringList;
+import com.jfoenix.controls.JFXButton;
+import dev.glycine.pracstation.models.AppleColor;
+import dev.glycine.pracstation.models.Card;
 import dev.glycine.pracstation.models.Light;
+import dev.glycine.pracstation.models.RouteBadge;
 import io.grpc.StatusRuntimeException;
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -26,6 +41,17 @@ import java.util.stream.Collectors;
  */
 @Log4j2
 public final class MainController {
+    @Getter
+    private static MainController instance;
+    public FlowPane routePane;
+    public JFXButton newRouteBtn;
+    public Label focusedBtnLabel;
+    public Card routeCard;
+
+    public MainController() {
+        instance = this;
+    }
+
     @FXML
     private AnchorPane root;
     @FXML
@@ -137,31 +163,79 @@ public final class MainController {
         stationName.setText("臨灃站");
     }
 
-    /**
-     * 配置縮放指示器
-     */
-    void configureZoomIndicator() {
-
-    }
-
     @FXML
     public void initialize() {
         configureToolBox();
         configureCanvas();
         configureClock();
         configureStationNames();
-        configureZoomIndicator();
+
+        var icon = new FontIcon(FontAwesomeSolid.PLUS);
+        icon.setIconSize(20);
+        icon.setIconColor(AppleColor.GRAY_6);
+        newRouteBtn.setPadding(new Insets(5));
+        newRouteBtn.setGraphic(icon);
     }
 
-    public void createRoute(MouseEvent mouseEvent) {
+    public void handleCreateRoute(MouseEvent mouseEvent) {
         var client = StationController.getInstance().getStationClient();
         var focusedLights = Light.getFocusedLight();
         var list = focusedLights.stream().map(Light::getButtonName).collect(Collectors.toList());
-        try {
-            client.createRoute(list);
-        } catch (StatusRuntimeException e) {
-            log.warn(e.getStatus().getDescription());
-        }
+        new Thread(() -> {
+            try {
+                var routeId = client.createRoute(list);
+                addToRoutePane(routeId);
+            } catch (StatusRuntimeException e) {
+                log.warn(e.getStatus().getDescription());
+            }
+        }).start();
         Light.defocusAll();
+        updateNewRouteBtn(Light.getFocusedLight());
+    }
+
+    public void handleCancelRoute(MouseEvent mouseEvent) {
+        var route = (RouteBadge) mouseEvent.getSource();
+        var client = StationController.getInstance().getStationClient();
+        new Thread(() -> {
+            try {
+                client.cancelRoute(route.getRouteId());
+                removeFromRoutePane(route.getRouteId());
+            } catch (StatusRuntimeException e) {
+                log.warn(e.getStatus().getDescription());
+            }
+        }).start();
+    }
+
+    public void addToRoutePane(String s) {
+        Platform.runLater(() -> {
+            var badge = new RouteBadge(s);
+            var fade = new FadeTransition(Duration.seconds(0.5), badge);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            routePane.getChildren().add(badge);
+            routeCard.resize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+            fade.play();
+        });
+    }
+
+    public void removeFromRoutePane(String s) {
+        Platform.runLater(() -> {
+            routePane.getChildren().removeAll(routePane.getChildren().filtered(e -> ((RouteBadge) e).getRouteId().equals(s)));
+            routeCard.resize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+        });
+    }
+
+    public void initRoutePane(ProtocolStringList s) {
+        Platform.runLater(() -> {
+            routePane.getChildren().clear();
+            s.forEach(this::addToRoutePane);
+        });
+    }
+
+    public void updateNewRouteBtn(List<Light> focusedLight) {
+        var str = focusedLight.stream().map(Light::getButtonName).collect(Collectors.joining(", "));
+        focusedBtnLabel.setText(str);
+        var box = (Card) focusedBtnLabel.getParent().getParent();
+        box.resize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
     }
 }
