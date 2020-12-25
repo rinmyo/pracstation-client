@@ -12,7 +12,9 @@
 <?import dev.glycine.pracstation.models.Section?>
 <?import dev.glycine.pracstation.models.IsulatedJoint?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1">
+            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dev.glycine.pracstation.controllers.StationController">
     <!--railway-section-->
     <Section sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
     <Section sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
@@ -87,8 +89,10 @@
     <Section sid="6-12DG" dep="6-REVERSE" endX="761.5" endY="245.5" startX="783.0" startY="267.0"/>
     <Section sid="6-12DG" dep="6-NORMAL, 10-NORMAL" endX="609.0" endY="267.0" startX="768.0" startY="267.0"/>
     <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE" endX="725.0" endY="310.0" startX="768.0" startY="267.0"/>
-    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-NORMAL" endX="695.0" endY="340.0" startX="725.0" startY="310.0"/>
-    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-REVERSE" endX="725.0" endY="310.0" startX="695.0" startY="310.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-NORMAL" endX="695.0" endY="340.0" startX="725.0"
+             startY="310.0"/>
+    <Section sid="6-12DG" dep="6-NORMAL, 10-REVERSE, 12-REVERSE" endX="725.0" endY="310.0" startX="695.0"
+             startY="310.0"/>
 
     <Section sid="8DG" endX="740.0" endY="224.0" startX="695.0" startY="224.0"/>
     <Section sid="8DG" dep="8-NORMAL" endX="825.0" endY="224.0" startX="740.0" startY="224.0"/>

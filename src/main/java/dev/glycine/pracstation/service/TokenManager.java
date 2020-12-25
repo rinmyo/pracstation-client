@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
 @Log4j2
 public final class TokenManager {
     @Getter
-    private final AuthClient client = new AuthClient("0.0.0.0", 8080);
+    private static final AuthClient client = new AuthClient("0.0.0.0", 8080);
 
     @Getter
-    private Token token;
+    private static Token token;
 
-    public void setToken(String tokenStr) {
+    public static void setToken(String tokenStr) {
         log.debug("get token: "+tokenStr);
         token = new Token(tokenStr);
     }

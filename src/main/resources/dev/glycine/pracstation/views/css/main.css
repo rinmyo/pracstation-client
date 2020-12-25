@@ -48,7 +48,7 @@
     -fx-max-width: 120;
 }
 
-#newRouteBtn{
+#newRouteBtn {
     -jfx-button-type: RAISED;
     -fx-background-color: -fx-blue;
     -fx-text-fill: white;
@@ -63,8 +63,11 @@
 }
 
 .badge-label {
-    -fx-padding:  0 5;
+    -fx-padding: 0 5;
     -fx-text-fill: -fx-gray-6;
+    -fx-font-family: Roboto;
+    src: "/resources/roboto/Roboto-Regular.ttf";
+    -fx-font-weight: BOLD;
 }
 
 .card-title {

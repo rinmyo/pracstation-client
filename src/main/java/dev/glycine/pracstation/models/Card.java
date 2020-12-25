@@ -1,15 +1,13 @@
 package dev.glycine.pracstation.models;
 
 import javafx.animation.FadeTransition;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
-
-import static javafx.scene.layout.TilePane.setAlignment;
 
 /**
  * 卡片
@@ -19,7 +17,6 @@ public class Card extends StackPane {
 
     @Getter
     private String labelText;
-
     public void setLabelText(String value) {
         title.setText(value);
     }

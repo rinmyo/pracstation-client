@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-
-<?import dev.glycine.pracstation.models.Card?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Button?>
 <?import com.jfoenix.controls.JFXButton?>
-
-<?import javafx.scene.layout.FlowPane?>
+<?import dev.glycine.pracstation.models.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
     <fx:include source="station.fxml" fx:id="station"/>
 
-    <HBox styleClass="box" fx:id="topLeftBox">
+    <HBox styleClass="box">
         <Card labelText="中原時間">
             <Label fx:id="localTime" styleClass="card-content"/>
         </Card>
@@ -42,6 +37,9 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomLeftBox">
+        <Card labelText="console">
+            <fx:include source="console.fxml" fx:id="console"/>
+        </Card>
     </HBox>
 
     <HBox styleClass="box" fx:id="bottomRightBox">

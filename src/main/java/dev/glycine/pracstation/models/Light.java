@@ -1,13 +1,14 @@
 package dev.glycine.pracstation.models;
 
 import dev.glycine.pracstation.controllers.MainController;
-import javafx.scene.input.MouseEvent;
+import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Log4j2
@@ -21,34 +22,52 @@ public class Light extends Circle {
     private final SignalBase signal;
     private final String buttonName;
 
-    public String getButtonName(){
-        return signal.sid+buttonName;
+    public String getButtonName() {
+        return signal.sid + buttonName;
+    }
+
+    private static final HashMap<String, Light> lights = new HashMap<>();
+
+    public static Light getLightByButtonName(String buttonName) {
+        return lights.get(buttonName);
+    }
+
+    @Getter
+    private final SignalStateProperty signalStateProperty = new SignalStateProperty();
+
+    public void setSignalState(SignalState signalState) {
+        this.signalStateProperty.set(signalState);
     }
 
     @Getter
     private static final List<Light> focusedLight = new ArrayList<>();
 
-    private boolean focused = false;
+    @Getter
+    private final FocusedProperty focusedProperty = new FocusedProperty(false);
+
+    public boolean isLightFocused() {
+        return focusedProperty.get();
+    }
 
     private void focus() {
         focusedLight.add(this);
         setStroke(AppleColor.GREEN);
         setStrokeWidth(FOCUSED_STROKE_WIDTH);
-        focused = true;
+        focusedProperty.set(true);
     }
 
     private void defocus() {
         focusedLight.remove(this);
         setStroke(DEFAULT_STROKE_FILL);
         setStrokeWidth(DEFAULT_STROKE_WIDTH);
-        focused = false;
+        focusedProperty.set(false);
     }
 
     public static void defocusAll() {
         focusedLight.forEach(e -> {
             e.setStroke(DEFAULT_STROKE_FILL);
             e.setStrokeWidth(DEFAULT_STROKE_WIDTH);
-            e.focused = false;
+            e.focusedProperty.set(false);
         });
         focusedLight.clear();
     }
@@ -59,19 +78,18 @@ public class Light extends Circle {
         setStrokeWidth(DEFAULT_STROKE_WIDTH);
         setSignalState(DEFAULT_SIGNAL_STATE);
         signalStateProperty.addListener((observable, oldvalue, newvalue) -> setFill(newvalue.getColor()));
-        setOnMouseClicked(e -> {
-            if (focused) defocus();
-            else focus();
+        focusedProperty.addListener((observable, oldvalue, newvalue) -> {
             MainController.getInstance().updateNewRouteBtn(focusedLight);
+        });
+        setOnMouseClicked(e -> {
+            if (focusedProperty.get()) defocus();
+            else focus();
         });
         this.signal = signal;
         this.buttonName = buttonName;
-    }
-
-    @Getter
-    private final SignalStateProperty signalStateProperty = new SignalStateProperty();
-
-    public void setSignalState(SignalState signalState) {
-        this.signalStateProperty.set(signalState);
+        Platform.runLater(() -> {
+            lights.put(getButtonName(), this);
+            log.info("1");
+        });
     }
 }

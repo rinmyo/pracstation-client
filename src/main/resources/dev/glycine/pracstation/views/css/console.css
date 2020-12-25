@@ -1,0 +1,25 @@
+#console {
+    -fx-min-width: 100;
+    -fx-padding: 10;
+    -fx-spacing: 1.5;
+    -fx-background-color: transparent;
+}
+
+.-time-label {
+    -fx-background-radius: 10;
+    -fx-background-color: -fx-gray-3;
+    -fx-text-fill: white;
+    -fx-font-size: 10;
+    -fx-padding: 2 5;
+}
+
+.-console-container {
+    -fx-max-height: 300;
+    -fx-hbar-policy: never;
+    -fx-vbar-policy: never;
+    -fx-background-color: black;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

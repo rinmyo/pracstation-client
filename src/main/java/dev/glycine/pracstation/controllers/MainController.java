@@ -1,11 +1,11 @@
 package dev.glycine.pracstation.controllers;
 
-import com.google.protobuf.ProtocolStringList;
 import com.jfoenix.controls.JFXButton;
 import dev.glycine.pracstation.models.AppleColor;
 import dev.glycine.pracstation.models.Card;
 import dev.glycine.pracstation.models.Light;
 import dev.glycine.pracstation.models.RouteBadge;
+import dev.glycine.pracstation.pb.InitRouteMessage;
 import io.grpc.StatusRuntimeException;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -16,7 +16,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -43,15 +42,19 @@ import java.util.stream.Collectors;
 public final class MainController {
     @Getter
     private static MainController instance;
-    public FlowPane routePane;
-    public JFXButton newRouteBtn;
-    public Label focusedBtnLabel;
-    public Card routeCard;
 
     public MainController() {
         instance = this;
     }
 
+    @FXML
+    private FlowPane routePane;
+    @FXML
+    private JFXButton newRouteBtn;
+    @FXML
+    private Label focusedBtnLabel;
+    @FXML
+    private Card routeCard;
     @FXML
     private AnchorPane root;
     @FXML
@@ -61,14 +64,16 @@ public final class MainController {
     @FXML
     private Label stationName;
     @FXML
-    private HBox topLeftBox;
-    @FXML
     private HBox topRightBox;
     @FXML
     private HBox bottomLeftBox;
     @FXML
     private HBox bottomRightBox;
 
+    @FXML
+    @Getter
+    private StationController stationController;
+    
     /**
      * 宣告時鐘動畫
      */
@@ -175,40 +180,47 @@ public final class MainController {
         icon.setIconColor(AppleColor.GRAY_6);
         newRouteBtn.setPadding(new Insets(5));
         newRouteBtn.setGraphic(icon);
+        ConsoleController.writeLn(ConsoleController.InfoState.INFO, "基本視圖初始化完成");
     }
 
-    public void handleCreateRoute(MouseEvent mouseEvent) {
-        var client = StationController.getInstance().getStationClient();
+    public void handleCreateRoute() {
+        var client = stationController.getStationClient();
         var focusedLights = Light.getFocusedLight();
         var list = focusedLights.stream().map(Light::getButtonName).collect(Collectors.toList());
+        var protectedLight = focusedLights.get(0);
         new Thread(() -> {
             try {
-                var routeId = client.createRoute(list);
-                addToRoutePane(routeId);
+                var response = client.createRoute(list);
+                addToRoutePane(response.getRouteId(), protectedLight);
+                ConsoleController.writeLn(ConsoleController.InfoState.SUCCESS, "建立進路成功: " + response.getRouteId());
             } catch (StatusRuntimeException e) {
                 log.warn(e.getStatus().getDescription());
+                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "建立進路失敗: " + e.getStatus().getDescription());
             }
         }).start();
         Light.defocusAll();
         updateNewRouteBtn(Light.getFocusedLight());
+
     }
 
     public void handleCancelRoute(MouseEvent mouseEvent) {
         var route = (RouteBadge) mouseEvent.getSource();
-        var client = StationController.getInstance().getStationClient();
+        var client = stationController.getStationClient();
         new Thread(() -> {
             try {
                 client.cancelRoute(route.getRouteId());
                 removeFromRoutePane(route.getRouteId());
+                ConsoleController.writeLn(ConsoleController.InfoState.SUCCESS, "取消進路成功: " + route.getRouteId());
             } catch (StatusRuntimeException e) {
                 log.warn(e.getStatus().getDescription());
+                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "取消進路失敗: " + e.getStatus().getDescription());
             }
         }).start();
     }
 
-    public void addToRoutePane(String s) {
+    public void addToRoutePane(String s, Light light) {
         Platform.runLater(() -> {
-            var badge = new RouteBadge(s);
+            var badge = new RouteBadge(s, light);
             var fade = new FadeTransition(Duration.seconds(0.5), badge);
             fade.setFromValue(0);
             fade.setToValue(1);
@@ -225,10 +237,13 @@ public final class MainController {
         });
     }
 
-    public void initRoutePane(ProtocolStringList s) {
+    public void initRoutePane(List<InitRouteMessage> res) {
         Platform.runLater(() -> {
             routePane.getChildren().clear();
-            s.forEach(this::addToRoutePane);
+            res.forEach(e -> {
+                addToRoutePane(e.getRouteId(), Light.getLightByButtonName(e.getButtonId()));
+                log.debug(2 + e.getButtonId() + ": " + Light.getLightByButtonName(e.getButtonId()));
+            });
         });
     }
 
@@ -238,4 +253,5 @@ public final class MainController {
         var box = (Card) focusedBtnLabel.getParent().getParent();
         box.resize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
     }
+
 }

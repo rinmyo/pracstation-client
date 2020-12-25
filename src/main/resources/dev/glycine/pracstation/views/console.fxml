@@ -1,0 +1,11 @@
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="dev.glycine.pracstation.controllers.ConsoleController"
+            stylesheets="@css/console.css"
+            styleClass="-console-container"
+>
+    <VBox fx:id="console"/>
+
+</ScrollPane>

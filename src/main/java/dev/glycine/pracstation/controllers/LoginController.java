@@ -1,19 +1,13 @@
 package dev.glycine.pracstation.controllers;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import com.jfoenix.assets.JFoenixResources;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
-import dev.glycine.pracstation.models.AppleColor;
-import javafx.scene.control.Label;
-import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import dev.glycine.pracstation.App;
-
+import dev.glycine.pracstation.models.AppleColor;
 import dev.glycine.pracstation.service.TokenManager;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
@@ -21,15 +15,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import lombok.extern.log4j.Log4j2;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
-import static io.grpc.Status.Code.*;
+import java.io.IOException;
+
+import static io.grpc.Status.Code.ABORTED;
+import static io.grpc.Status.Code.NOT_FOUND;
 
 
 @Log4j2
@@ -101,10 +98,9 @@ public class LoginController {
         abortedValidator.setIcon(warnIcon);
         password.getValidators().add(abortedValidator);
 
-        TokenManager manager = new TokenManager();
         try {
-            var str = manager.getClient().login(username.getText().trim(), password.getText());
-            manager.setToken(str);
+            var str = TokenManager.getClient().login(username.getText().trim(), password.getText());
+            TokenManager.setToken(str);
         } catch (StatusRuntimeException e) {
             if (e.getStatus().getCode() == Status.Code.UNAVAILABLE) {
                 warnText.setTextFill(AppleColor.RED);
@@ -119,6 +115,7 @@ public class LoginController {
         }
 
         try {
+            App.getLoginStage().close();
             Stage mainStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
             Parent login = loader.load();
@@ -131,12 +128,13 @@ public class LoginController {
             mainStage.setTitle("練習站");
             mainStage.setScene(scene);
             mainStage.show();
-            App.getLoginStage().close();
-            loader.setController(StationController.getInstance());
-            StationController.getInstance().init(manager.getToken());
             mainStage.setOnCloseRequest(e -> {
+                MainController mainController = loader.getController();
+                var stationController = mainController.getStationController();
                 try {
-                    manager.getClient().shutdown();
+                    TokenManager.getClient().shutdown();
+                    stationController.getStationClient().shutdown();
+                    stationController.getStationRefreshThread().interrupt();
                 } catch (InterruptedException interruptedException) {
                     log.error(interruptedException);
                 }

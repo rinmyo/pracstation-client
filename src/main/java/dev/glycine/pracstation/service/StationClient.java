@@ -1,6 +1,7 @@
 package dev.glycine.pracstation.service;
 
 import com.google.protobuf.Empty;
+import dev.glycine.pracstation.controllers.ConsoleController;
 import dev.glycine.pracstation.controllers.MainController;
 import dev.glycine.pracstation.controllers.StationController;
 import dev.glycine.pracstation.pb.*;
@@ -9,6 +10,7 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import lombok.extern.log4j.Log4j2;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -35,26 +37,24 @@ public class StationClient {
         InitStationResponse response;
         try {
             response = blockingStub.initStation(Empty.getDefaultInstance());
+            response.getTurnoutList().forEach(e -> log.debug("get turnout: " + e.getId() + ": " + e.getState()));
+            response.getSectionList().forEach(e -> log.debug("get section: " + e.getId() + ": " + e.getState()));
+            response.getSignalList().forEach(e -> log.debug("get signal: " + e.getId() + ": " + e.getState()));
+            response.getRouteList().forEach(e -> log.debug("get route: " + e.getRouteId()));
+
+            response.getTurnoutList().forEach(controller::updateTurnout);
+            response.getSectionList().forEach(controller::updateSection);
+            response.getSignalList().forEach(controller::updateSignal);
+            MainController.getInstance().initRoutePane(response.getRouteList());
         } catch (StatusRuntimeException e) {
             log.error(e.getStatus().getDescription());
-            return;
         }
-        response.getTurnoutList().forEach(e -> log.debug("get turnout: " + e.getId() + ": " + e.getState()));
-        response.getSectionList().forEach(e -> log.debug("get section: " + e.getId() + ": " + e.getState()));
-        response.getSignalList().forEach(e -> log.debug("get signal: " + e.getId() + ": " + e.getState()));
-        response.getRouteIdList().forEach(e -> log.debug("get route: " + e));
-
-        response.getTurnoutList().forEach(controller::updateTurnout);
-        response.getSectionList().forEach(controller::updateSection);
-        response.getSignalList().forEach(controller::updateSignal);
-        MainController.getInstance().initRoutePane(response.getRouteIdList());
     }
 
     public void refreshStation(StationController controller) {
         try {
             var iterator = blockingStub.refreshStation(Empty.getDefaultInstance());
             log.debug("set refresh task");
-            initStation(controller);
             while (iterator.hasNext()) {
                 var response = iterator.next();
                 var type = response.getValueCase();
@@ -79,7 +79,8 @@ public class StationClient {
             }
         } catch (StatusRuntimeException e) {
             if (e.getStatus().getCode() == Status.Code.UNAVAILABLE) {
-                log.error("連不上了 重試中");
+                log.error("connection failed");
+                ConsoleController.writeLn(ConsoleController.InfoState.ERROR, "伺服器鏈接失敗, 重試中...");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException interruptedException) {
@@ -90,11 +91,10 @@ public class StationClient {
         }
     }
 
-    public String createRoute(List<String> buttons) {
+    public CreateRouteResponse createRoute(List<String> buttons) {
         var list = ButtonList.newBuilder().addAllButtonId(buttons).build();
         var request = CreateRouteRequest.newBuilder().setButtons(list).build();
-        var response = blockingStub.createRoute(request);
-        return response.getRouteId();
+        return blockingStub.createRoute(request);
     }
 
     public void cancelRoute(String routeId) {
