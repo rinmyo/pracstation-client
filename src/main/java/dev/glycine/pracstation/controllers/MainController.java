@@ -1,29 +1,24 @@
 package dev.glycine.pracstation.controllers;
 
+import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
-import dev.glycine.pracstation.models.AppleColor;
-import dev.glycine.pracstation.models.Card;
-import dev.glycine.pracstation.models.Light;
-import dev.glycine.pracstation.models.RouteBadge;
+import com.jfoenix.controls.JFXDialogLayout;
+import dev.glycine.pracstation.models.*;
 import dev.glycine.pracstation.pb.InitRouteMessage;
 import io.grpc.StatusRuntimeException;
-import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Translate;
+import javafx.stage.Modality;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -73,7 +68,7 @@ public final class MainController {
     @FXML
     @Getter
     private StationController stationController;
-    
+
     /**
      * 宣告時鐘動畫
      */
@@ -180,7 +175,7 @@ public final class MainController {
         icon.setIconColor(AppleColor.GRAY_6);
         newRouteBtn.setPadding(new Insets(5));
         newRouteBtn.setGraphic(icon);
-        ConsoleController.writeLn(ConsoleController.InfoState.INFO, "基本視圖初始化完成");
+        ConsoleController.writeLn(InfoState.INFO, "基本視圖初始化完成");
     }
 
     public void handleCreateRoute() {
@@ -192,10 +187,10 @@ public final class MainController {
             try {
                 var response = client.createRoute(list);
                 addToRoutePane(response.getRouteId(), protectedLight);
-                ConsoleController.writeLn(ConsoleController.InfoState.SUCCESS, "建立進路成功: " + response.getRouteId());
+                ConsoleController.writeLn(InfoState.SUCCESS, "建立進路成功: " + response.getRouteId());
             } catch (StatusRuntimeException e) {
                 log.warn(e.getStatus().getDescription());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "建立進路失敗: " + e.getStatus().getDescription());
+                ConsoleController.writeLn(InfoState.WARN, "建立進路失敗: " + e.getStatus().getDescription());
             }
         }).start();
         Light.defocusAll();
@@ -203,17 +198,83 @@ public final class MainController {
 
     }
 
-    public void handleCancelRoute(MouseEvent mouseEvent) {
-        var route = (RouteBadge) mouseEvent.getSource();
+    public void handleClickRoute(MouseEvent mouseEvent) {
+        var badge = (RouteBadge) mouseEvent.getSource();
+        var alert = new JFXAlert(root.getScene().getWindow());
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.setOverlayClose(false);
+        var layout = new JFXDialogLayout();
+        var routeIcon = new FontIcon(FontAwesomeSolid.ROUTE);
+        routeIcon.setIconColor(AppleColor.WHITE);
+        var headingLabel = new Label(badge.getRouteId().replace("-", " → "), routeIcon);
+        headingLabel.setGraphicTextGap(10);
+        headingLabel.setTextFill(AppleColor.WHITE);
+        layout.setHeading(headingLabel);
+        var bodyLabel = new Label("是否要取消進路: " + badge.getRouteId() + " ?");
+        bodyLabel.setTextFill(AppleColor.GRAY);
+        layout.setBody(bodyLabel);
+
+        var blur = new GaussianBlur(0); // 55 is just to show edge effect more clearly.
+        root.getScene().getRoot().setEffect(blur);
+        var timeline1 = new Timeline(new KeyFrame(Duration.millis(200), new KeyValue(blur.radiusProperty(), 10)));
+        var timeline2 = new Timeline(new KeyFrame(Duration.millis(200), new KeyValue(blur.radiusProperty(), 0)));
+
+        alert.getDialogPane().setOnMouseClicked(e -> {
+            alert.hideWithAnimation();
+            timeline2.play();
+        });
+
+        var cancelBtn = new JFXButton("總取消");
+        cancelBtn.setTextFill(AppleColor.WHITE);
+        var times = new FontIcon(FontAwesomeSolid.TIMES);
+        times.setIconColor(AppleColor.WHITE);
+        cancelBtn.setButtonType(JFXButton.ButtonType.RAISED);
+        cancelBtn.setGraphic(times);
+        cancelBtn.setOnAction(event -> {
+            alert.hideWithAnimation();
+            timeline2.play();
+            handleCancelRoute(badge.getRouteId());
+        });
+
+        var unlockBtn = new JFXButton("總人解");
+        var lock = new FontIcon(FontAwesomeSolid.UNLOCK);
+        lock.setIconColor(AppleColor.WHITE);
+        unlockBtn.setGraphic(lock);
+        unlockBtn.setButtonType(JFXButton.ButtonType.RAISED);
+        unlockBtn.setTextFill(AppleColor.WHITE);
+        unlockBtn.setOnAction(event -> {
+            alert.hideWithAnimation();
+            timeline2.play();
+        });
+
+        var errorUnlockBtn = new JFXButton("區故解");
+        errorUnlockBtn.setTextFill(AppleColor.WHITE);
+        var error = new FontIcon(FontAwesomeSolid.EXCLAMATION_TRIANGLE);
+        error.setIconColor(AppleColor.WHITE);
+        errorUnlockBtn.setGraphic(error);
+        errorUnlockBtn.setButtonType(JFXButton.ButtonType.RAISED);
+        errorUnlockBtn.setOnAction(event -> {
+            alert.hideWithAnimation();
+            timeline2.play();
+        });
+
+        layout.setActions(cancelBtn, unlockBtn, errorUnlockBtn);
+        alert.setContent(layout);
+
+        timeline1.play();
+        alert.show();
+    }
+
+    public void handleCancelRoute(String routeId) {
         var client = stationController.getStationClient();
         new Thread(() -> {
             try {
-                client.cancelRoute(route.getRouteId());
-                removeFromRoutePane(route.getRouteId());
-                ConsoleController.writeLn(ConsoleController.InfoState.SUCCESS, "取消進路成功: " + route.getRouteId());
+                client.cancelRoute(routeId);
+                removeFromRoutePane(routeId);
+                ConsoleController.writeLn(InfoState.SUCCESS, "取消進路成功: " + routeId);
             } catch (StatusRuntimeException e) {
                 log.warn(e.getStatus().getDescription());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "取消進路失敗: " + e.getStatus().getDescription());
+                ConsoleController.writeLn(InfoState.WARN, "取消進路失敗: " + e.getStatus().getDescription());
             }
         }).start();
     }

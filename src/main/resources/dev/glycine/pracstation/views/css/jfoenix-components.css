@@ -33,6 +33,11 @@
     -fx-max-width: 300;
 }
 
+.jfx-alert-content-container {
+    -fx-background-color: rgb(44, 44, 46);
+    -fx-background-radius: 10;
+}
+
 .jfx-decorator {
     -fx-decorator-color: RED;
 }

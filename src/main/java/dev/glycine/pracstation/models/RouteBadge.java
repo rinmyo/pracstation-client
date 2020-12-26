@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import lombok.Getter;
@@ -18,7 +17,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 @Log4j2
 public class RouteBadge extends StackPane {
     private static final int FADE_DURATION = 150;
-    private static final Color FOCUSED_COLOR = Color.rgb(255, 69, 58, 0.5);
 
     private final Rectangle background = new Rectangle();
 
@@ -39,8 +37,8 @@ public class RouteBadge extends StackPane {
         this.protectionLight = light;
         this.focusedProperty.bind(light.getFocusedProperty());
         this.focusedProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue) background.setFill(FOCUSED_COLOR);
-            else background.setFill(AppleColor.GRAY);
+            if (newValue) background.setFill(AppleColor.GRAY);
+            else background.setFill(AppleColor.GRAY_2);
         });
 
         background.getStyleClass().add("badge-background");
@@ -49,46 +47,38 @@ public class RouteBadge extends StackPane {
 
         var start = text.split("-")[0];
         var end = text.split("-")[1];
-        Label startLabel = new Label(start);
-        Label endLabel = new Label(end);
+        var startLabel = new Label(start);
+        var endLabel = new Label(end);
 
         startLabel.getStyleClass().add("badge-label");
         endLabel.getStyleClass().add("badge-label");
 
-        FontIcon warnIcon = new FontIcon(FontAwesomeSolid.TIMES_CIRCLE);
-        warnIcon.setIconColor(AppleColor.GRAY_6);
-        FontIcon arrow = new FontIcon(FontAwesomeSolid.ARROW_RIGHT);
+        var arrow = new FontIcon(FontAwesomeSolid.ARROW_RIGHT);
         arrow.setIconColor(AppleColor.GRAY_6);
 
-        var box = new HBox(startLabel, arrow, endLabel, warnIcon);
+        var box = new HBox(startLabel, arrow, endLabel);
         box.setAlignment(Pos.CENTER);
         box.setPadding(new Insets(2.5, 5, 2.5, 5));
 
-        var fillRed = new FillTransition(Duration.millis(FADE_DURATION), background);
-
-        fillRed.setToValue(AppleColor.RED);
-
-        var fillGray = new FillTransition(Duration.millis(FADE_DURATION), background);
-        fillGray.setFromValue(AppleColor.RED);
+        var enterFill = new FillTransition(Duration.millis(FADE_DURATION), background);
+        var exitFill = new FillTransition(Duration.millis(FADE_DURATION), background);
+        enterFill.setFromValue(AppleColor.GRAY_2);
+        enterFill.setToValue(AppleColor.GRAY);
+        exitFill.setFromValue(AppleColor.GRAY);
+        exitFill.setToValue(AppleColor.GRAY_2);
 
         setOnMouseEntered(e -> {
-            if (isBadgeFocused()) {
-                fillRed.setFromValue(FOCUSED_COLOR);
-            } else {
-                fillRed.setFromValue(AppleColor.GRAY);
+            if (!isBadgeFocused()) {
+                enterFill.play();
             }
-            fillRed.play();
         });
 
         setOnMouseExited(e -> {
-            if (isBadgeFocused()) {
-                fillGray.setToValue(FOCUSED_COLOR);
-            } else {
-                fillGray.setToValue(AppleColor.GRAY);
+            if (!isBadgeFocused()) {
+                exitFill.play();
             }
-            fillGray.play();
         });
-        setOnMouseClicked(MainController.getInstance()::handleCancelRoute);
+        setOnMouseClicked(MainController.getInstance()::handleClickRoute);
 
         background.arcHeightProperty().bind(heightProperty());
         background.arcWidthProperty().bind(heightProperty());

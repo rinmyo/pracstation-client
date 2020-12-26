@@ -23,7 +23,7 @@
         <Card styleClass="btn-card">
             <HBox styleClass="bottom-btn-group" alignment="CENTER_RIGHT">
                 <Label styleClass="focused-btn-label" fx:id="focusedBtnLabel" />
-                <JFXButton fx:id="newRouteBtn" onMouseClicked="#handleCreateRoute" />
+                <JFXButton fx:id="newRouteBtn" onAction="#handleCreateRoute" />
             </HBox>
         </Card>
         <Card styleClass="btn-card">

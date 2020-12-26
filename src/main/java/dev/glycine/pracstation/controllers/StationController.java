@@ -28,7 +28,7 @@ public class StationController {
         Platform.runLater(() -> {
             stationClient.initStation(this);
             stationRefreshThread.start();
-            ConsoleController.writeLn(ConsoleController.InfoState.INFO, "初始化車站狀態完成");
+            ConsoleController.writeLn(InfoState.INFO, "初始化車站狀態完成");
         });
     }
 
@@ -37,7 +37,7 @@ public class StationController {
             var signal = SignalBase.getSignalBySid(pbSignal.getId());
             if (signal == null) {
                 log.error("unknown signal ID: " + pbSignal.getId());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "未知的信號機ID: " + pbSignal.getId());
+                ConsoleController.writeLn(InfoState.WARN, "未知的信號機ID: " + pbSignal.getId());
                 return;
             }
             var pbState = pbSignal.getState();
@@ -69,7 +69,7 @@ public class StationController {
             var turnout = Turnout.getTurnoutBySid(pbTurnout.getId());
             if (turnout == null) {
                 log.error("unknown turnout id: " + pbTurnout.getId());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "未知的道岔ID: " + pbTurnout.getId());
+                ConsoleController.writeLn(InfoState.WARN, "未知的道岔ID: " + pbTurnout.getId());
                 return;
             }
             var pbState = pbTurnout.getState();
@@ -79,7 +79,7 @@ public class StationController {
             var sections = Section.getSectionsBySid(turnout.getSid());
             if (sections == null) {
                 log.error("unknown section id: " + turnout.getSid());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "未知的軌道電路ID: " + turnout.getSid());
+                ConsoleController.writeLn(InfoState.WARN, "未知的軌道電路ID: " + turnout.getSid());
                 return;
             }
             var secOp = sections.stream().filter(s -> s.getDependencies().isEmpty()).findFirst();
@@ -99,7 +99,7 @@ public class StationController {
             var section = Section.getSectionsBySid(pbSection.getId());
             if (section == null) {
                 log.error("unknown section id: " + pbSection.getId());
-                ConsoleController.writeLn(ConsoleController.InfoState.WARN, "未知的軌道電路ID: " + pbSection.getId());
+                ConsoleController.writeLn(InfoState.WARN, "未知的軌道電路ID: " + pbSection.getId());
                 return;
             }
             var pbState = pbSection.getState();

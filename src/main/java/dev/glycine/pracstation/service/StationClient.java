@@ -4,6 +4,7 @@ import com.google.protobuf.Empty;
 import dev.glycine.pracstation.controllers.ConsoleController;
 import dev.glycine.pracstation.controllers.MainController;
 import dev.glycine.pracstation.controllers.StationController;
+import dev.glycine.pracstation.models.InfoState;
 import dev.glycine.pracstation.pb.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -80,7 +81,7 @@ public class StationClient {
         } catch (StatusRuntimeException e) {
             if (e.getStatus().getCode() == Status.Code.UNAVAILABLE) {
                 log.error("connection failed");
-                ConsoleController.writeLn(ConsoleController.InfoState.ERROR, "伺服器鏈接失敗, 重試中...");
+                ConsoleController.writeLn(InfoState.ERROR, "伺服器鏈接失敗, 重試中...");
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException interruptedException) {

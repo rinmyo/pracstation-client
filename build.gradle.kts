@@ -59,7 +59,7 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
 }
 
 javafx {
-    version = "15"
+    version = "11"
     modules("javafx.controls", "javafx.fxml")
 }
 
@@ -69,6 +69,10 @@ java {
 
 application {
     mainClassName = "dev.glycine.pracstation.AppLauncher"
+    applicationDefaultJvmArgs = listOf(
+        "--add-exports", "javafx.base/com.sun.javafx.event=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED"
+    )
 }
 
 protobuf {
