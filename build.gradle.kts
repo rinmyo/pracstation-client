@@ -59,7 +59,7 @@ tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
 }
 
 javafx {
-    version = "11"
+    version = "15.0.1"
     modules("javafx.controls", "javafx.fxml")
 }
 

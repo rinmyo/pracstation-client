@@ -202,11 +202,10 @@ public final class MainController {
         var badge = (RouteBadge) mouseEvent.getSource();
         var alert = new JFXAlert(root.getScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
-        alert.setOverlayClose(false);
         var layout = new JFXDialogLayout();
         var routeIcon = new FontIcon(FontAwesomeSolid.ROUTE);
         routeIcon.setIconColor(AppleColor.WHITE);
-        var headingLabel = new Label(badge.getRouteId().replace("-", " → "), routeIcon);
+        var headingLabel = new Label(badge.getRouteId().replace("-", " 至 "), routeIcon);
         headingLabel.setGraphicTextGap(10);
         headingLabel.setTextFill(AppleColor.WHITE);
         layout.setHeading(headingLabel);
@@ -216,13 +215,10 @@ public final class MainController {
 
         var blur = new GaussianBlur(0); // 55 is just to show edge effect more clearly.
         root.getScene().getRoot().setEffect(blur);
-        var timeline1 = new Timeline(new KeyFrame(Duration.millis(200), new KeyValue(blur.radiusProperty(), 10)));
-        var timeline2 = new Timeline(new KeyFrame(Duration.millis(200), new KeyValue(blur.radiusProperty(), 0)));
+        var timeline1 = new Timeline(new KeyFrame(Duration.millis(160), new KeyValue(blur.radiusProperty(), 10)));
+        var timeline2 = new Timeline(new KeyFrame(Duration.millis(160), new KeyValue(blur.radiusProperty(), 0)));
 
-        alert.getDialogPane().setOnMouseClicked(e -> {
-            alert.hideWithAnimation();
-            timeline2.play();
-        });
+        alert.getDialogPane().setOnMouseClicked(e -> timeline2.play());
 
         var cancelBtn = new JFXButton("總取消");
         cancelBtn.setTextFill(AppleColor.WHITE);
@@ -261,8 +257,8 @@ public final class MainController {
         layout.setActions(cancelBtn, unlockBtn, errorUnlockBtn);
         alert.setContent(layout);
 
-        timeline1.play();
         alert.show();
+        timeline1.play();
     }
 
     public void handleCancelRoute(String routeId) {

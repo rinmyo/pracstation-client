@@ -5,13 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ConsoleElement extends HBox {
 
     public ConsoleElement(InfoState state, String str) {
-        var time = new Label(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+        var time = new Label(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         time.getStyleClass().add("-time-label");
         var content = new Label(str);
         getChildren().addAll(time, content);
