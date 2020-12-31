@@ -3,6 +3,7 @@ package dev.glycine.pracstation.controllers;
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXRadioButton;
 import dev.glycine.pracstation.models.*;
 import dev.glycine.pracstation.pb.InitRouteMessage;
 import io.grpc.StatusRuntimeException;
@@ -13,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -45,7 +47,7 @@ public final class MainController {
     @FXML
     private FlowPane routePane;
     @FXML
-    private JFXButton newRouteBtn;
+    private JFXRadioButton newRouteBtn;
     @FXML
     private Label focusedBtnLabel;
     @FXML
@@ -170,17 +172,13 @@ public final class MainController {
         configureClock();
         configureStationNames();
 
-        var icon = new FontIcon(FontAwesomeSolid.PLUS);
-        icon.setIconSize(20);
-        icon.setIconColor(AppleColor.GRAY_6);
-        newRouteBtn.setPadding(new Insets(5));
-        newRouteBtn.setGraphic(icon);
+        var toggleGroup = new ToggleGroup();
+        newRouteBtn.setToggleGroup(toggleGroup);
         ConsoleController.writeLn(InfoState.INFO, "基本視圖初始化完成");
     }
 
-    public void handleCreateRoute() {
+    public void handleCreateRoute(List<Light> focusedLights) {
         var client = stationController.getStationClient();
-        var focusedLights = Light.getFocusedLight();
         var list = focusedLights.stream().map(Light::getButtonName).collect(Collectors.toList());
         var protectedLight = focusedLights.get(0);
         new Thread(() -> {
@@ -194,8 +192,7 @@ public final class MainController {
             }
         }).start();
         Light.defocusAll();
-        updateNewRouteBtn(Light.getFocusedLight());
-
+        updateNewRouteBtn(focusedLights);
     }
 
     public void handleClickRoute(MouseEvent mouseEvent) {

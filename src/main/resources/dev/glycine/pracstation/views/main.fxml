@@ -4,6 +4,7 @@
 <?import dev.glycine.pracstation.models.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
 
@@ -20,10 +21,10 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="topRightBox">
-        <Card styleClass="btn-card">
+        <Card labelText="建立進路" styleClass="btn-card">
             <HBox styleClass="bottom-btn-group" alignment="CENTER_RIGHT">
                 <Label styleClass="focused-btn-label" fx:id="focusedBtnLabel" />
-                <JFXButton fx:id="newRouteBtn" onAction="#handleCreateRoute" />
+                <JFXRadioButton fx:id="newRouteBtn"/>
             </HBox>
         </Card>
         <Card styleClass="btn-card">

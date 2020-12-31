@@ -84,6 +84,10 @@ public class Light extends Circle {
         setOnMouseClicked(e -> {
             if (focusedProperty.get()) defocus();
             else focus();
+            //若多於兩個則嘗試創建進路
+            if (focusedLight.size() >= 2) {
+                MainController.getInstance().handleCreateRoute(focusedLight);
+            }
         });
         this.signal = signal;
         this.buttonName = buttonName;

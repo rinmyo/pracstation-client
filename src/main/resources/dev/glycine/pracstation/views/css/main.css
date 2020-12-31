@@ -48,15 +48,6 @@
     -fx-max-width: 120;
 }
 
-#newRouteBtn {
-    -jfx-button-type: RAISED;
-    -fx-background-color: -fx-blue;
-    -fx-text-fill: white;
-    -fx-background-radius: 25;
-    -fx-pref-width: 50;
-    -fx-pref-height: 50;
-}
-
 .badge-background {
     -fx-fill: -fx-gray;
     -fx-alignment: center;
