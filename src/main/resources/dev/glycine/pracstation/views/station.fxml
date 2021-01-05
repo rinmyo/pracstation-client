@@ -11,10 +11,7 @@
 <?import dev.glycine.pracstation.models.Section?>
 <?import dev.glycine.pracstation.models.IsulatedJoint?>
 <?import dev.glycine.pracstation.models.Station?>
-<Station name="臨澧站"
-         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         prefHeight="500.0" prefWidth="1024.0"
->
+<Station name="臨澧站" prefHeight="500.0" prefWidth="1024.0">
     <!--railway-section-->
     <Section sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
     <Section sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
