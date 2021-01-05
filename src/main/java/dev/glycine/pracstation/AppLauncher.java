@@ -34,7 +34,7 @@ public class AppLauncher {
             windowWidth = Integer.parseInt(cli.getOptionValue("width", "1920"));
             windowHeight = Integer.parseInt(cli.getOptionValue("height", "1080"));
             host = cli.getOptionValue("host", "127.0.0.1");
-            port = Integer.parseInt(cli.getOptionValue("host", "8080"));
+            port = Integer.parseInt(cli.getOptionValue("port", "8080"));
             log.info("launch station: " + fxmlPath + "  window size: " + windowWidth + "x" + windowHeight + "  host: " + host + ":" + port);
         } catch (ParseException e) {
             // 解析失败是用 HelpFormatter 打印 帮助信息

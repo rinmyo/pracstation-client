@@ -13,9 +13,7 @@
 <?import dev.glycine.pracstation.models.Station?>
 <Station name="臨澧站"
          maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
-         xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="dev.glycine.pracstation.controllers.StationController"
+         prefHeight="500.0" prefWidth="1024.0"
 >
     <!--railway-section-->
     <Section sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
