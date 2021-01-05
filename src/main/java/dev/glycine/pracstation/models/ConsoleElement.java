@@ -19,7 +19,7 @@ public class ConsoleElement extends HBox {
         setSpacing(5);
         var icon = new FontIcon(state.fontIcon);
         icon.setIconColor(AppleColor.WHITE);
-        icon.setIconSize(12);
+        icon.setIconSize(11);
         time.setGraphic(icon);
         time.setStyle("-fx-background-color: " + state.color);
         content.setStyle("-fx-text-fill: white;");

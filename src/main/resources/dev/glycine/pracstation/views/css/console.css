@@ -14,7 +14,7 @@
 }
 
 .-console-container {
-    -fx-max-height: 300;
+    -fx-max-height: 200;
     -fx-hbar-policy: never;
     -fx-vbar-policy: never;
     -fx-background-color: black;

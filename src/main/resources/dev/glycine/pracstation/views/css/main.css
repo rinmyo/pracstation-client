@@ -15,8 +15,6 @@
     -fx-gray-4: rgb(58, 58, 60);
     -fx-gray-5: rgb(44, 44, 46);
     -fx-gray-6: rgb(28, 28, 30);
-
-    -fx-font-family: "PingFang TC";
 }
 
 #root {
@@ -100,8 +98,8 @@
 }
 
 .bottom-btn-group {
-    -fx-padding: 10;
-    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-spacing: 15;
 }
 
 JFXRadioButton {
