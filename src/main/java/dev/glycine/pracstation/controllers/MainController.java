@@ -11,7 +11,6 @@ import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
@@ -29,6 +28,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,7 +49,19 @@ public final class MainController {
     @FXML
     private JFXRadioButton newRouteBtn;
     @FXML
-    private Label focusedBtnLabel;
+    private JFXRadioButton cancelRouteBtn;
+
+    public void disableCancelRouteBtn() {
+        cancelRouteBtn.setDisable(true);
+    }
+
+    public void enableCancelRouteBtn() {
+        cancelRouteBtn.setDisable(false);
+    }
+    @FXML
+    private JFXRadioButton unlockRouteBtn;
+    @FXML
+    private ToggleGroup routeToggle;
     @FXML
     private Card routeCard;
     @FXML
@@ -172,9 +184,30 @@ public final class MainController {
         configureClock();
         configureStationNames();
 
-        var toggleGroup = new ToggleGroup();
-        newRouteBtn.setToggleGroup(toggleGroup);
+        newRouteBtn.setSelectedColor(AppleColor.GREEN);
+        cancelRouteBtn.setSelectedColor(AppleColor.BLUE);
+        unlockRouteBtn.setSelectedColor(AppleColor.YELLOW);
         ConsoleController.writeLn(InfoState.INFO, "基本視圖初始化完成");
+    }
+
+    @Getter
+    private final HashMap<String, Light> routes = new HashMap<>();
+
+    private void addToRouteMap(String str, Light light){
+        routes.put(str, light);
+        if (!routes.isEmpty()) {
+            cancelRouteBtn.setDisable(false);
+            unlockRouteBtn.setDisable(false);
+        }
+    }
+
+    private void removeFromRouteMap(String str) {
+        routes.remove(str);
+        if (routes.isEmpty()){
+            cancelRouteBtn.setDisable(true);
+            unlockRouteBtn.setDisable(true);
+            routeToggle.selectToggle(newRouteBtn);
+        }
     }
 
     public void handleCreateRoute(List<Light> focusedLights) {
@@ -184,6 +217,7 @@ public final class MainController {
         new Thread(() -> {
             try {
                 var response = client.createRoute(list);
+                addToRouteMap(response.getRouteId(), protectedLight);
                 addToRoutePane(response.getRouteId(), protectedLight);
                 ConsoleController.writeLn(InfoState.SUCCESS, "建立進路成功: " + response.getRouteId());
             } catch (StatusRuntimeException e) {
@@ -192,10 +226,25 @@ public final class MainController {
             }
         }).start();
         Light.defocusAll();
-        updateNewRouteBtn(focusedLights);
     }
 
-    public void handleClickRoute(MouseEvent mouseEvent) {
+    public void handleCancelRoute(String routeId) {
+        var client = stationController.getStationClient();
+        new Thread(() -> {
+            try {
+                client.cancelRoute(routeId);
+                removeFromRoutePane(routeId);
+                removeFromRouteMap(routeId);
+                ConsoleController.writeLn(InfoState.SUCCESS, "取消進路成功: " + routeId);
+            } catch (StatusRuntimeException e) {
+                log.warn(e.getStatus().getDescription());
+                ConsoleController.writeLn(InfoState.WARN, "取消進路失敗: " + e.getStatus().getDescription());
+            }
+        }).start();
+        Light.defocusAll();
+    }
+
+    public void handleClickRouteBadge(MouseEvent mouseEvent) {
         var badge = (RouteBadge) mouseEvent.getSource();
         var alert = new JFXAlert(root.getScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
@@ -258,20 +307,6 @@ public final class MainController {
         timeline1.play();
     }
 
-    public void handleCancelRoute(String routeId) {
-        var client = stationController.getStationClient();
-        new Thread(() -> {
-            try {
-                client.cancelRoute(routeId);
-                removeFromRoutePane(routeId);
-                ConsoleController.writeLn(InfoState.SUCCESS, "取消進路成功: " + routeId);
-            } catch (StatusRuntimeException e) {
-                log.warn(e.getStatus().getDescription());
-                ConsoleController.writeLn(InfoState.WARN, "取消進路失敗: " + e.getStatus().getDescription());
-            }
-        }).start();
-    }
-
     public void addToRoutePane(String s, Light light) {
         Platform.runLater(() -> {
             var badge = new RouteBadge(s, light);
@@ -295,17 +330,18 @@ public final class MainController {
         Platform.runLater(() -> {
             routePane.getChildren().clear();
             res.forEach(e -> {
+                addToRouteMap(e.getRouteId(), Light.getLightByButtonName(e.getButtonId()));
                 addToRoutePane(e.getRouteId(), Light.getLightByButtonName(e.getButtonId()));
                 log.debug(2 + e.getButtonId() + ": " + Light.getLightByButtonName(e.getButtonId()));
             });
         });
     }
 
-    public void updateNewRouteBtn(List<Light> focusedLight) {
-        var str = focusedLight.stream().map(Light::getButtonName).collect(Collectors.joining(", "));
-        focusedBtnLabel.setText(str);
-        var box = (Card) focusedBtnLabel.getParent().getParent();
-        box.resize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+    public RouteAction getAction(){
+        var selectedBtn = (JFXRadioButton) routeToggle.getSelectedToggle();
+        if (newRouteBtn.equals(selectedBtn)) return RouteAction.NEW;
+        if (cancelRouteBtn.equals(selectedBtn)) return RouteAction.CANCEL;
+        if (unlockRouteBtn.equals(selectedBtn)) return RouteAction.MANUAL_UNLOCK;
+        return RouteAction.UNKNOWN;
     }
-
 }

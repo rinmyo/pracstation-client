@@ -26,7 +26,6 @@ public class StationController {
         stationClient = new StationClient("127.0.0.1", 8080, TokenManager.getToken());
         stationRefreshThread = new Thread(() -> stationClient.refreshStation(this));
         Platform.runLater(() -> {
-            stationClient.initStation(this);
             stationRefreshThread.start();
             ConsoleController.writeLn(InfoState.INFO, "初始化車站狀態完成");
         });

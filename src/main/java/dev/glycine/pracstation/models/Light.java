@@ -78,22 +78,33 @@ public class Light extends Circle {
         setStrokeWidth(DEFAULT_STROKE_WIDTH);
         setSignalState(DEFAULT_SIGNAL_STATE);
         signalStateProperty.addListener((observable, oldvalue, newvalue) -> setFill(newvalue.getColor()));
-        focusedProperty.addListener((observable, oldvalue, newvalue) -> {
-            MainController.getInstance().updateNewRouteBtn(focusedLight);
-        });
         setOnMouseClicked(e -> {
             if (focusedProperty.get()) defocus();
             else focus();
             //若多於兩個則嘗試創建進路
-            if (focusedLight.size() >= 2) {
-                MainController.getInstance().handleCreateRoute(focusedLight);
+            var controller = MainController.getInstance();
+            switch (MainController.getInstance().getAction()) {
+                //新建進路
+                case NEW -> {
+                    if (focusedLight.size() >= 2) {
+                        controller.handleCreateRoute(focusedLight);
+                    }
+                }
+                //取消進路
+                case CANCEL -> controller.getRoutes().forEach((k, v) -> {
+                    if (v.equals(this)) controller.handleCancelRoute(k);
+                });
+                //總人解
+                case MANUAL_UNLOCK, ERROR_UNLOCK -> {
+                    //TODO
+                }
+                //區故解
             }
         });
         this.signal = signal;
         this.buttonName = buttonName;
         Platform.runLater(() -> {
             lights.put(getButtonName(), this);
-            log.info("1");
         });
     }
 }

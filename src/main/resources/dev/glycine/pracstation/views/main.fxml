@@ -21,19 +21,16 @@
     </HBox>
 
     <HBox styleClass="box" fx:id="topRightBox">
-        <Card labelText="建立進路" styleClass="btn-card">
-            <HBox styleClass="bottom-btn-group" alignment="CENTER_RIGHT">
-                <Label styleClass="focused-btn-label" fx:id="focusedBtnLabel" />
-                <JFXRadioButton fx:id="newRouteBtn"/>
-            </HBox>
-        </Card>
         <Card styleClass="btn-card">
-            <HBox styleClass="bottom-btn-group">
-                <Button text="道岔總定" styleClass="common-button"/>
-                <Button text="道岔總反" styleClass="common-button"/>
-                <Button text="道岔單縮" styleClass="common-button"/>
-                <Button text="道岔解鎖" styleClass="common-button"/>
-            </HBox>
+            <VBox styleClass="bottom-btn-group">
+                <JFXRadioButton selected="true" text="建立進路" fx:id="newRouteBtn">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="routeToggle"/>
+                    </toggleGroup>
+                </JFXRadioButton>
+                <JFXRadioButton text="總取消" toggleGroup="$routeToggle" disable="true" fx:id="cancelRouteBtn"/>
+                <JFXRadioButton text="總人解" toggleGroup="$routeToggle" disable="true" fx:id="unlockRouteBtn"/>
+            </VBox>
         </Card>
     </HBox>
 

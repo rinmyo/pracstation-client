@@ -64,8 +64,8 @@
     <Section sid="27-33DG" endX="387.0" endY="310.0" startX="371.0" startY="310.0"/>
     <Section sid="27-33DG" dep="27-NORMAL" endX="425.0" endY="310.0" startX="387.0" startY="310.0"/>
     <Section sid="27-33DG" dep="27-REVERSE" endX="430.0" endY="353.0" startX="387.0" startY="310.0"/>
-    <Section sid="27-33DG" dep="33-NORMAL" endX="451.5" endY="374.5" startX="430.0" startY="353.0"/>
-    <Section sid="27-33DG" dep="33-REVERSE" endX="469.0" endY="353.0" startX="430.0" startY="353.0"/>
+    <Section sid="27-33DG" dep="27-REVERSE, 33-NORMAL" endX="451.5" endY="374.5" startX="430.0" startY="353.0"/>
+    <Section sid="27-33DG" dep="27-REVERSE, 33-REVERSE" endX="469.0" endY="353.0" startX="430.0" startY="353.0"/>
 
     <Section sid="29DG" endX="370.0" endY="181.0" startX="350.0" startY="181.0"/>
     <Section sid="29DG" dep="29-NORMAL" endX="400.0" endY="181.0" startX="370.0" startY="181.0"/>

@@ -33,27 +33,23 @@ public class StationClient {
         channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
     }
 
-    public void initStation(StationController controller) {
+    private void initStation(StationController controller) {
         log.debug("initialize station states");
-        InitStationResponse response;
-        try {
-            response = blockingStub.initStation(Empty.getDefaultInstance());
-            response.getTurnoutList().forEach(e -> log.debug("get turnout: " + e.getId() + ": " + e.getState()));
-            response.getSectionList().forEach(e -> log.debug("get section: " + e.getId() + ": " + e.getState()));
-            response.getSignalList().forEach(e -> log.debug("get signal: " + e.getId() + ": " + e.getState()));
-            response.getRouteList().forEach(e -> log.debug("get route: " + e.getRouteId()));
+        var response = blockingStub.initStation(Empty.getDefaultInstance());
+        response.getTurnoutList().forEach(e -> log.debug("get turnout: " + e.getId() + ": " + e.getState()));
+        response.getSectionList().forEach(e -> log.debug("get section: " + e.getId() + ": " + e.getState()));
+        response.getSignalList().forEach(e -> log.debug("get signal: " + e.getId() + ": " + e.getState()));
+        response.getRouteList().forEach(e -> log.debug("get route: " + e.getRouteId()));
 
-            response.getTurnoutList().forEach(controller::updateTurnout);
-            response.getSectionList().forEach(controller::updateSection);
-            response.getSignalList().forEach(controller::updateSignal);
-            MainController.getInstance().initRoutePane(response.getRouteList());
-        } catch (StatusRuntimeException e) {
-            log.error(e.getStatus().getDescription());
-        }
+        response.getTurnoutList().forEach(controller::updateTurnout);
+        response.getSectionList().forEach(controller::updateSection);
+        response.getSignalList().forEach(controller::updateSignal);
+        MainController.getInstance().initRoutePane(response.getRouteList());
     }
 
     public void refreshStation(StationController controller) {
         try {
+            initStation(controller);
             var iterator = blockingStub.refreshStation(Empty.getDefaultInstance());
             log.debug("set refresh task");
             while (iterator.hasNext()) {

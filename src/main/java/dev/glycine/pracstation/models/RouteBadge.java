@@ -78,7 +78,7 @@ public class RouteBadge extends StackPane {
                 exitFill.play();
             }
         });
-        setOnMouseClicked(MainController.getInstance()::handleClickRoute);
+        setOnMouseClicked(MainController.getInstance()::handleClickRouteBadge);
 
         background.arcHeightProperty().bind(heightProperty());
         background.arcWidthProperty().bind(heightProperty());

@@ -104,6 +104,15 @@
     -fx-spacing: 10;
 }
 
+JFXRadioButton {
+    -fx-text-fill: -fx-gray;
+    -jfx-disable-visual-focus: true;
+}
+
+JFXRadioButton:focused {
+    -fx-text-fill: white;
+}
+
 .common-button, .danger-button {
     -jfx-disable-visual-focus: true;
     -fx-background-color: -fx-gray-5;
