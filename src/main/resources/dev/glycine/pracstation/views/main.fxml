@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import dev.glycine.pracstation.models.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <AnchorPane fx:id="root" stylesheets="@css/main.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.glycine.pracstation.controllers.MainController">
-
-    <fx:include source="station.fxml" fx:id="station"/>
-
     <HBox styleClass="box">
         <Card labelText="中原時間">
             <Label fx:id="localTime" styleClass="card-content"/>

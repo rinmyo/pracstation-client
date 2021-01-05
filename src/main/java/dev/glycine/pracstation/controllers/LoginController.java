@@ -7,7 +7,9 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
 import com.jfoenix.validation.base.ValidatorBase;
 import dev.glycine.pracstation.App;
+import dev.glycine.pracstation.AppLauncher;
 import dev.glycine.pracstation.models.AppleColor;
+import dev.glycine.pracstation.models.Station;
 import dev.glycine.pracstation.service.TokenManager;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
@@ -23,7 +25,11 @@ import lombok.extern.log4j.Log4j2;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import static io.grpc.Status.Code.ABORTED;
 import static io.grpc.Status.Code.NOT_FOUND;
@@ -118,14 +124,14 @@ public class LoginController {
             App.getLoginStage().close();
             Stage mainStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(PACKAGE_PATH + "views/main.fxml"));
-            Parent login = loader.load();
-            Scene scene = new Scene(login);
+            Parent mainRoot = loader.load();
+            Scene scene = new Scene(mainRoot);
             scene.getStylesheets().addAll(
                     JFoenixResources.load("css/jfoenix-fonts.css").toExternalForm(),
                     JFoenixResources.load("css/jfoenix-design.css").toExternalForm(),
                     JFoenixResources.load(PACKAGE_PATH + "views/css/jfoenix-components.css").toExternalForm()
             );
-            mainStage.setTitle("練習站");
+            mainStage.setTitle("站場");
             mainStage.setScene(scene);
             mainStage.show();
             mainStage.setOnCloseRequest(e -> {
@@ -140,7 +146,8 @@ public class LoginController {
                 }
             });
         } catch (IOException e) {
-            log.error(e);
+            log.fatal(e);
+            e.printStackTrace();
         }
     }
 }

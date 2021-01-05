@@ -1,5 +1,6 @@
 package dev.glycine.pracstation.controllers;
 
+import dev.glycine.pracstation.AppLauncher;
 import dev.glycine.pracstation.models.*;
 import dev.glycine.pracstation.pb.Signal;
 import dev.glycine.pracstation.service.StationClient;
@@ -23,7 +24,7 @@ public class StationController {
 
     public StationController() {
         log.debug("initialize station controller");
-        stationClient = new StationClient("127.0.0.1", 8080, TokenManager.getToken());
+        stationClient = new StationClient(AppLauncher.getHost(), AppLauncher.getPort(), TokenManager.getToken());
         stationRefreshThread = new Thread(() -> stationClient.refreshStation(this));
         Platform.runLater(() -> {
             stationRefreshThread.start();

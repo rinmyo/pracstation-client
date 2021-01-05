@@ -1,5 +1,6 @@
 package dev.glycine.pracstation.service;
 
+import dev.glycine.pracstation.AppLauncher;
 import io.grpc.StatusRuntimeException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Log4j2
 public final class TokenManager {
     @Getter
-    private static final AuthClient client = new AuthClient("0.0.0.0", 8080);
+    private static final AuthClient client = new AuthClient(AppLauncher.getHost(), AppLauncher.getPort());
 
     @Getter
     private static Token token;

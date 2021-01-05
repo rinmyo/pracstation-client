@@ -29,7 +29,7 @@ dependencies {
     implementation("org.slf4j","slf4j-simple","1.7.30")
     implementation("org.kordamp.ikonli","ikonli-fontawesome5-pack","12.0.0")
     implementation("org.kordamp.ikonli","ikonli-javafx","12.0.0")
-
+    implementation("commons-cli", "commons-cli", "1.4")
 }
 
 buildscript {

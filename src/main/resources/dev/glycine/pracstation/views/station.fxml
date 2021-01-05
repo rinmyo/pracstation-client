@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
 <?import dev.glycine.pracstation.models.StartingSignal?>
@@ -11,10 +10,13 @@
 <?import dev.glycine.pracstation.models.Turnout?>
 <?import dev.glycine.pracstation.models.Section?>
 <?import dev.glycine.pracstation.models.IsulatedJoint?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="dev.glycine.pracstation.controllers.StationController">
+<?import dev.glycine.pracstation.models.Station?>
+<Station name="臨澧站"
+         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="500.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="dev.glycine.pracstation.controllers.StationController"
+>
     <!--railway-section-->
     <Section sid="X3JG" endX="87.0" endY="224.0" startX="12.0" startY="224.0"/>
     <Section sid="S1LQ" endX="87.0" endY="267.0" startX="12.0" startY="267.0"/>
@@ -313,4 +315,4 @@
     <Turnout layoutX="683.0" layoutY="224.0" tid="14" sid="14DG"/>
     <Turnout layoutX="672.0" layoutY="363.0" tid="16" sid="16DG"/>
     <Turnout layoutX="672.0" layoutY="310.0" tid="18" sid="18DG"/>
-</AnchorPane>
+</Station>

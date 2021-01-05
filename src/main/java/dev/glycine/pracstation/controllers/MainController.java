@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXRadioButton;
+import dev.glycine.pracstation.App;
+import dev.glycine.pracstation.AppLauncher;
 import dev.glycine.pracstation.models.*;
 import dev.glycine.pracstation.pb.InitRouteMessage;
 import io.grpc.StatusRuntimeException;
@@ -11,6 +13,7 @@ import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
@@ -22,10 +25,15 @@ import javafx.scene.transform.Translate;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -58,6 +66,7 @@ public final class MainController {
     public void enableCancelRouteBtn() {
         cancelRouteBtn.setDisable(false);
     }
+
     @FXML
     private JFXRadioButton unlockRouteBtn;
     @FXML
@@ -66,8 +75,6 @@ public final class MainController {
     private Card routeCard;
     @FXML
     private AnchorPane root;
-    @FXML
-    private AnchorPane station;
     @FXML
     private Label localTime;
     @FXML
@@ -79,9 +86,10 @@ public final class MainController {
     @FXML
     private HBox bottomRightBox;
 
-    @FXML
     @Getter
     private StationController stationController;
+
+    private Station station;
 
     /**
      * 宣告時鐘動畫
@@ -170,19 +178,24 @@ public final class MainController {
         clock.play();
     }
 
-    /**
-     * 配置站名
-     */
-    void configureStationNames() {
-        stationName.setText("臨灃站");
-    }
-
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        if (AppLauncher.getWindowWidth() != 1920 && AppLauncher.getWindowHeight() != 1080) {
+            root.setPrefWidth(AppLauncher.getWindowWidth());
+            root.setPrefHeight(AppLauncher.getWindowHeight());
+        }
+
+        var stationLoader = new FXMLLoader(new File(AppLauncher.getFxmlPath()).toURI().toURL());
+        stationController = new StationController();
+        stationLoader.setController(stationController);
+        station = stationLoader.load();
+        Platform.runLater(() -> root.getChildren().add(0, station));
+
         configureToolBox();
         configureCanvas();
         configureClock();
-        configureStationNames();
+
+        stationName.setText(station.getName());
 
         newRouteBtn.setSelectedColor(AppleColor.GREEN);
         cancelRouteBtn.setSelectedColor(AppleColor.BLUE);
@@ -193,7 +206,7 @@ public final class MainController {
     @Getter
     private final HashMap<String, Light> routes = new HashMap<>();
 
-    private void addToRouteMap(String str, Light light){
+    private void addToRouteMap(String str, Light light) {
         routes.put(str, light);
         if (!routes.isEmpty()) {
             cancelRouteBtn.setDisable(false);
@@ -203,7 +216,7 @@ public final class MainController {
 
     private void removeFromRouteMap(String str) {
         routes.remove(str);
-        if (routes.isEmpty()){
+        if (routes.isEmpty()) {
             cancelRouteBtn.setDisable(true);
             unlockRouteBtn.setDisable(true);
             routeToggle.selectToggle(newRouteBtn);
@@ -337,7 +350,7 @@ public final class MainController {
         });
     }
 
-    public RouteAction getAction(){
+    public RouteAction getAction() {
         var selectedBtn = (JFXRadioButton) routeToggle.getSelectedToggle();
         if (newRouteBtn.equals(selectedBtn)) return RouteAction.NEW;
         if (cancelRouteBtn.equals(selectedBtn)) return RouteAction.CANCEL;

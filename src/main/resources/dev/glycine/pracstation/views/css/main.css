@@ -18,8 +18,6 @@
 }
 
 #root {
-    -fx-pref-width: 1920;
-    -fx-pref-height: 1080;
     -fx-background-color: black;
 }
 
