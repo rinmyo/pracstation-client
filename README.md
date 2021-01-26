@@ -2,8 +2,8 @@
 爲了課程設計而開發的計算機連鎖系統之客戶機，使用Gradle構建。
 
 ### Use
-  - **JDK** 11.0.1
-  - **JavaFX** 11.0.1
+  - **JDK** 15.0.1
+  - **JavaFX** 15.0.1
   - **[MongoDB Java Drivers](https://mongodb.github.io/mongo-java-driver/)** 4.0.1
   - **[Log4j2](https://logging.apache.org/log4j/2.x/)** 2.13.1
   - **[Gson](https://github.com/google/gson)** 2.8.6
